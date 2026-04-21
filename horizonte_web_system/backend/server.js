@@ -18,7 +18,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors());
+// Configuración de CORS robusta para permitir peticiones desde Flutter Web (localhost y producción)
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Endpoint de Login Admin
