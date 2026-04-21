@@ -156,19 +156,26 @@
 
         async function loadData() {
             try {
-                // In a real environment, replace with your Render URL
-                const response = await fetch('http://localhost:3000/api/metrics', {
+                // Usamos la configuración de API_CONFIG definida en api.js
+                const response = await fetch(`${API_CONFIG.BASE_URL}/metrics`, {
                     headers: { 'Authorization': token }
                 });
+                
+                if (!response.ok) throw new Error("Acceso denegado o error de servidor");
+                
                 const data = await response.json();
                 updateMetrics(data);
             } catch (err) {
-                console.warn('Backend not reached, using mock data');
+                console.error('Error al cargar datos reales:', err);
+                // Si falla, mostramos ceros para indicar que el sistema está limpio o desconectado
                 updateMetrics({
-                    totalUsers: 1420,
-                    avgSatisfaction: 4.7,
-                    riasecDistribution: { R: 30, I: 45, A: 20, S: 35, E: 25, C: 15 }
+                    totalUsers: 0,
+                    avgSatisfaction: 0,
+                    riasecDistribution: { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 }
                 });
+                if (window.location.hostname !== 'localhost') {
+                    alert("Atención: No se pudo conectar con el servidor de Render. Mostrando datos vacíos.");
+                }
             }
         }
 

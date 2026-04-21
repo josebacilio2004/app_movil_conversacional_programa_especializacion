@@ -12,14 +12,21 @@ const AUTH_TOKEN = 'cori-secure-2026';
 app.use(cors());
 app.use(express.json());
 
-// Login Endpoint
+// Endpoint de Login Admin
 app.post('/api/login', (req, res) => {
   const { email, code } = req.body;
-  // Mock validation: any email with code '2026' works
-  if (code === '2026') {
-    res.json({ success: true, token: AUTH_TOKEN, user: { email, name: 'Admin User' } });
+  // Credenciales Administrativas Oficiales
+  const ADMIN_EMAIL = 'admin@horizonte.com';
+  const ADMIN_CODE = 'horizonte2026';
+
+  if (email === ADMIN_EMAIL && code === ADMIN_CODE) {
+    res.json({ 
+      success: true, 
+      token: AUTH_TOKEN, 
+      user: { email, name: 'Administrador Horizonte', role: 'superadmin' } 
+    });
   } else {
-    res.status(401).json({ success: false, error: 'Acceso Denegado' });
+    res.status(401).json({ success: false, error: 'Credenciales inválidas' });
   }
 });
 
