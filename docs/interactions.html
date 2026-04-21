@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="interactions_title">Interacciones | Horizonte Continental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4800b2',
+                        secondary: '#006d36',
+                        surface: '#f7f9fb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-lang { font-weight: 800; text-decoration: underline; color: #4800b2; }
+    </style>
+</head>
+<body class="bg-surface min-h-screen">
+    <div class="organic-blob blob-1"></div>
+    <div class="organic-blob blob-2"></div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-72 h-screen glass-panel fixed left-0 top-0 m-6 rounded-[2rem] p-8 flex flex-col">
+            <div class="flex items-center gap-3 mb-12">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">smart_toy</span>
+                </div>
+                <h2 class="font-black text-xl tracking-tighter" data-i18n="hero_title">Cori Insights</h2>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <a href="dashboard.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-black/5 transition-all group opacity-60">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">home</span>
+                    <span class="font-bold text-sm" data-i18n="nav_overview">Resumen</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-black/5 transition-all group opacity-60">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+                    <span class="font-bold text-sm" data-i18n="nav_analytics">Analítica</span>
+                </a>
+                <a href="interactions.html" class="flex items-center gap-4 px-6 py-4 rounded-2xl bg-primary/10 text-primary transition-all group">
+                    <span class="material-symbols-outlined">forum</span>
+                    <span class="font-bold text-sm" data-i18n="nav_interactions">Interacciones</span>
+                </a>
+            </nav>
+
+            <!-- Language Switcher in Sidebar -->
+            <div class="mt-4 p-4 border-t border-black/5">
+                <div class="flex justify-around text-[10px] font-black uppercase tracking-widest">
+                    <button class="lang-btn" data-lang="es" data-i18n="lang_es">Español</button>
+                    <button class="lang-btn" data-lang="en" data-i18n="lang_en">English</button>
+                </div>
+            </div>
+
+            <button onclick="localStorage.removeItem('horizonte_token'); window.location.href='login.html'" 
+                class="mt-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-red-50 text-red-500 transition-all group">
+                <span class="material-symbols-outlined">logout</span>
+                <span class="font-bold text-sm" data-i18n="nav_logout">Cerrar Sesión</span>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-80 flex-1 p-12 pr-24">
+            <header class="flex justify-between items-end mb-12">
+                <div>
+                    <h1 class="text-4xl font-black tracking-tight mb-2" data-i18n="interactions_title">Registro de Interacciones</h1>
+                    <p class="opacity-50 font-medium" data-i18n="interactions_subtitle">Historial detallado de conversaciones y feedback.</p>
+                </div>
+            </header>
+
+            <!-- Table Container -->
+            <div class="glass-panel rounded-[2rem] overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-black/5 border-b border-black/5">
+                        <tr>
+                            <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest opacity-40" data-i18n="table_user">Usuario</th>
+                            <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest opacity-40" data-i18n="table_message">Mensaje</th>
+                            <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest opacity-40" data-i18n="table_response">Respuesta Cori</th>
+                            <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest opacity-40" data-i18n="table_rating">Calificación</th>
+                            <th class="px-8 py-6 text-[10px] font-black uppercase tracking-widest opacity-40" data-i18n="table_time">Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody id="interactionsBody">
+                        <!-- Loaded via JS -->
+                        <tr>
+                            <td colspan="5" class="px-8 py-20 text-center opacity-40 font-bold" data-i18n="no_data">Cargando registros...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        // Security Check
+        const token = HorizonteAPI.getToken();
+        if (!token && window.location.hostname !== 'localhost') {
+            window.location.href = 'login.html';
+        }
+
+        async function fetchInteractions() {
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/interactions`, {
+                    headers: { 'Authorization': token }
+                });
+                const logs = await response.json();
+                renderLogs(logs);
+            } catch (err) {
+                console.error('Error fetching logs:', err);
+            }
+        }
+
+        function renderLogs(logs) {
+            const body = document.getElementById('interactionsBody');
+            if (!logs || logs.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="px-8 py-20 text-center opacity-40 font-bold" data-i18n="no_data">No hay datos</td></tr>`;
+                return;
+            }
+
+            body.innerHTML = logs.map(log => `
+                <tr class="border-b border-black/5 hover:bg-black/5 transition-colors">
+                    <td class="px-8 py-6">
+                        <div class="font-bold text-xs truncate w-24">${log.user_id}</div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="text-xs opacity-70 line-clamp-2 max-w-xs">${log.message_content}</div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="text-xs font-medium line-clamp-2 max-w-xs">${log.response_content}</div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="flex items-center gap-1">
+                            ${Array(5).fill(0).map((_, i) => `
+                                <span class="material-symbols-outlined text-xs ${i < (log.rating || 0) ? 'text-yellow-400' : 'text-black/10'}" style="font-size: 14px">star</span>
+                            `).join('')}
+                        </div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="text-[10px] font-black opacity-40 whitespace-nowrap">${new Date(log.timestamp).toLocaleString()}</div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Re-apply translations for dynamic content if needed (though here we use columns)
+        }
+
+        fetchInteractions();
+    </script>
+</body>
+</html>

@@ -79,6 +79,31 @@ app.get('/api/metrics', async (req, res) => {
   }
 });
 
+// [GET] Interaction Logs (Full List for Dashboard)
+app.get('/api/interactions', async (req, res) => {
+  const token = req.headers['authorization'];
+  if (token !== AUTH_TOKEN && process.env.NODE_ENV === 'production') {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  try {
+    const query = `
+      SELECT 
+        i.id, i.user_id, i.message_content, i.response_content, i.intent, i.timestamp,
+        f.rating, f.comment
+      FROM chatbot_interactions i
+      LEFT JOIN user_feedback f ON i.id = f.interaction_id
+      ORDER BY i.timestamp DESC
+      LIMIT 100
+    `;
+    const result = await db.query(query);
+    res.json(result.rows);
+  } catch (err) {
+    console.error('DB Error:', err);
+    res.status(500).json({ error: 'Error fetching log' });
+  }
+});
+
 // [POST] Log Chat Interaction (Real-time from Cloud Function or App)
 app.post('/api/interactions', async (req, res) => {
   const { userId, sessionId, message, response, intent } = req.body;
