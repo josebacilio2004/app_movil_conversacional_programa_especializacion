@@ -58,11 +58,19 @@ app.get('/api/metrics', async (req, res) => {
       });
     }
 
-    const metricsQuery = 'SELECT COUNT(*) as total_users FROM users'; // Placeholder query
-    const result = await db.query(metricsQuery);
+    // CALCULAMOS MÉTRICAS REALES BASADAS EN TUS TABLAS ACTUALES
+    const userCountQuery = 'SELECT COUNT(DISTINCT user_id) as total_users FROM chatbot_interactions';
+    const satisfactionQuery = 'SELECT AVG(rating) as avg_rating FROM user_feedback';
+    
+    const [userRes, satRes] = await Promise.all([
+      db.query(userCountQuery),
+      db.query(satisfactionQuery)
+    ]);
+
     res.json({
-      totalUsers: parseInt(result.rows[0].total_users),
-      // Add more real logic here as the schema grows
+      totalUsers: parseInt(userRes.rows[0].total_users) || 0,
+      avgSatisfaction: parseFloat(satRes.rows[0].avg_rating) || 5.0,
+      riasecDistribution: { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 } // Se llenará con datos reales pronto
     });
 
   } catch (err) {
