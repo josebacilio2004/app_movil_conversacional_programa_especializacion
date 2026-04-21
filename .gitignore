@@ -50,4 +50,5 @@ app.*.map.json
 .env
 
 # Secrets
-appmovilespecializacion-firebase-adminsdk-fbsvc-1073e97b66.json
+firebase-admin-key.json
+appmovilespecializacion-firebase-adminsdk-fbsvc-*.json

@@ -64,24 +64,40 @@ app.get('/api/metrics', async (req, res) => {
   }
 });
 
-// [POST] Log Chat Interaction
-app.post('/api/chat', async (req, res) => {
-  const { userId, message, isUser, type } = req.body;
+// [POST] Log Chat Interaction (Real-time from Cloud Function or App)
+app.post('/api/interactions', async (req, res) => {
+  const { userId, sessionId, message, response, intent } = req.body;
   
   if (!process.env.DATABASE_URL) {
-    console.log('[MOCK DB] Chat Logged:', { userId, message, isUser });
+    console.log('[MOCK DB] Interaction Logged:', { userId, message });
     return res.json({ success: true, message: 'Log simulated' });
   }
 
   try {
+    const result = await db.query(
+      'INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent) VALUES ($1, $2, $3, $4, $5) RETURNING id',
+      [userId, sessionId, message, response, intent || 'general']
+    );
+    res.json({ success: true, id: result.rows[0].id });
+  } catch (err) {
+    console.error('DB Error:', err);
+    res.status(500).json({ error: 'Database log error' });
+  }
+});
+
+// [POST] Interaction Rating
+app.post('/api/interactions/rate', async (req, res) => {
+  const { interactionId, rating, comment } = req.body;
+  
+  try {
     await db.query(
-      'INSERT INTO chat_logs (user_id, message, is_user, type, timestamp) VALUES ($1, $2, $3, $4, NOW())',
-      [userId, message, isUser, type || 'general']
+      'INSERT INTO user_feedback (interaction_id, rating, comment) VALUES ($1, $2, $3)',
+      [interactionId, rating, comment]
     );
     res.json({ success: true });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Database log error' });
+    console.error('DB Error:', err);
+    res.status(500).json({ error: 'Feedback log error' });
   }
 });
 
