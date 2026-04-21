@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                 ),
-                                if (appUser?.riasecProfile.isNotEmpty ?? false)
+                                if (appUser != null && appUser.riasecProfile.isNotEmpty)
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                     decoration: BoxDecoration(
@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Text(
-                                      _getDominantTrait(appUser!),
+                                      _getDominantTrait(appUser),
                                       style: TextStyle(
                                         color: theme.colorScheme.secondary,
                                         fontSize: 10,
@@ -205,8 +205,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Center(
                               child: SizedBox(
                                 height: 220,
-                                child: appUser!.riasecProfile.isNotEmpty 
-                                  ? _buildRadarChart(appUser!)
+                                child: (appUser != null && appUser.riasecProfile.isNotEmpty)
+                                  ? _buildRadarChart(appUser)
                                   : Container(
                                       alignment: Alignment.center,
                                       child: Icon(Icons.auto_awesome, color: theme.colorScheme.primary.withOpacity(0.3), size: 40),

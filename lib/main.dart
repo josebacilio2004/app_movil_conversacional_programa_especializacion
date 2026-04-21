@@ -101,13 +101,21 @@ class Wrapper extends StatelessWidget {
       return StreamBuilder<AppUser>(
         stream: DatabaseService().userData(user.uid),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (snapshot.hasData) {
             return Provider<AppUser>.value(
               value: snapshot.data!,
               child: const HomeScreen(),
             );
+          } else if (snapshot.hasError) {
+            return const Scaffold(body: Center(child: Text("Error al cargar datos")));
           } else {
-            return const HomeScreen(); 
+            return const LoginScreen();
           }
         },
       );
