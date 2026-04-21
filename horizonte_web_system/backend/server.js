@@ -132,6 +132,8 @@ app.post('/api/interactions', async (req, res) => {
   try {
     // Usamos ON CONFLICT con firestore_id para hacer un UPSERT (Insertar o Actualizar)
     const { confidenceScore } = req.body;
+    console.log(`[DB] Attempting UPSERT for interaction: ${firestoreId}`);
+    
     const query = `
       INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent, firestore_id, confidence_score)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -146,9 +148,11 @@ app.post('/api/interactions', async (req, res) => {
     `;
     const result = await db.query(query, [userId, sessionId, message, response, intent || 'general', firestoreId, confidenceScore || null]);
     const interactionId = result.rows[0].id;
+    console.log(`[DB] Interaction saved with ID: ${interactionId}`);
 
     // Si recibimos un rating Likert (1-5), lo guardamos también con UPSERT
     if (rating) {
+      console.log(`[DB] Saving initial rating: ${rating}`);
       await db.query(
         `INSERT INTO user_feedback (interaction_id, rating, firestore_id) 
          VALUES ($1, $2, $3) 
@@ -160,8 +164,8 @@ app.post('/api/interactions', async (req, res) => {
 
     res.json({ success: true, id: interactionId });
   } catch (err) {
-    console.error('DB Error:', err);
-    res.status(500).json({ error: 'Database log error' });
+    console.error('[DB ERROR] /api/interactions:', err.message);
+    res.status(500).json({ success: false, error: 'Database log error', details: err.message });
   }
 });
 
@@ -170,12 +174,16 @@ app.post('/api/interactions/rate', async (req, res) => {
   const { interactionId, rating, comment, firestoreId } = req.body;
   
   try {
+    console.log(`[DB] Processing rating update for firestore_id: ${firestoreId}`);
     // Si tenemos firestoreId, buscamos el interactionId de Postgres primero
     let realInteractionId = interactionId;
     if (firestoreId && !realInteractionId) {
       const interactionRes = await db.query('SELECT id FROM chatbot_interactions WHERE firestore_id = $1', [firestoreId]);
       if (interactionRes.rows.length > 0) {
         realInteractionId = interactionRes.rows[0].id;
+        console.log(`[DB] Found matching interaction ID: ${realInteractionId}`);
+      } else {
+        console.warn(`[DB WARNING] No interaction found for firestoreId: ${firestoreId}. Ensure the message was synced first.`);
       }
     }
 
@@ -192,10 +200,11 @@ app.post('/api/interactions/rate', async (req, res) => {
          comment = COALESCE(EXCLUDED.comment, user_feedback.comment)`,
       [realInteractionId, rating, comment, firestoreId]
     );
+    console.log(`[DB] Rating updated successfully for interaction: ${realInteractionId}`);
     res.json({ success: true });
   } catch (err) {
-    console.error('DB Error:', err);
-    res.status(500).json({ error: 'Feedback log error' });
+    console.error('[DB ERROR] /api/interactions/rate:', err.message);
+    res.status(500).json({ success: false, error: 'Feedback log error', details: err.message });
   }
 });
 
