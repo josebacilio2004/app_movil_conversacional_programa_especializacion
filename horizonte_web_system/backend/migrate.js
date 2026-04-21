@@ -4,12 +4,20 @@ async function migrate() {
   console.log('🚀 Iniciando migración automática en NeonDB...');
   
   const migrationQueries = [
-    // 1. Añadir firestore_id a la tabla de interacciones
+    // 1. Añadir firestore_id y confidence_score a la tabla de interacciones
     'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS firestore_id VARCHAR(255) UNIQUE;',
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS confidence_score DECIMAL(5, 2);',
     
-    // 2. Asegurar que user_feedback pueda registrar el firestore_id para mayor trazabilidad y hacerlo ÚNICO para UPSERTS
+    // 2. Asegurar que user_feedback pueda registrar el firestore_id
     'ALTER TABLE user_feedback ADD COLUMN IF NOT EXISTS firestore_id VARCHAR(255);',
-    'ALTER TABLE user_feedback ADD CONSTRAINT unique_feedback_firestore UNIQUE (firestore_id);',
+    
+    // 2.1 Añadir restricción UNIQUE de forma segura (PostgreSQL no tiene IF NOT EXISTS para constraints directamente en ALTER TABLE de esta forma)
+    `DO $$ 
+     BEGIN 
+       IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'unique_feedback_firestore') THEN
+         ALTER TABLE user_feedback ADD CONSTRAINT unique_feedback_firestore UNIQUE (firestore_id);
+       END IF; 
+     END $$;`,
     
     // 3. Crear índice para búsquedas por firestore_id
     'CREATE INDEX IF NOT EXISTS idx_interaction_firestore ON chatbot_interactions(firestore_id);'
