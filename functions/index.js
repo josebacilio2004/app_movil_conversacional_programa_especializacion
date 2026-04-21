@@ -39,23 +39,39 @@ exports.getRecommendation = functions.https.onCall(async (data, context) => {
 // NUEVA FUNCIÓN: Sincronización automática con el Dashboard (NeonDB)
 exports.syncToPostgres = functions.firestore
     .document('users/{userId}/history/{messageId}')
-    .onCreate(async (snapshot, context) => {
-        const data = snapshot.data();
+    .onWrite(async (change, context) => {
+        const afterData = change.after.exists ? change.after.data() : null;
+        const beforeData = change.before.exists ? change.before.data() : null;
         const userId = context.params.userId;
+        const messageId = context.params.messageId;
+
+        // Si el documento fue eliminado, no hacemos nada
+        if (!afterData) return null;
 
         // URL de tu backend en Render
         const RENDER_URL = 'https://horizonte-backend.onrender.com/api/interactions';
 
+        // Solo sincronizamos si es un mensaje del bot (las respuestas que se califican)
+        // O si es un mensaje del usuario que acaba de crearse.
         try {
-            await axios.post(RENDER_URL, {
-                userId: userId,
-                sessionId: data.sessionId || "mobile_session",
-                message: data.isUser ? data.text : null,
-                response: !data.isUser ? data.text : null,
-                intent: data.category || "mobile_app"
-            });
-            console.log(`✅ Sincronizado mensaje ${context.params.messageId} a NeonDB`);
+            // Detectar si el rating cambió
+            const ratingChanged = beforeData && beforeData.rating !== afterData.rating;
+            const isNew = !beforeData;
+
+            if (isNew || ratingChanged) {
+                await axios.post(RENDER_URL, {
+                    userId: userId,
+                    firestoreId: messageId,
+                    sessionId: afterData.sessionId || "mobile_session",
+                    message: afterData.isUser ? afterData.text : null,
+                    response: !afterData.isUser ? afterData.text : null,
+                    intent: afterData.category || "mobile_app",
+                    rating: afterData.rating // Aquí va el valor Likert 1-5
+                });
+                console.log(`✅ Sincronizado mensaje/rating ${messageId} a NeonDB`);
+            }
         } catch (error) {
             console.error('❌ Error replicando a Postgres:', error.message);
         }
+        return null;
     });

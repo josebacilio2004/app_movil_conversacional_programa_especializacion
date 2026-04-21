@@ -106,33 +106,73 @@ app.get('/api/interactions', async (req, res) => {
 
 // [POST] Log Chat Interaction (Real-time from Cloud Function or App)
 app.post('/api/interactions', async (req, res) => {
-  const { userId, sessionId, message, response, intent } = req.body;
+  const { userId, sessionId, message, response, intent, firestoreId, rating } = req.body;
   
   if (!process.env.DATABASE_URL) {
-    console.log('[MOCK DB] Interaction Logged:', { userId, message });
+    console.log('[MOCK DB] Interaction Logged:', { userId, message, rating });
     return res.json({ success: true, message: 'Log simulated' });
   }
 
   try {
-    const result = await db.query(
-      'INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent) VALUES ($1, $2, $3, $4, $5) RETURNING id',
-      [userId, sessionId, message, response, intent || 'general']
-    );
-    res.json({ success: true, id: result.rows[0].id });
+    // Usamos ON CONFLICT con firestore_id para hacer un UPSERT (Insertar o Actualizar)
+    const query = `
+      INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent, firestore_id)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      ON CONFLICT (firestore_id) 
+      DO UPDATE SET 
+        intent = EXCLUDED.intent,
+        message_content = COALESCE(chatbot_interactions.message_content, EXCLUDED.message_content),
+        response_content = COALESCE(chatbot_interactions.response_content, EXCLUDED.response_content),
+        timestamp = CURRENT_TIMESTAMP
+      RETURNING id;
+    `;
+    const result = await db.query(query, [userId, sessionId, message, response, intent || 'general', firestoreId]);
+    const interactionId = result.rows[0].id;
+
+    // Si recibimos un rating Likert (1-5), lo guardamos también con UPSERT
+    if (rating) {
+      await db.query(
+        `INSERT INTO user_feedback (interaction_id, rating, firestore_id) 
+         VALUES ($1, $2, $3) 
+         ON CONFLICT (firestore_id) 
+         DO UPDATE SET rating = EXCLUDED.rating`,
+        [interactionId, rating, firestoreId]
+      );
+    }
+
+    res.json({ success: true, id: interactionId });
   } catch (err) {
     console.error('DB Error:', err);
     res.status(500).json({ error: 'Database log error' });
   }
 });
 
-// [POST] Interaction Rating
+// [POST] Interaction Rating (Directo para actualizaciones de escala Likert)
 app.post('/api/interactions/rate', async (req, res) => {
-  const { interactionId, rating, comment } = req.body;
+  const { interactionId, rating, comment, firestoreId } = req.body;
   
   try {
+    // Si tenemos firestoreId, buscamos el interactionId de Postgres primero
+    let realInteractionId = interactionId;
+    if (firestoreId && !realInteractionId) {
+      const interactionRes = await db.query('SELECT id FROM chatbot_interactions WHERE firestore_id = $1', [firestoreId]);
+      if (interactionRes.rows.length > 0) {
+        realInteractionId = interactionRes.rows[0].id;
+      }
+    }
+
+    if (!realInteractionId) {
+      return res.status(404).json({ error: 'Interaction not found to rate' });
+    }
+
     await db.query(
-      'INSERT INTO user_feedback (interaction_id, rating, comment) VALUES ($1, $2, $3)',
-      [interactionId, rating, comment]
+      `INSERT INTO user_feedback (interaction_id, rating, comment, firestore_id) 
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (firestore_id) 
+       DO UPDATE SET 
+         rating = EXCLUDED.rating, 
+         comment = COALESCE(EXCLUDED.comment, user_feedback.comment)`,
+      [realInteractionId, rating, comment, firestoreId]
     );
     res.json({ success: true });
   } catch (err) {

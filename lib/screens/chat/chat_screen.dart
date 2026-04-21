@@ -274,14 +274,12 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       if (!msg.isUser && msg.id != 'welcome') ...[
                         const Divider(height: 20, color: Colors.blueGrey),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('¿Fue útil?', style: TextStyle(fontSize: 11, color: Colors.blueGrey)),
-                            const SizedBox(width: 8),
-                            _buildRatingIcon(msg, true),
-                            const SizedBox(width: 4),
-                            _buildRatingIcon(msg, false),
+                            const Text('Califica esta respuesta:', style: TextStyle(fontSize: 11, color: Colors.blueGrey)),
+                            const SizedBox(height: 4),
+                            _buildStarRating(msg),
                           ],
                         ),
                       ]
@@ -392,40 +390,45 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
   }
 
-  Widget _buildRatingIcon(ChatMessage msg, bool isHelpful) {
-    // Definimos los colores basados en si ya está calificado
-    final int targetRating = isHelpful ? 5 : 1;
-    final bool isSelected = msg.rating == targetRating;
-    
-    return InkWell(
-      onTap: () async {
-        final appUser = Provider.of<AppUser?>(context, listen: false);
-        if (appUser != null) {
-          // Actualización local inmediata para feedback visual (Reactividad)
-          setState(() {
-            msg.rating = targetRating;
-          });
+  Widget _buildStarRating(ChatMessage msg) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(5, (index) {
+        final int starValue = index + 1;
+        final bool isSelected = (msg.rating ?? 0) >= starValue;
+        
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () async {
+            final appUser = Provider.of<AppUser?>(context, listen: false);
+            if (appUser != null) {
+              setState(() {
+                msg.rating = starValue;
+              });
 
-          await _chatService.rateMessage(appUser.uid, msg.id, isHelpful);
-          
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('¡Gracias por tu feedback! ✨'),
-                duration: Duration(seconds: 1),
-                backgroundColor: Color(0xFF6D23F9),
-              ),
-            );
-          }
-        }
-      },
-      child: Icon(
-        isHelpful ? Icons.thumb_up_alt_rounded : Icons.thumb_down_alt_rounded,
-        size: 18,
-        color: isSelected 
-          ? (isHelpful ? Colors.green : Colors.red) 
-          : Colors.grey.withOpacity(0.4),
-      ),
+              await _chatService.rateMessage(appUser.uid, msg.id, starValue);
+              
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('¡Calificado con $starValue estrellas! ⭐'),
+                    duration: const Duration(seconds: 1),
+                    backgroundColor: const Color(0xFF6D23F9),
+                  ),
+                );
+              }
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+            child: Icon(
+              isSelected ? Icons.star_rounded : Icons.star_outline_rounded,
+              size: 28,
+              color: isSelected ? Colors.amber : Colors.grey.withOpacity(0.4),
+            ),
+          ),
+        );
+      }),
     );
   }
 }

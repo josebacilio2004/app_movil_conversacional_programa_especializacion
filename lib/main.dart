@@ -34,55 +34,65 @@ class MyApp extends StatelessWidget {
       providers: [
         StreamProvider<User?>.value(value: AuthService().user, initialData: null),
       ],
-      child: MaterialApp(
-        title: 'Horizonte UC',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          textTheme: GoogleFonts.manropeTextTheme(
-            Theme.of(context).textTheme,
-          ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6D23F9),
-            primary: const Color(0xFF6D23F9),
-            onPrimary: Colors.white,
-            secondary: const Color(0xFF10B981), // Emerald Green from design
-            surface: const Color(0xFFF7F9FB),
-            background: const Color(0xFFF7F9FB),
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF6D23F9),
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 56),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              elevation: 0,
+      child: Consumer<User?>(
+        builder: (context, user, _) {
+          return StreamProvider<AppUser?>.value(
+            value: user != null ? DatabaseService().userData(user.uid) : Stream.value(null),
+            initialData: null,
+            child: MaterialApp(
+              title: 'Horizonte UC',
+              debugShowCheckedModeBanner: false,
+              theme: _buildTheme(context),
+              home: const Wrapper(),
+              routes: {
+                '/riasec': (context) => const RiasecTestScreen(),
+                '/chat': (context) => const ChatScreen(),
+              },
             ),
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: const Color(0xFFECEEF0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: Color(0xFF6D23F9), width: 1.5),
-            ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            hintStyle: TextStyle(color: const Color(0xFF494456).withOpacity(0.5)),
-          ),
-        ),
-        home: const Wrapper(),
-        routes: {
-          '/riasec': (context) => const RiasecTestScreen(),
-          '/chat': (context) => const ChatScreen(),
+          );
         },
+      ),
+    );
+  }
+
+  ThemeData _buildTheme(BuildContext context) {
+    return ThemeData(
+      useMaterial3: true,
+      textTheme: GoogleFonts.manropeTextTheme(Theme.of(context).textTheme),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xFF6D23F9),
+        primary: const Color(0xFF6D23F9),
+        onPrimary: Colors.white,
+        secondary: const Color(0xFF10B981),
+        surface: const Color(0xFFF7F9FB),
+        background: const Color(0xFFF7F9FB),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF6D23F9),
+          foregroundColor: Colors.white,
+          minimumSize: const Size(double.infinity, 56),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          elevation: 0,
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: const Color(0xFFECEEF0),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: const BorderSide(color: Color(0xFF6D23F9), width: 1.5),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        hintStyle: TextStyle(color: const Color(0xFF494456).withOpacity(0.5)),
       ),
     );
   }
@@ -94,31 +104,18 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User?>(context);
+    final appUser = Provider.of<AppUser?>(context);
 
     if (user == null) {
       return const LoginScreen();
     } else {
-      return StreamBuilder<AppUser>(
-        stream: DatabaseService().userData(user.uid),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else if (snapshot.hasData) {
-            return Provider<AppUser>.value(
-              value: snapshot.data!,
-              child: const HomeScreen(),
-            );
-          } else if (snapshot.hasError) {
-            return const Scaffold(body: Center(child: Text("Error al cargar datos")));
-          } else {
-            return const LoginScreen();
-          }
-        },
-      );
+      if (appUser == null) {
+        return const Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      }
+      return const HomeScreen();
     }
   }
 }
+

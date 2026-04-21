@@ -45,28 +45,14 @@ class ChatService {
   }
 
   /// [RF-05.1] Escala de Satisfacción: Permite al usuario calificar una respuesta
-  /// específica para calcular el CSAT (Customer Satisfaction Score).
-  Future<void> rateMessage(String userId, String messageId, bool isHelpful) async {
+  /// específica para calcular el CSAT mediante Escala de Likert (1-5).
+  Future<void> rateMessage(String userId, String messageId, int rating) async {
     if (userId.isEmpty) return;
-    final ratingValue = isHelpful ? 5 : 1;
+    
+    // Guardamos en Firestore. La Cloud Function detectará este cambio y sincronizará con NeonDB.
     await _db.collection('users').doc(userId).collection('history').doc(messageId).update({
-      'rating': ratingValue,
+      'rating': rating,
     });
-
-    // Sincronización de Rating con el Dashboard
-    try {
-       await http.post(
-        Uri.parse("https://horizonte-backend.onrender.com/api/interactions/rate"),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "interactionId": messageId, // En Neon estamos usando el ID de Firestore como referencia
-          "rating": ratingValue,
-          "comment": "App Feedback"
-        }),
-      ).timeout(const Duration(seconds: 3));
-    } catch (e) {
-      print("Error sincronizando feedback: $e");
-    }
   }
 
   /// REST REQUISITO: Generar nueva sesión (ej: al volver a la home)
