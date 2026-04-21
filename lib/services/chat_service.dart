@@ -56,17 +56,22 @@ class ChatService {
 
     // Sincronización DIRECTA de Rating con el Dashboard (para evitar depender de Cloud Functions)
     try {
-       await http.post(
+       final response = await http.post(
         Uri.parse("https://horizonte-backend.onrender.com/api/interactions/rate"),
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: jsonEncode({
           "firestoreId": messageId, // Usamos el ID de Firestore como referencia clave
           "rating": rating,
           "comment": "App Feedback"
         }),
       ).timeout(const Duration(seconds: 3));
+      
+      print("📡 SYNC RATING: HTTP ${response.statusCode} - ${response.body}");
     } catch (e) {
-      print("Error sincronizando feedback directo: $e");
+      print("❌ SYNC RATING ERROR: $e");
     }
   }
 
@@ -135,10 +140,14 @@ class ChatService {
 
   /// Sincroniza la interacción con el dashboard en Render (PostgreSQL)
   Future<void> _syncInteractionToDashboard(String userId, String sessionId, String message, String response, String intent, String firestoreId) async {
+    print("📡 SYNC INTERACTION START: $firestoreId");
     try {
-      await http.post(
+      final res = await http.post(
         Uri.parse("https://horizonte-backend.onrender.com/api/interactions"),
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: jsonEncode({
           "userId": userId,
           "sessionId": sessionId,
@@ -148,8 +157,9 @@ class ChatService {
           "firestoreId": firestoreId // Crucial para auditoría y unión con ratings
         }),
       ).timeout(const Duration(seconds: 5));
+      print("📡 SYNC INTERACTION DONE: HTTP ${res.statusCode} - ${res.body}");
     } catch (e) {
-      print("Error de sincronización directa (Neon): $e");
+      print("❌ SYNC INTERACTION ERROR: $e");
     }
   }
 }

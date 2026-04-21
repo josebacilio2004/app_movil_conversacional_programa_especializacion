@@ -9,6 +9,15 @@ const PORT = process.env.PORT || 3000;
 // Simple authentication token (mock)
 const AUTH_TOKEN = 'cori-secure-2026';
 
+// Middleware de Logs para diagnóstico
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  if (Object.keys(req.body).length > 0) {
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+  }
+  next();
+});
+
 app.use(cors());
 app.use(express.json());
 
