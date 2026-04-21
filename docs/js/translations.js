@@ -29,7 +29,10 @@ const translations = {
         "table_time": "Fecha/Hora",
         "no_data": "No hay interacciones registradas aún.",
         "lang_es": "Español",
-        "lang_en": "English"
+        "lang_en": "English",
+        "analytics_view_title": "Panel de Analítica Avanzada",
+        "chart_monthly_history": "Histórico Mensual de Consultas",
+        "chart_intents_dist": "Distribución por Intención de Consulta"
     },
     en: {
         "nav_overview": "Overview",
@@ -61,6 +64,9 @@ const translations = {
         "table_time": "Date/Time",
         "no_data": "No interactions logged yet.",
         "lang_es": "Spanish",
-        "lang_en": "English"
+        "lang_en": "English",
+        "analytics_view_title": "Advanced Analytics Dashboard",
+        "chart_monthly_history": "Monthly Query History",
+        "chart_intents_dist": "Query Intent Distribution"
     }
 };

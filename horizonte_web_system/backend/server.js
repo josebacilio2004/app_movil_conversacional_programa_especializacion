@@ -95,6 +95,60 @@ app.get('/api/metrics', async (req, res) => {
   }
 });
 
+// [GET] Detailed Analytics for Charts
+app.get('/api/analytics', async (req, res) => {
+  const token = req.headers['authorization'];
+  if (token !== AUTH_TOKEN && process.env.NODE_ENV === 'production') {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  try {
+    // 1. Volumen Mensual (Últimos 6 meses)
+    const monthlyQuery = `
+      SELECT 
+        TO_CHAR(timestamp, 'Mon') as month,
+        COUNT(*) as count,
+        MIN(timestamp) as sort_date
+      FROM chatbot_interactions
+      WHERE timestamp > CURRENT_DATE - INTERVAL '6 months'
+      GROUP BY TO_CHAR(timestamp, 'Mon')
+      ORDER BY sort_date ASC
+    `;
+
+    // 2. Tasa de Éxito (Confidence > 0.7 o Rating >= 4)
+    const successQuery = `
+      SELECT 
+        (COUNT(CASE WHEN i.confidence_score > 0.7 OR f.rating >= 4 THEN 1 END) * 100.0 / NULLIF(COUNT(*), 0)) as rate
+      FROM chatbot_interactions i
+      LEFT JOIN user_feedback f ON i.id = f.interaction_id
+    `;
+
+    // 3. Distribución por Intención/Categoría
+    const intentQuery = `
+      SELECT intent, COUNT(*) as count 
+      FROM chatbot_interactions 
+      GROUP BY intent 
+      ORDER BY count DESC
+    `;
+
+    const [monthlyRes, successRes, intentRes] = await Promise.all([
+      db.query(monthlyQuery),
+      db.query(successQuery),
+      db.query(intentQuery)
+    ]);
+
+    res.json({
+      monthlyVolume: monthlyRes.rows.map(r => ({ month: r.month, count: parseInt(r.count) })),
+      successRate: parseFloat(successRes.rows[0].rate) || 0,
+      intentStats: intentRes.rows.map(r => ({ name: r.intent, value: parseInt(r.count) }))
+    });
+
+  } catch (err) {
+    console.error('[DB ERROR] /api/analytics:', err.message);
+    res.status(500).json({ error: 'Analytics data error' });
+  }
+});
+
 // [GET] Interaction Logs (Full List for Dashboard)
 app.get('/api/interactions', async (req, res) => {
   const token = req.headers['authorization'];

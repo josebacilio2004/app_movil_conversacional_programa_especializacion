@@ -118,11 +118,21 @@ class ChatService {
         try {
           final data = jsonDecode(response.body);
           String botResponse = data['output'] ?? data['text'] ?? response.body;
+          double? confidenceScore = (data['confidence'] ?? data['score'])?.toDouble();
+          
           String botId = await saveMessageToHistory(userId, botResponse, false, category: category);
 
           // SINCRONIZACIÓN DIRECTA CON EL DASHBOARD (NeonDB)
           // Pasamos el botId como firestoreId para que el backend pueda hacer UPSERT
-          _syncInteractionToDashboard(userId, _sessionId, message, botResponse, category, botId);
+          _syncInteractionToDashboard(
+            userId, 
+            _sessionId, 
+            message, 
+            botResponse, 
+            category, 
+            botId,
+            confidenceScore: confidenceScore
+          );
 
           return botId + "|" + botResponse;
         } catch (e) {
@@ -139,7 +149,15 @@ class ChatService {
   }
 
   /// Sincroniza la interacción con el dashboard en Render (PostgreSQL)
-  Future<void> _syncInteractionToDashboard(String userId, String sessionId, String message, String response, String intent, String firestoreId) async {
+  Future<void> _syncInteractionToDashboard(
+    String userId, 
+    String sessionId, 
+    String message, 
+    String response, 
+    String intent, 
+    String firestoreId, 
+    {double? confidenceScore}
+  ) async {
     print("📡 SYNC INTERACTION START: $firestoreId");
     try {
       final res = await http.post(
@@ -154,7 +172,8 @@ class ChatService {
           "message": message,
           "response": response,
           "intent": intent,
-          "firestoreId": firestoreId // Crucial para auditoría y unión con ratings
+          "firestoreId": firestoreId, // Crucial para auditoría y unión con ratings
+          "confidenceScore": confidenceScore
         }),
       ).timeout(const Duration(seconds: 5));
       print("📡 SYNC INTERACTION DONE: HTTP ${res.statusCode} - ${res.body}");
