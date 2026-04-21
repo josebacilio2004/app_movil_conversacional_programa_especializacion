@@ -49,10 +49,25 @@ class ChatService {
   Future<void> rateMessage(String userId, String messageId, int rating) async {
     if (userId.isEmpty) return;
     
-    // Guardamos en Firestore. La Cloud Function detectará este cambio y sincronizará con NeonDB.
+    // Guardamos en Firestore
     await _db.collection('users').doc(userId).collection('history').doc(messageId).update({
       'rating': rating,
     });
+
+    // Sincronización DIRECTA de Rating con el Dashboard (para evitar depender de Cloud Functions)
+    try {
+       await http.post(
+        Uri.parse("https://horizonte-backend.onrender.com/api/interactions/rate"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "firestoreId": messageId, // Usamos el ID de Firestore como referencia clave
+          "rating": rating,
+          "comment": "App Feedback"
+        }),
+      ).timeout(const Duration(seconds: 3));
+    } catch (e) {
+      print("Error sincronizando feedback directo: $e");
+    }
   }
 
   /// REST REQUISITO: Generar nueva sesión (ej: al volver a la home)
@@ -101,12 +116,13 @@ class ChatService {
           String botId = await saveMessageToHistory(userId, botResponse, false, category: category);
 
           // SINCRONIZACIÓN DIRECTA CON EL DASHBOARD (NeonDB)
-          _syncInteractionToDashboard(userId, _sessionId, message, botResponse, category);
+          // Pasamos el botId como firestoreId para que el backend pueda hacer UPSERT
+          _syncInteractionToDashboard(userId, _sessionId, message, botResponse, category, botId);
 
           return botId + "|" + botResponse;
         } catch (e) {
           String botId = await saveMessageToHistory(userId, response.body, false, category: category);
-          _syncInteractionToDashboard(userId, _sessionId, message, response.body, category);
+          _syncInteractionToDashboard(userId, _sessionId, message, response.body, category, botId);
           return botId + "|" + response.body;
         }
       } else {
@@ -118,7 +134,7 @@ class ChatService {
   }
 
   /// Sincroniza la interacción con el dashboard en Render (PostgreSQL)
-  Future<void> _syncInteractionToDashboard(String userId, String sessionId, String message, String response, String intent) async {
+  Future<void> _syncInteractionToDashboard(String userId, String sessionId, String message, String response, String intent, String firestoreId) async {
     try {
       await http.post(
         Uri.parse("https://horizonte-backend.onrender.com/api/interactions"),
@@ -128,11 +144,12 @@ class ChatService {
           "sessionId": sessionId,
           "message": message,
           "response": response,
-          "intent": intent
+          "intent": intent,
+          "firestoreId": firestoreId // Crucial para auditoría y unión con ratings
         }),
       ).timeout(const Duration(seconds: 5));
     } catch (e) {
-      print("Error de sincronización local (Neon): $e");
+      print("Error de sincronización directa (Neon): $e");
     }
   }
 }
