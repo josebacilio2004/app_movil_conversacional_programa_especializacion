@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
+const migrate = require('./migrate');
 require('dotenv').config();
 
 const app = express();
@@ -198,6 +199,15 @@ app.post('/api/interactions/rate', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Horizonte Backend running on port ${PORT}`);
+// Ejecutar migraciones antes de iniciar el servidor
+migrate().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Horizonte Backend running on port ${PORT}`);
+  });
+}).catch(err => {
+  console.error("Critical Migration Error:", err);
+  // Intentamos arrancar de todos modos, pero los logs ya habrán avisado
+  app.listen(PORT, () => {
+    console.log(`Horizonte Backend running on port ${PORT} (Migration failed)`);
+  });
 });
