@@ -35,3 +35,27 @@ exports.getRecommendation = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError('internal', 'Error al comunicarse con el asistente de IA.');
   }
 });
+
+// NUEVA FUNCIÓN: Sincronización automática con el Dashboard (NeonDB)
+exports.syncToPostgres = functions.firestore
+    .document('users/{userId}/history/{messageId}')
+    .onCreate(async (snapshot, context) => {
+        const data = snapshot.data();
+        const userId = context.params.userId;
+
+        // URL de tu backend en Render
+        const RENDER_URL = 'https://horizonte-backend.onrender.com/api/interactions';
+
+        try {
+            await axios.post(RENDER_URL, {
+                userId: userId,
+                sessionId: data.sessionId || "mobile_session",
+                message: data.isUser ? data.text : null,
+                response: !data.isUser ? data.text : null,
+                intent: data.category || "mobile_app"
+            });
+            console.log(`✅ Sincronizado mensaje ${context.params.messageId} a NeonDB`);
+        } catch (error) {
+            console.error('❌ Error replicando a Postgres:', error.message);
+        }
+    });

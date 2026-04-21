@@ -48,9 +48,25 @@ class ChatService {
   /// específica para calcular el CSAT (Customer Satisfaction Score).
   Future<void> rateMessage(String userId, String messageId, bool isHelpful) async {
     if (userId.isEmpty) return;
+    final ratingValue = isHelpful ? 5 : 1;
     await _db.collection('users').doc(userId).collection('history').doc(messageId).update({
-      'rating': isHelpful ? 5 : 1, // 5 para útil, 1 para no útil
+      'rating': ratingValue,
     });
+
+    // Sincronización de Rating con el Dashboard
+    try {
+       await http.post(
+        Uri.parse("https://horizonte-backend.onrender.com/api/interactions/rate"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "interactionId": messageId, // En Neon estamos usando el ID de Firestore como referencia
+          "rating": ratingValue,
+          "comment": "App Feedback"
+        }),
+      ).timeout(const Duration(seconds: 3));
+    } catch (e) {
+      print("Error sincronizando feedback: $e");
+    }
   }
 
   /// REST REQUISITO: Generar nueva sesión (ej: al volver a la home)
@@ -88,20 +104,23 @@ class ChatService {
           "message": message,
           "riasec": riasecProfile,
         }),
-      );
+      ).timeout(const Duration(seconds: 15));
 
       if (response.statusCode == 200) {
         if (response.body.isEmpty) return "El asistente no devolvió datos.";
         
         try {
-          // Intentamos decodificar como JSON
           final data = jsonDecode(response.body);
           String botResponse = data['output'] ?? data['text'] ?? response.body;
           String botId = await saveMessageToHistory(userId, botResponse, false, category: category);
-          return botId + "|" + botResponse; // Devolvemos el ID y la respuesta (separados por pipe)
+
+          // SINCRONIZACIÓN DIRECTA CON EL DASHBOARD (NeonDB)
+          _syncInteractionToDashboard(userId, _sessionId, message, botResponse, category);
+
+          return botId + "|" + botResponse;
         } catch (e) {
-          // Si no es JSON, devolvemos el texto plano directamente
           String botId = await saveMessageToHistory(userId, response.body, false, category: category);
+          _syncInteractionToDashboard(userId, _sessionId, message, response.body, category);
           return botId + "|" + response.body;
         }
       } else {
@@ -109,6 +128,25 @@ class ChatService {
       }
     } catch (e) {
       return "No se pudo conectar. Asegúrate de que n8n esté en modo 'Active'.";
+    }
+  }
+
+  /// Sincroniza la interacción con el dashboard en Render (PostgreSQL)
+  Future<void> _syncInteractionToDashboard(String userId, String sessionId, String message, String response, String intent) async {
+    try {
+      await http.post(
+        Uri.parse("https://horizonte-backend.onrender.com/api/interactions"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "userId": userId,
+          "sessionId": sessionId,
+          "message": message,
+          "response": response,
+          "intent": intent
+        }),
+      ).timeout(const Duration(seconds: 5));
+    } catch (e) {
+      print("Error de sincronización local (Neon): $e");
     }
   }
 }

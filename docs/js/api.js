@@ -3,9 +3,9 @@
  */
 
 const API_CONFIG = {
-    // Replace with your Render production URL when deployed
-    BASE_URL: 'http://localhost:3000/api',
-    HEALTH_URL: 'http://localhost:3000/health'
+    // URL de producción en Render
+    BASE_URL: 'https://horizonte-backend.onrender.com/api',
+    HEALTH_URL: 'https://horizonte-backend.onrender.com/health'
 };
 
 const HorizonteAPI = {
