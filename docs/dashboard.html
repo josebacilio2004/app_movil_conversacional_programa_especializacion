@@ -65,12 +65,12 @@
                     <p class="font-medium opacity-60" data-i18n="hero_subtitle">Visualizing real-time interaction metrics and satisfaction.</p>
                 </div>
                 <div class="flex gap-4">
-                    <button class="glass-panel px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
+                    <button onclick="loadData(7)" class="glass-panel px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 transition-all">
                         <span class="material-symbols-outlined text-sm">calendar_today</span>
-                        Last 7 Days
+                        <span data-i18n="btn_last_7_days">Last 7 Days</span>
                     </button>
-                    <button class="bg-primary text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg shadow-primary/20">
-                        Export Report
+                    <button onclick="HorizonteAPI.exportInteractions()" class="bg-primary text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+                        <span data-i18n="btn_export_report">Export Report</span>
                     </button>
                 </div>
             </header>
@@ -165,10 +165,10 @@
             window.location.href = 'login.html';
         }
 
-        async function loadData() {
+        async function loadData(days = null) {
             try {
                 // Usamos la configuración de API_CONFIG definida en api.js
-                const response = await fetch(`${API_CONFIG.BASE_URL}/metrics`, {
+                const response = await fetch(days ? `${API_CONFIG.BASE_URL}/metrics?days=${days}` : `${API_CONFIG.BASE_URL}/metrics`, {
                     headers: { 'Authorization': token }
                 });
                 

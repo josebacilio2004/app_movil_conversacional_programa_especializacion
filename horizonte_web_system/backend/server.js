@@ -75,8 +75,14 @@ app.get('/api/metrics', async (req, res) => {
     }
 
     // CALCULAMOS MÉTRICAS REALES BASADAS EN TUS TABLAS ACTUALES
-    const userCountQuery = 'SELECT COUNT(DISTINCT user_id) as total_users FROM chatbot_interactions';
-    const satisfactionQuery = 'SELECT AVG(rating) as avg_rating FROM user_feedback';
+    const { days } = req.query;
+    let timeConstraint = '';
+    if (days) {
+      timeConstraint = ` WHERE timestamp > CURRENT_DATE - INTERVAL '${parseInt(days)} days'`;
+    }
+
+    const userCountQuery = `SELECT COUNT(DISTINCT user_id) as total_users FROM chatbot_interactions ${timeConstraint}`;
+    const satisfactionQuery = `SELECT AVG(rating) as avg_rating FROM user_feedback f ${timeConstraint.replace('timestamp', 'f.timestamp')}`;
     
     const [userRes, satRes] = await Promise.all([
       db.query(userCountQuery),
@@ -103,24 +109,29 @@ app.get('/api/analytics', async (req, res) => {
   }
 
   try {
-    // 1. Volumen Mensual (Últimos 6 meses)
+    const { days } = req.query;
+    const interval = days ? `${parseInt(days)} days` : '6 months';
+    const timeFilter = `WHERE timestamp > CURRENT_DATE - INTERVAL '${interval}'`;
+
+    // 1. Volumen Mensual/Diario (dinámico)
     const monthlyQuery = `
       SELECT 
-        TO_CHAR(timestamp, 'Mon') as month,
+        TO_CHAR(timestamp, ${days && days <= 7 ? "'Day'" : "'Mon'"}) as label,
         COUNT(*) as count,
         MIN(timestamp) as sort_date
       FROM chatbot_interactions
-      WHERE timestamp > CURRENT_DATE - INTERVAL '6 months'
-      GROUP BY TO_CHAR(timestamp, 'Mon')
+      ${timeFilter}
+      GROUP BY 1
       ORDER BY sort_date ASC
     `;
 
-    // 2. Tasa de Éxito (Confidence > 0.7 o Rating >= 4)
+    // 2. Tasa de Éxito
     const successQuery = `
       SELECT 
         (COUNT(CASE WHEN i.confidence_score > 0.7 OR f.rating >= 4 THEN 1 END) * 100.0 / NULLIF(COUNT(*), 0)) as rate
       FROM chatbot_interactions i
       LEFT JOIN user_feedback f ON i.id = f.interaction_id
+      ${timeFilter.replace('timestamp', 'i.timestamp')}
     `;
 
     // 3. Distribución por Intención/Categoría
@@ -138,7 +149,7 @@ app.get('/api/analytics', async (req, res) => {
     ]);
 
     res.json({
-      monthlyVolume: monthlyRes.rows.map(r => ({ month: r.month, count: parseInt(r.count) })),
+      monthlyVolume: monthlyRes.rows.map(r => ({ month: r.label, count: parseInt(r.count) })),
       successRate: parseFloat(successRes.rows[0].rate) || 0,
       intentStats: intentRes.rows.map(r => ({ name: r.intent, value: parseInt(r.count) }))
     });
@@ -157,14 +168,21 @@ app.get('/api/interactions', async (req, res) => {
   }
 
   try {
+    const { days } = req.query;
+    let timeFilter = '';
+    if (days) {
+      timeFilter = ` WHERE i.timestamp > CURRENT_DATE - INTERVAL '${parseInt(days)} days'`;
+    }
+
     const query = `
       SELECT 
         i.id, i.user_id, i.message_content, i.response_content, i.intent, i.timestamp,
         f.rating, f.comment
       FROM chatbot_interactions i
       LEFT JOIN user_feedback f ON i.id = f.interaction_id
+      ${timeFilter}
       ORDER BY i.timestamp DESC
-      LIMIT 100
+      LIMIT 200
     `;
     const result = await db.query(query);
     res.json(result.rows);

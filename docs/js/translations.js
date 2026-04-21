@@ -32,7 +32,9 @@ const translations = {
         "lang_en": "English",
         "analytics_view_title": "Panel de Analítica Avanzada",
         "chart_monthly_history": "Histórico Mensual de Consultas",
-        "chart_intents_dist": "Distribución por Intención de Consulta"
+        "chart_intents_dist": "Distribución por Intención de Consulta",
+        "btn_last_7_days": "Últimos 7 Días",
+        "btn_export_report": "Exportar Reporte"
     },
     en: {
         "nav_overview": "Overview",
@@ -67,6 +69,8 @@ const translations = {
         "lang_en": "English",
         "analytics_view_title": "Advanced Analytics Dashboard",
         "chart_monthly_history": "Monthly Query History",
-        "chart_intents_dist": "Query Intent Distribution"
+        "chart_intents_dist": "Query Intent Distribution",
+        "btn_last_7_days": "Last 7 Days",
+        "btn_export_report": "Export Report"
     }
 };
