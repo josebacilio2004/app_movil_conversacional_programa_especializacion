@@ -145,7 +145,10 @@
                     <td class="px-8 py-6">
                         <div class="flex items-center gap-1">
                             ${Array(5).fill(0).map((_, i) => `
-                                <span class="material-symbols-outlined text-xs ${i < (log.rating || 0) ? 'text-yellow-400' : 'text-black/10'}" style="font-size: 14px">star</span>
+                                <span class="material-symbols-outlined text-xs ${i < (log.rating || 0) ? 'text-yellow-400' : 'text-black/10'}" 
+                                      style="font-size: 16px; font-variation-settings: 'FILL' ${i < (log.rating || 0) ? 1 : 0}">
+                                    star
+                                </span>
                             `).join('')}
                         </div>
                     </td>
