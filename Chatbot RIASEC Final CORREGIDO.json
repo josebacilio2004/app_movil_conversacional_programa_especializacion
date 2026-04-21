@@ -1,0 +1,194 @@
+{
+  "name": "Chatbot RIASEC Final CORREGIDO",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chatbot-continental",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "736a72e4-bb80-4399-acfd-21aa5d1e463a",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        16
+      ],
+      "webhookId": "chatbot-continental"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "Eres un experto asesor vocacional de la Universidad Continental. Recomienda especializaciones basadas en el perfil RIASEC del usuario. Perfil: {{ $json.body.riasec }}. Mensaje: {{ $json.body.message }}. Usa la herramienta Firestore para buscar opciones."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "id": "f1302881-3f75-40bc-b31f-a31591431f1e",
+      "name": "AI Agent",
+      "position": [
+        3264,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "anthropic/claude-3-haiku",
+          "mode": "list",
+          "cachedResultName": "anthropic/claude-3-haiku"
+        },
+        "builtInTools": {},
+        "options": {
+          "maxTokens": 520,
+          "conversationId": ""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "id": "cc853ff7-2428-4f29-adaf-8e3097dc0573",
+      "name": "OpenAI Chat Model",
+      "position": [
+        3168,
+        256
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "ZhSZM21EmmOPOXOY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "getAll",
+        "projectId": "=appmovilespecializacion",
+        "collection": "specializations"
+      },
+      "type": "n8n-nodes-base.googleFirebaseCloudFirestoreTool",
+      "typeVersion": 1.1,
+      "id": "1bed0e53-e4f7-4071-8792-38d7184bd9b5",
+      "name": "Google Cloud Firestore Tool",
+      "position": [
+        3520,
+        240
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "WE3c7gyzR5J8CW2Q",
+          "name": "Google Firebase Cloud Firestore account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3616,
+        16
+      ],
+      "id": "9b561935-6e70-4a77-b8d5-464d96145f71",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=anonymous"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        3344,
+        256
+      ],
+      "id": "cc35842b-f5c3-4cc3-beda-bbaf4946494e",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Cloud Firestore Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "d3718dc9-1bf0-413a-abf6-b667d61c7af4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2e45f68e811bed9fd9025a2788d627db1f2f83846aa5abe04b3b1a7e41d83a2a"
+  },
+  "id": "Ef65q45MDD8xizan",
+  "tags": []
+}

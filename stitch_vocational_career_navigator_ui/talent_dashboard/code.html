@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethereal Mentor | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#001f25",
+                        "on-background": "#191c1e",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "secondary-fixed-dim": "#66dd8b",
+                        "on-primary-fixed-variant": "#5300cd",
+                        "tertiary-fixed-dim": "#58d6f1",
+                        "outline-variant": "#cbc3d9",
+                        "on-secondary-fixed-variant": "#005227",
+                        "on-tertiary-container": "#59d8f2",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#83fba5",
+                        "secondary-fixed": "#83fba5",
+                        "on-secondary-container": "#00743a",
+                        "surface-dim": "#d8dadc",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-fixed": "#22005d",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#494456",
+                        "on-error": "#ffffff",
+                        "secondary": "#006d36",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-fixed": "#00210c",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-primary": "#cfbdff",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#cfbdff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#6d23f9",
+                        "primary-fixed": "#e8ddff",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#7a7488",
+                        "tertiary-fixed": "#a7edff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary": "#4800b2",
+                        "tertiary-container": "#005c6b",
+                        "on-primary-container": "#d0beff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#00434e",
+                        "background": "#f7f9fb",
+                        "primary-container": "#6200ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-bg {
+            background: radial-gradient(circle at 0% 0%, rgba(207, 189, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(88, 214, 241, 0.15) 0%, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-background min-h-screen organic-bg">
+<header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full shadow-[0px_20px_40px_rgba(73,68,86,0.08)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="portrait of a young smiling professional woman in a bright studio with soft lighting and minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgei-PZ38Id2JU6tR2JPsDJFuSX9R0mfVbnbiQ135LCIOE7-S7IuUFsGC8R363ebtw3jdoLbe0AZMTeUHDxbcq3WJXA13XbS0cPCI92po8XMnkzg_sFjvJjOHWY2XhwTWO4fegicsZJcH-IC32ZT5HVOfI4TVXYgC5SE9m-SrpCh2B6ROP9yX8YO9780Yt2prRgrTis7lP29KB37mvlBU-q8-QRBhr9bZpEQw8qQ9FdiPOFMhvRVN3eXoeexLLCRqTFHUJdEixnSI"/>
+</div>
+<span class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-violet-700 to-violet-500">Ethereal Mentor</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-violet-700 dark:text-violet-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<section class="mb-12">
+<div class="flex flex-col gap-2">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Your Growth Canvas</span>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight">Welcome back, <span class="text-primary">Alex</span>.</h1>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<section class="lg:col-span-7 flex flex-col gap-8">
+<div class="bg-white/40 backdrop-blur-3xl rounded-[2.5rem] p-8 shadow-[0px_20px_40px_rgba(73,68,86,0.05)] border border-white/20">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h2 class="text-2xl font-bold tracking-tight">RIASEC Talent Matrix</h2>
+<p class="text-on-surface-variant text-sm">Your vocational DNA visualized</p>
+</div>
+<div class="flex items-center gap-2 bg-secondary-container/30 px-4 py-2 rounded-full">
+<span class="text-xs font-bold text-on-secondary-container uppercase tracking-wider">Social Dominant</span>
+</div>
+</div>
+<div class="relative aspect-square max-w-[400px] mx-auto flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 400 400">
+<circle class="text-outline-variant/10" cx="200" cy="200" fill="none" r="180" stroke="currentColor" stroke-width="1"></circle>
+<circle class="text-outline-variant/10" cx="200" cy="200" fill="none" r="120" stroke="currentColor" stroke-width="1"></circle>
+<circle class="text-outline-variant/10" cx="200" cy="200" fill="none" r="60" stroke="currentColor" stroke-width="1"></circle>
+<path class="text-outline-variant/10" d="M 200 20 L 200 380 M 43.8 110 L 356.2 290 M 43.8 290 L 356.2 110" stroke="currentColor" stroke-width="1"></path>
+<path class="text-primary" d="M 200 50 L 320 150 L 310 280 L 200 350 L 90 280 L 100 130 Z" fill="rgba(109, 35, 249, 0.15)" stroke="currentColor" stroke-linejoin="round" stroke-width="3"></path>
+<circle class="fill-primary" cx="200" cy="50" r="6"></circle>
+<circle class="fill-secondary" cx="320" cy="150" r="6"></circle>
+<circle class="fill-primary" cx="310" cy="280" r="6"></circle>
+<circle class="fill-primary" cx="200" cy="350" r="6"></circle>
+<circle class="fill-secondary" cx="90" cy="280" r="6"></circle>
+<circle class="fill-primary" cx="100" cy="130" r="6"></circle>
+</svg>
+<div class="absolute inset-0 pointer-events-none text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant/70">
+<span class="absolute top-0 left-1/2 -translate-x-1/2 -mt-4">Realistic</span>
+<span class="absolute top-1/4 right-0 -mr-6">Investigative</span>
+<span class="absolute bottom-1/4 right-0 -mr-6">Artistic</span>
+<span class="absolute bottom-0 left-1/2 -translate-x-1/2 -mb-4">Social</span>
+<span class="absolute bottom-1/4 left-0 -ml-12">Enterprising</span>
+<span class="absolute top-1/4 left-0 -ml-12">Conventional</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary text-white p-6 rounded-[2rem] flex flex-col gap-4 group cursor-pointer transition-transform hover:scale-[1.02] shadow-[0px_20px_40px_rgba(73,68,86,0.1)]">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+<div>
+<h3 class="font-bold">Next Milestone</h3>
+<p class="text-sm opacity-80">Career Simulation: UX Lead</p>
+</div>
+<span class="text-xs uppercase font-black tracking-widest bg-white/20 self-start px-3 py-1 rounded-full">80% Match</span>
+</div>
+<div class="bg-secondary-container text-on-secondary-container p-6 rounded-[2rem] flex flex-col gap-4 group cursor-pointer transition-transform hover:scale-[1.02]">
+<span class="material-symbols-outlined text-3xl">hub</span>
+<div>
+<h3 class="font-bold">Skill Gap</h3>
+<p class="text-sm opacity-80">Strategic Storytelling</p>
+</div>
+<span class="text-xs uppercase font-black tracking-widest bg-black/5 self-start px-3 py-1 rounded-full">Urgent</span>
+</div>
+</div>
+</section>
+<aside class="lg:col-span-5 flex flex-col gap-8">
+<div class="bg-white/40 backdrop-blur-3xl rounded-[2.5rem] p-8 shadow-[0px_20px_40px_rgba(73,68,86,0.05)] border border-white/20">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+                        Recommended Skills
+                    </h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 p-4 rounded-3xl bg-surface/50 hover:bg-white transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed-dim flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">auto_graph</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-sm">Data Interpretation</h4>
+<p class="text-xs text-on-surface-variant">Core for Investigative paths</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-3xl bg-surface/50 hover:bg-white transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed-dim flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">brush</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-sm">Design Systems</h4>
+<p class="text-xs text-on-surface-variant">High demand in Artistic sectors</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-3xl bg-surface/50 hover:bg-white transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed-dim flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-sm">Empathetic Leadership</h4>
+<p class="text-xs text-on-surface-variant">Essential for Social roles</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-[2.5rem] p-8">
+<h3 class="text-xl font-bold mb-6">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-surface-container-lowest p-4 rounded-2xl text-center flex flex-col items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 group">
+<span class="material-symbols-outlined text-primary group-hover:text-white">edit_note</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Update Profile</span>
+</button>
+<button class="bg-surface-container-lowest p-4 rounded-2xl text-center flex flex-col items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 group">
+<span class="material-symbols-outlined text-primary group-hover:text-white">history_edu</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Retake Assessment</span>
+</button>
+<button class="bg-surface-container-lowest p-4 rounded-2xl text-center flex flex-col items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 group">
+<span class="material-symbols-outlined text-primary group-hover:text-white">diversity_3</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Find Mentors</span>
+</button>
+<button class="bg-surface-container-lowest p-4 rounded-2xl text-center flex flex-col items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 group">
+<span class="material-symbols-outlined text-primary group-hover:text-white">emoji_events</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Certifications</span>
+</button>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-[2.5rem] h-48 bg-slate-900 group">
+<img alt="Community" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" data-alt="diverse group of young professionals collaborating in a bright, modern glass-walled office with natural light and plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVWbfVtcCpaQ-hSX1yKdiYvY4ApuOdZOYqmUD6FpZRKvrSWkJOqxbb-YCe0jQwhJfZFXz-LK7EBNYo4iE4m87NRpjXj5UJEd7-4Yx9n9s6YlhGFChED-Jy2HTaarMYmy8kKK6beysB94XLSGJR66ZNKIzZ1UswRJI0diDZ3uSLJYF-SMrPolDJIZ3Hegpsnr4bMDsm0U8bDGYv7-Wbn8d0_iJhNwI0y9TID2Jr97tlau1UWBB6pf-Pa2eq1K82jeEBtkevt99eQcY"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-slate-900 via-transparent">
+<h4 class="text-white font-bold text-lg leading-tight">Join the Vocational Mastermind</h4>
+<p class="text-white/70 text-xs mt-1">Connect with 2.4k students in your path</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl rounded-t-[2rem] shadow-[0px_-10px_40px_rgba(73,68,86,0.12)]">
+<div class="flex flex-col items-center justify-center bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full px-5 py-2 scale-110 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">colors_spark</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Guide</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Talent</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Coach</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Explore</span>
+</div>
+</nav>
+<div class="fixed bottom-24 right-8 z-40">
+<button class="w-16 h-16 rounded-full bg-gradient-to-br from-violet-700 to-violet-500 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">magic_button</span>
+</button>
+</div>
+</body></html>

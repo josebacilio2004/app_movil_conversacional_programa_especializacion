@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Cori | Horizonte Continental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4800b2',
+                        secondary: '#006d36',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface h-screen overflow-hidden flex items-center justify-center">
+
+    <div class="organic-blob blob-1"></div>
+    <div class="organic-blob blob-2"></div>
+
+    <div class="glass-panel w-full max-w-md p-10 rounded-[3rem] text-center">
+        <!-- Robot Mascot -->
+        <div class="relative w-32 h-32 mx-auto mb-8 float-animation">
+            <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+            <img src="assets/cori_robot.png" alt="Cori Mascot" class="relative z-10 w-full h-full object-contain">
+        </div>
+
+        <h1 class="text-3xl font-black mb-2">Bienvenido a Cori</h1>
+        <p class="text-sm font-medium opacity-60 mb-8">Gestión de datos y analítica vocacional.</p>
+
+        <form id="loginForm" class="space-y-6">
+            <div class="text-left">
+                <label class="block text-[10px] uppercase font-black tracking-widest opacity-40 ml-4 mb-2">Correo Institucional</label>
+                <input type="email" id="email" required placeholder="admin@continental.edu.pe" 
+                    class="w-full bg-black/5 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all">
+            </div>
+            <div class="text-left">
+                <label class="block text-[10px] uppercase font-black tracking-widest opacity-40 ml-4 mb-2">Código de Acceso</label>
+                <input type="password" id="code" required placeholder="••••" 
+                    class="w-full bg-black/5 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-center tracking-widest font-black">
+            </div>
+            
+            <button type="submit" class="w-full btn-primary py-4 mt-4 shadow-xl shadow-primary/20">
+                Entrar al Sistema
+            </button>
+            <div id="loginError" class="text-xs font-bold text-red-500 mt-4 hidden"></div>
+        </form>
+
+        <div class="mt-10 pt-8 border-t border-black/5 text-[10px] font-bold opacity-40 uppercase tracking-tighter">
+            &copy; 2026 Universidad Continental &middot; IA Asistente
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const code = document.getElementById('code').value;
+            const errorEl = document.getElementById('loginError');
+
+            try {
+                const result = await HorizonteAPI.login(email, code);
+                if (result.success) {
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errorEl.innerText = result.error || 'Código incorrecto. Intenta con "2026"';
+                    errorEl.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorEl.innerText = 'Error de conexión con el servidor.';
+                errorEl.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

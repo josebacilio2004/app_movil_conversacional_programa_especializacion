@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#cfbdff",
+                    "error-container": "#ffdad6",
+                    "background": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "on-secondary-container": "#00743a",
+                    "primary": "#4800b2",
+                    "surface-container": "#eceef0",
+                    "surface-bright": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "outline": "#7a7488",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-fixed": "#001f25",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#83fba5",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed-variant": "#5300cd",
+                    "on-surface-variant": "#494456",
+                    "on-primary-container": "#d0beff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#00210c",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed-dim": "#66dd8b",
+                    "secondary-fixed": "#83fba5",
+                    "on-tertiary-fixed-variant": "#004e5b",
+                    "surface-container-low": "#f2f4f6",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary-container": "#005c6b",
+                    "primary-container": "#6200ee",
+                    "tertiary-fixed": "#a7edff",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#cfbdff",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006d36",
+                    "outline-variant": "#cbc3d9",
+                    "surface-tint": "#6d23f9",
+                    "tertiary": "#00434e",
+                    "on-secondary-fixed-variant": "#005227",
+                    "on-background": "#191c1e",
+                    "on-tertiary-container": "#59d8f2",
+                    "primary-fixed": "#e8ddff",
+                    "tertiary-fixed-dim": "#58d6f1",
+                    "on-primary-fixed": "#22005d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .organic-bg {
+            background: radial-gradient(circle at 0% 0%, #e8ddff 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, #83fba5 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed organic-bg min-h-screen">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="h-screen w-72 flex-col fixed left-0 top-0 z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-2xl font-['Manrope'] antialiased tracking-tight shadow-[20px_0_40px_rgba(73,68,86,0.05)] flex py-8 px-6">
+<div class="mb-12">
+<h1 class="text-xl font-black tracking-tighter text-purple-800 dark:text-purple-300">Ethereal Mentor</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mt-1">Vocational Journey</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 text-purple-700 dark:text-purple-400 font-bold border-r-4 border-emerald-500 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-sm">Career Discovery</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="text-sm">RIASEC Profile</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-sm">AI Mentor</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 scale-[1.02] active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="bookmarks">bookmarks</span>
+<span class="text-sm">Saved Paths</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+                Start Assessment
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-72 min-h-screen">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="w-full h-20 sticky top-0 z-30 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md flex items-center justify-between pl-8 pr-12 font-['Manrope'] text-sm font-semibold">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold text-on-surface">Career Explorer Hub</h2>
+</div>
+<div class="flex items-center gap-8">
+<!-- Integrated Search Bar -->
+<div class="relative w-80 group">
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-2.5 pl-10 pr-4 text-on-surface-variant focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="Search paths, skills, or industries..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center border-2 border-surface shadow-sm overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="professional headshot of a young university student with a warm smile in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxSHTfun6v2ENs_NOzE47NdoZOMP4U1cVTfo4xYkp7NFVh9MQ3qCr7ysT0V5KPSccwqCKYEYM4pfFJrbIFzzUNFYEF_bJ_rHXupg0IIel5OieoCTNvyZYxTqtEjBIbcm8l-IrUUWX7vP5rMnPBjxyneA5EjDuN8FLkfZi2lLynyWExYWNB8P4bEOAQYyNgHXhRQcBnyUOi-Sv7M8vWWfKdgMoNlHqdCmTb39vtU7uGEqMn-JQoQZdz5X5vAN57M8RcwToxcLTD6ak"/>
+</div>
+</div>
+</div>
+</header>
+<section class="p-12">
+<!-- Hero Header -->
+<div class="mb-16 max-w-4xl">
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-4 block">Prism Path Explorer</span>
+<h1 class="text-6xl font-extrabold tracking-tighter text-on-surface leading-none mb-6">Discover the <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Future of Work</span>.</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed opacity-80">We've curated these paths based on your RIASEC profile and emerging global trends. Explore the intersections of technology, sustainability, and ethics.</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-4 mb-12 items-center">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Filter by:</span>
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-full text-xs font-bold hover:scale-105 transition-transform">Emerging Tech</button>
+<button class="px-6 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-surface-variant transition-colors">Sustainability</button>
+<button class="px-6 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-surface-variant transition-colors">Healthcare</button>
+<button class="px-6 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-bold hover:bg-surface-variant transition-colors">Social Impact</button>
+</div>
+<!-- Bento/Grid Discovery Area -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1: Ethical AI Architect -->
+<div class="glass-card rounded-[2rem] p-8 group hover:scale-[1.02] transition-all duration-500 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col h-full">
+<div class="h-48 w-full rounded-2xl overflow-hidden mb-6 relative">
+<img alt="AI Technology" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="abstract glowing digital neural network in deep purple and cyan tones symbolizing artificial intelligence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC87YxMxx04tRYiFhTitwTJMl640mpd4xFmnEXzaChAbU1PGm81a_YIHVHC6TPN33gZ2fk8ksEa8ziKmFmJ11Mh3cY_cUpY_3nzaigUvlI345KCS3yNS4hMmWS1s_2kqclzLx7Mn5bB2im87Tl4Xjr_8OvZS4RcZL5w-0QE-fYZoWm479JhNzDutkooc2sw4F58yeUt1cjB0_qmCKmj2djyt6uwHiGoJmQKBWFZb-XTKVsEzjotnYMikOgru--UwQth2nNRztg3vy4"/>
+<div class="absolute top-4 right-4 bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter shadow-sm">98% Match</div>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3">Ethical AI Architect</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-8 opacity-70">Design the moral frameworks and accountability systems for next-generation autonomous intelligences.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden" title="3 mentors in this field">
+<img alt="Mentor" data-alt="portrait of a woman mentor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk_D4zTUdsCkAsVfg5716tfm-eKdhzPaDSkfeyCxBVuBumML4eTAGzyQO5pQ9wRTr3kp4l1vbF3vdttn-XZHmF0WqqTL0wuFEZ9wsl3g-81dqAROkPCZ97KyZOl47sK9pZf3adhtxYuLjYfL5BJe8FWso8kQTg6kEsXDEg5ovE7zjJk4lMShamJJ24CV5FTAuiyVLs5XMP3DAU43SuFyKcQQX3obN6mDJoi4SQgNp8eUjv7YpGI7wof44E0Qbl9BaOlCS5FPvMGOU"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img alt="Mentor" data-alt="portrait of a man mentor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNN9NyXBGgo91vlya4i7cm_FHATdTXYSYWDmq90xeU3Y5OWwnaE2Cle8OYQow3hy5UO3X7L4MlTKhEytKNfK93qBoKc5YHcEE1dXVf8K_dNzsCfBrcAfTwCrRIfaN3JitVGeuSXHWU5aJvh7-PvI5_i0vaZiRnOVbFUrgfQoYYy_C4h5vQhfm9GKX6sft1ZcErv03FpfsCBZm8m223k9yt9_u_xXDk076MKTctkLQ2LeBQXriQwrxOf5X-FIgjKITVdtyUOxcufmk"/>
+</div>
+</div>
+<button class="flex items-center gap-2 group/btn text-primary font-bold text-sm">
+                            View Details
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Sustainable Urban Planner -->
+<div class="glass-card rounded-[2rem] p-8 group hover:scale-[1.02] transition-all duration-500 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col h-full">
+<div class="h-48 w-full rounded-2xl overflow-hidden mb-6 relative">
+<img alt="Green City" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="futuristic green city with abundant vertical gardens and sustainable wooden architecture during sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ0bn2Byl8RkcduZGpcRtMOd7-oOLCj7K5gHtToRSNqPqmpCOCL3wAcj6Lk0Vde-GodxsDILplKMoeHmS0cPNrH1k1kswsU4rIoSsvKRhlMnpSxX3uu1fpIMZZUxt8hW7u4ElUIMWAb9xLXDZhB7HA-ISV1b_GtplbI62Bt-sRIsMmeJP0L6C2RDO5ls4kfsLUT9YQQuCA-_Of7Rqdpl7w4p8Qwsg4lKDT4iPpRbOrh2ryKH5VuEa0UNKqecyoFXZjrewvI8aBCDc"/>
+<div class="absolute top-4 right-4 bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter shadow-sm">85% Match</div>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3">Sustainable Urban Planner</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-8 opacity-70">Rethink the fabric of our cities through the lens of biodiversity, zero-waste, and community equity.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img alt="Mentor" data-alt="portrait of a researcher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBntosWOmTTgX20gS1Ici4tR9wxfrsWHDpGWiwizJj07pwPPTp_yvMzQc2s7A60py-72DDVwolm23-UdBaF20dHj-KxBbnUObPVesUnyWSy7H1s-wa8t2ewHRx72dOW8_UC3e_NASKse_s7kNSUmweVoKziyjc9435ENE15BhXToxznU0XDRQmig-F0jUAiwGGY0ZBtKF06cKEHb7TKi92uZ1PsET9VwdDszVOHeR63cDibsLhuueBogYcDmDul8OC0SzKdkW3SEYg"/>
+</div>
+</div>
+<button class="flex items-center gap-2 group/btn text-primary font-bold text-sm">
+                            View Details
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Neuro-Diversity Consultant -->
+<div class="glass-card rounded-[2rem] p-8 group hover:scale-[1.02] transition-all duration-500 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col h-full">
+<div class="h-48 w-full rounded-2xl overflow-hidden mb-6 relative">
+<img alt="Brain Connectivity" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="colorful abstract representation of human brain neural pathways with soft bokeh lights and organic shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHiQineH014phJSDA5NMH9V33jQltk8UKNw1xMrKrq2sMt-4zw9BcW9xL86LTJNmpjvvwDWOp9XnAfm6s4wekc8x1H1jLF46JvLmxQ_qGGQkwohjm2r3_5QmKCC6CSCCv_hhWQWrdEdLnN0mklJcAOcw8FZsw9SXqAd6IgxtRXeRcWGxAOvvrOVI2w-PVnTfeFKmRlpT1lnBFacXN173XNXVR2VAfW7fsFicggxkU84bqtnD3juh6-RvW8lZOG_3EmIRAPurJyc8Q"/>
+<div class="absolute top-4 right-4 bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter shadow-sm">92% Match</div>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3">Neuro-Diversity Strategist</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-8 opacity-70">Creating workplace ecosystems that empower cognitive variety and neurodivergent talent.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img alt="Mentor" data-alt="portrait of a diverse professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhKTXABp7y-P3DNmCnsTKJ6Jf4IoTAhcZnTE05fTFsM7tIHb_Js4sY4folhAvFCFigaddFzbrKyNGbshS9KH9tPAyhydj0_HZ2fBwwhQfFfQVPTKuD47uRT2AkNiJpPaxbxv_7R4IT31H44ra-dpW_kJtzNQazJjd9OA3B-QUgMOJE3k1bdeP5B_0S92YHHixHnn05ZOHnTQOv1DQdsI0kA_PBRemLJgHXGxQIw_E8BPg2mVb2MXpl9X07Qz7bgQrcw2HP10HeBU"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img alt="Mentor" data-alt="portrait of a smiling educator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsFW_oHhxch26Vwd1vGHf02saNCyqchL3mNLhbsxJ3uynDnu63GXSk4kh-lTrbvtHJ-CmUlunVmupzNGdm3d1SPphaPw7AzxCEvkMXLtHlDILGKmUBnm0tH1r3EPIs6jnEq94BCgp-K-hbt3juW18lO64WOVC_6IKC-k25tEGlRj9pCV4tn0k39ieIV6JmGmBaDHRPr0ZGE-bs5L-nOWPtm5ysYLHsBvSBPI0UKg3d-K1-Zi3SSPmoPp98jyBuczjfdqB2hl8ahHA"/>
+</div>
+</div>
+<button class="flex items-center gap-2 group/btn text-primary font-bold text-sm">
+                            View Details
+                            <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Featured Large Card (Asymmetric Layout) -->
+<div class="lg:col-span-2 glass-card rounded-[2rem] p-10 flex flex-col md:flex-row gap-10 items-center shadow-[0px_20px_40px_rgba(73,68,86,0.08)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-bl-[5rem] -mr-8 -mt-8 blur-2xl"></div>
+<div class="w-full md:w-1/2 h-64 md:h-full min-h-[300px] rounded-3xl overflow-hidden relative">
+<img alt="Biotech Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="modern clinical biotechnology laboratory with sterile equipment and soft purple accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUlaf4xdgYV-kRvlyHsGUqrrliWVHhniCtZ765k53zKtDbcMFE3a25YsREaNggDGoAIUDUOE4PGMAFeO8Umc8CqHM5MxJvmiv5rkAYKqXyqcDUx3gRBljPmQGuJczNmr6C95NhFiXqrOTYMdHmN-h7FKnZLaskwjAdJRwcBv5ntYoG-RzYhq63LULK9T72jwXEwHCbU1Hp6W4xID1uy3451vGVDvktyE2b8rlHqxfTvHlz5LKG0_x4a53YBO7h5H0hO51IWFZpcWQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest border border-white/20">Trending Path</span>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<h3 class="text-3xl font-black text-on-surface mb-4">Biomimicry Designer</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">Nature has already solved many of our engineering problems. Learn to translate biological principles into industrial innovations. This path combines your interest in Life Sciences and Creative Engineering.</p>
+<div class="flex flex-wrap gap-3 mb-10">
+<span class="px-4 py-1.5 bg-surface-container text-on-surface text-xs rounded-full font-semibold">Biology</span>
+<span class="px-4 py-1.5 bg-surface-container text-on-surface text-xs rounded-full font-semibold">CAD</span>
+<span class="px-4 py-1.5 bg-surface-container text-on-surface text-xs rounded-full font-semibold">Sustainability</span>
+</div>
+<button class="px-8 py-4 bg-primary text-on-primary rounded-full font-bold flex items-center gap-3 hover:bg-primary-container transition-colors shadow-lg shadow-primary/20">
+                            Explore Pathway
+                            <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</button>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="glass-card rounded-[2rem] p-8 flex flex-col justify-center text-center bg-gradient-to-br from-purple-900 to-primary text-on-primary shadow-xl">
+<span class="text-[10px] font-black uppercase tracking-[0.3em] opacity-60 mb-6">Your Momentum</span>
+<div class="text-6xl font-black mb-2">12</div>
+<p class="text-sm opacity-80 mb-8 font-medium">New paths matched today based on your updated skills.</p>
+<div class="w-full bg-white/10 rounded-full h-2 mb-2 overflow-hidden">
+<div class="bg-secondary w-[75%] h-full rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest opacity-60">Profile Completeness 75%</span>
+</div>
+</div>
+</section>
+<!-- Contextual Help / Floating Support -->
+<div class="fixed bottom-10 right-10 z-50">
+<button class="h-16 w-16 rounded-full bg-surface shadow-2xl flex items-center justify-center text-primary hover:scale-110 transition-transform active:scale-95 group">
+<span class="material-symbols-outlined text-3xl font-variation-settings: 'FILL' 1;" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="absolute right-20 bg-on-surface text-surface py-2 px-4 rounded-xl text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    Ask AI Mentor
+                </div>
+</button>
+</div>
+</main>
+<!-- Global Background Elements -->
+<div class="fixed top-[10%] left-[20%] w-[40rem] h-[40rem] bg-primary/5 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed bottom-[10%] right-[5%] w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-[100px] -z-10"></div>
+</body></html>

@@ -1,0 +1,108 @@
+/**
+ * Design System: The Ethereal Mentor
+ * Core Visual Tokens for Horizonte Web System
+ */
+
+ :root {
+  /* Colors */
+  --primary: #4800b2;
+  --primary-container: #6200ee;
+  --secondary: #006d36;
+  --secondary-container: #83fba5;
+  --surface: #f7f9fb;
+  --surface-container-low: #f2f4f6;
+  --surface-container-lowest: #ffffff;
+  --on-surface: #191c1e;
+  --on-surface-variant: #494456;
+  --outline-variant: rgba(203, 195, 217, 0.15);
+  
+  /* Typos */
+  --font-family: 'Manrope', sans-serif;
+  
+  /* Shadows */
+  --ambient-shadow: 0px 20px 40px rgba(73, 68, 86, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--ambient-shadow);
+}
+
+.organic-blob {
+  position: fixed;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.blob-1 { top: -10%; right: -5%; width: 600px; height: 600px; background: rgba(72, 0, 178, 0.1); border-radius: 50%; }
+.blob-2 { bottom: -10%; left: -5%; width: 800px; height: 800px; background: rgba(131, 251, 165, 0.2); border-radius: 50%; }
+
+/* Layout Components */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Buttons following Ethereal Mentor rules */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(72, 0, 178, 0.2);
+}
+
+/* Typography Scale */
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#cfbdff",
+                        "error-container": "#ffdad6",
+                        "background": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-container": "#00743a",
+                        "primary": "#4800b2",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#7a7488",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed": "#001f25",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#83fba5",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed-variant": "#5300cd",
+                        "on-surface-variant": "#494456",
+                        "on-primary-container": "#d0beff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#00210c",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed-dim": "#66dd8b",
+                        "secondary-fixed": "#83fba5",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-container": "#005c6b",
+                        "primary-container": "#6200ee",
+                        "tertiary-fixed": "#a7edff",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#cfbdff",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006d36",
+                        "outline-variant": "#cbc3d9",
+                        "surface-tint": "#6d23f9",
+                        "tertiary": "#00434e",
+                        "on-secondary-fixed-variant": "#005227",
+                        "on-background": "#191c1e",
+                        "on-tertiary-container": "#59d8f2",
+                        "primary-fixed": "#e8ddff",
+                        "tertiary-fixed-dim": "#58d6f1",
+                        "on-primary-fixed": "#22005d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .organic-blob {
+            filter: blur(80px);
+            z-index: -1;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- Global Layout Container -->
+<div class="relative min-h-screen flex flex-col">
+<!-- Organic Background Blobs -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<div class="organic-blob absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-primary/10"></div>
+<div class="organic-blob absolute bottom-[-10%] left-[-5%] w-[800px] h-[800px] rounded-full bg-secondary-container/20"></div>
+<div class="organic-blob absolute top-[40%] left-[20%] w-[400px] h-[400px] rounded-full bg-tertiary-fixed-dim/30"></div>
+</div>
+<!-- Shared Component: SideNavBar (As per JSON) -->
+<aside class="h-screen w-72 flex-col fixed left-0 top-0 z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-2xl shadow-[20px_0_40px_rgba(73,68,86,0.05)] font-['Manrope'] antialiased tracking-tight hidden md:flex">
+<div class="flex flex-col h-full py-8 px-6">
+<!-- Brand Anchor -->
+<div class="mb-10 px-4">
+<span class="text-xl font-black tracking-tighter text-purple-800 dark:text-purple-300">Ethereal Mentor</span>
+<p class="text-xs font-semibold opacity-60 tracking-widest uppercase mt-1">Vocational Journey</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-purple-700 dark:text-purple-400 font-bold border-r-4 border-emerald-500 bg-purple-50/50" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-sm">Career Discovery</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm">RIASEC Profile</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-sm">AI Mentor</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 font-medium hover:text-purple-600 hover:bg-purple-50/50" href="#">
+<span class="material-symbols-outlined">bookmarks</span>
+<span class="text-sm">Saved Paths</span>
+</a>
+</nav>
+<!-- Profile Footer & CTA -->
+<div class="mt-auto space-y-6">
+<button class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm scale-[1.02] active:scale-95 transition-transform">
+                        Start Assessment
+                    </button>
+<div class="flex items-center gap-3 px-2 pt-6 border-t border-slate-100">
+<img alt="University Student Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-100" data-alt="Close-up portrait of a cheerful young university student with natural lighting and soft blurred campus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsBbcmQv114SytqkPeHWRuMA28TQD85DdEEv_MeuNfCtd5FrviRXo-WtgCHM7rVjvtVochFRur2bhF9XOvwmt40hCtVv42bvo42QlAgPMrkNMeutSYOUaUXKPcza20jh1YbecOWELVZg9sknuZRa_mfvtGPiEbeJsyu7HsB1vrv03r0cT_60Ri5AZOT26JwYCOaTHfCMnlvB_ecRNeKFF5qd5IaK4Auosrd6roYmliQou8OYtp_zBAHkw7OE_bfUN1gS6nqF1HInA"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Undergraduate</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:pl-72 flex-1">
+<!-- Shared Component: TopAppBar -->
+<header class="w-full h-20 sticky top-0 z-30 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md flex items-center justify-between pl-12 pr-12">
+<div class="flex items-center">
+<!-- Brand text suppressed for desktop as side rail handles it -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2.5 pl-12 pr-6 text-sm w-80 focus:ring-2 focus:ring-primary-fixed-dim transition-all" placeholder="Search career paths..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-600">
+<span class="material-symbols-outlined hover:text-emerald-600 transition-colors cursor-pointer">notifications</span>
+<span class="material-symbols-outlined hover:text-emerald-600 transition-colors cursor-pointer">settings</span>
+</div>
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Minimalist circular avatar of a person with friendly expression in bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUYkftFuK1SLrg_0hJPrq41x9JGBySatiA-ZYjuJejAi-fIMakuH0HqbGriwPu8vZWdG6r9WuBrSO1BFzE_ThZLbX_afc8SJZ3xjAaF5-flt9jKDsSWSvJTGfXH6kjIh2EdUb8fmth5RIQbXN4l4lFhdhJ9BjfbYBI08rCL9_Olh0aMUSpBOBes0l7Ba_Ib_fbbaOvMXs3GQi2RyfPBN6yD0F9_wfRPY-JJHwYX2MOQnLWw7iEpyg9eOmjOcaOaJ6PPsPdvDiekjw"/>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative px-12 pt-16 pb-32">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+<!-- Text Content -->
+<div class="flex-1 space-y-8 z-10">
+<div class="inline-flex items-center px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] tracking-widest font-bold uppercase">
+                            Empowering Your Future
+                        </div>
+<h1 class="text-7xl font-extrabold tracking-tight leading-[1.1] text-on-surface">
+                            Navigate with the <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Prism Path.</span>
+</h1>
+<p class="text-xl text-on-surface-variant leading-relaxed max-w-xl">
+                            Unlock your true potential with the Ethereal Mentor. Our high-precision matching engine connects your personality to world-class career trajectories.
+                        </p>
+<!-- CTA Glass Card -->
+<div class="glass-panel p-10 rounded-[2.5rem] shadow-[0px_20px_40px_rgba(73,68,86,0.08)] max-w-lg mt-12 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h2 class="text-2xl font-bold mb-4">Find Your Path</h2>
+<p class="text-on-surface-variant mb-8 font-medium">Join 50,000+ students already charting their success with Prism Path.</p>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20">
+                                    Get Started
+                                </button>
+<button class="px-6 py-4 rounded-full font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+                                    Watch Demo
+                                    <span class="material-symbols-outlined">play_circle</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Hero Mascot Image -->
+<div class="flex-1 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/20 to-transparent rounded-full blur-3xl -z-10 animate-pulse"></div>
+<img alt="3D Claymorphism Robot Mascot" class="w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(72,0,178,0.25)] hover:scale-105 transition-transform duration-700" data-alt="3D claymorphism stylized friendly robot character with soft rounded edges, pastel blue and white colors, floating in a minimalist ethereal space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIrT0Z_BU0lZeEx34lUklHSnEmRaVI9RUg1iZ8TAGn9mmDac06bVzV0xT6ib7t3YxJw8zyyiOkV-9EUTf08xR7DKFpJJXGpnh1N4pZ2WCmAnkqOWDiPIg_xR04c1uyeMlM1Z2WrS2onwVokO_qaMVV1MDhSp6iWygamq27YUy73Q5vz2xh0eyaO4Pm4ZdHK5oglxAnjVZjtM-K9UwlXiY-YUHUfaOGE2ut7P5QwXEZ_KrFNMHt1NPQAtvBv_TYUXVb2Dyv3rxA7qo"/>
+</div>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="px-12 py-24 bg-surface-container-low rounded-t-[4rem]">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-10 rounded-[3rem] shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-500">
+<div class="w-14 h-14 bg-primary-fixed rounded-2xl flex items-center justify-center mb-10 group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">groups</span>
+</div>
+<div>
+<div class="text-5xl font-black tracking-tighter text-on-surface mb-2">12k+</div>
+<div class="font-label text-xs tracking-widest font-bold text-on-surface-variant uppercase">Mentors Worldwide</div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-10 rounded-[3rem] shadow-sm flex flex-col justify-between group hover:shadow-xl transition-all duration-500">
+<div class="w-14 h-14 bg-secondary-fixed rounded-2xl flex items-center justify-center mb-10 group-hover:-rotate-6 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl">verified</span>
+</div>
+<div>
+<div class="text-5xl font-black tracking-tighter text-on-surface mb-2">98%</div>
+<div class="font-label text-xs tracking-widest font-bold text-on-surface-variant uppercase">Student Success</div>
+</div>
+</div>
+<!-- Stat Card 3 (Editorial Feature) -->
+<div class="bg-primary p-10 rounded-[3rem] shadow-sm flex flex-col justify-between text-on-primary group hover:scale-[1.02] transition-all duration-500 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
+<div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-10">
+<span class="material-symbols-outlined text-white text-3xl">bolt</span>
+</div>
+<div>
+<div class="text-2xl font-bold mb-2">AI Precision</div>
+<p class="text-sm opacity-80 font-medium">Real-time market analytics powered by advanced neural forecasting.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Discovery Paths Section (Asymmetric Layout) -->
+<section class="px-12 py-32">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-20">
+<div class="lg:w-1/3">
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-6">Explore the <br/>Ecosystem.</h2>
+<p class="text-on-surface-variant leading-relaxed">Our curated pathways are designed for the modern explorer. No rigid structures, just fluid discovery.</p>
+<div class="mt-12 space-y-4">
+<div class="flex items-center gap-4 text-primary font-bold">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                    Creative Industries
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant font-medium opacity-60">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                                    Stem Futures
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant font-medium opacity-60">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                                    Ethical Leadership
+                                </div>
+</div>
+</div>
+<div class="lg:w-2/3 grid grid-cols-2 gap-8">
+<div class="space-y-8 mt-12">
+<div class="bg-surface-container-high rounded-[2.5rem] p-4 group cursor-pointer overflow-hidden">
+<div class="aspect-square rounded-[2rem] overflow-hidden mb-6">
+<img alt="Coding Workspace" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern minimalist workspace with high-end laptop showing clean code, soft natural window light, and indoor plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwIBcCVcpbXULziCLtwEE753SAxrhyYruN6WkVFQXKm0K1e-xmBEcnQLnn4nJcmisCrQJhK_gWeOktKtYsfD3lV1lFF7SMqVO2YwjQIlnh5MbVc1XGqYw9-UeeJ9Ol6sFiiTtq8JU2UlzcaWikKgKY-kzxQPvPquLzV1euj5QNo_RzGZyYmoDLFGjC1fF2dpkdNaE4W0JUlAVGX6KQqDAb80btaorT1Kx-DGStGZEPkr6H72F-0AT0fQ8zhlEO_wvU12JLi5powVE"/>
+</div>
+<div class="px-4 pb-4">
+<h4 class="font-bold text-lg">Tech Innovation</h4>
+<p class="text-xs text-on-surface-variant">42 Active Paths</p>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="bg-surface-container-high rounded-[2.5rem] p-4 group cursor-pointer overflow-hidden">
+<div class="aspect-square rounded-[2rem] overflow-hidden mb-6">
+<img alt="Design Thinking Session" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Group of diverse professionals collaborating on a colorful moodboard in a bright airy studio space with large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANs_M6FbymhM6orGAbBQCVgG-WnR-u3-1qnmf4nA4XzqEM8dIq7GBwV0JgU2KNLkwEaIPnxSC1kLY0qgxWbsdrVFDqJ9Nnsi_OduGR6qCX9d-MjFan_SGWTe6jC9HrdB2LmQsB442VbHDahyiWmGOoImKQhREzH7mMrb173f3pNzN1-ySbwubJMcYbQs0lSDaNjzse2iUmqi9FWCbiu_Jqnzg-7kcqmcTM0ZBSocWNz5Fc7EkUGNtnxPPcH1NLVYUr4KAVxoBxmu8"/>
+</div>
+<div class="px-4 pb-4">
+<h4 class="font-bold text-lg">Visual Strategy</h4>
+<p class="text-xs text-on-surface-variant">18 Active Paths</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Section -->
+<footer class="px-12 py-16 bg-white border-t border-slate-100 mt-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="text-center md:text-left">
+<span class="text-2xl font-black tracking-tighter text-primary">Prism Path</span>
+<p class="text-sm text-on-surface-variant mt-2 max-w-xs">Building the bridge between education and vocational mastery through design-led mentoring.</p>
+</div>
+<div class="flex gap-12 text-sm font-bold text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Platform</a>
+<a class="hover:text-primary transition-colors" href="#">Mentors</a>
+<a class="hover:text-primary transition-colors" href="#">Careers</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-fixed cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-sm">link</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-fixed cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile Navigation Shell (Suppressed as requested for Desktop, but structure implied by platform rules) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl border-t border-slate-100 flex items-center justify-around px-4 z-50">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+<span class="material-symbols-outlined text-slate-400">explore</span>
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center -mt-8 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white">add</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">psychology</span>
+<span class="material-symbols-outlined text-slate-400">settings</span>
+</div>
+</body></html>

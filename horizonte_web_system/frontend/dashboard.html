@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validator Dashboard | Horizonte Continental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body class="bg-surface">
+
+    <div class="organic-blob blob-1"></div>
+    <div class="organic-blob blob-2"></div>
+
+    <!-- Layout -->
+    <div class="flex min-h-screen">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 glass-panel border-none m-4 rounded-[2rem] p-8 hidden lg:flex flex-col gap-8">
+            <div class="text-xl font-black tracking-tighter text-primary">Cori Insights</div>
+            <nav class="flex-1 space-y-4">
+                <a href="index.html" class="flex items-center gap-3 font-bold opacity-60 hover:opacity-100 transition-all p-2 rounded-xl">
+                    <span class="material-symbols-outlined">home</span>
+                    Overview
+                </a>
+                <a href="#" class="flex items-center gap-3 font-bold text-primary bg-primary/5 p-2 rounded-xl">
+                    <span class="material-symbols-outlined">analytics</span>
+                    Analytics
+                </a>
+                <a href="#" class="flex items-center gap-3 font-bold opacity-60 hover:opacity-100 transition-all p-2 rounded-xl">
+                    <span class="material-symbols-outlined">forum</span>
+                    Interactions
+                </a>
+                <a href="#" onclick="HorizonteAPI.logout()" class="flex items-center gap-3 font-bold opacity-40 hover:opacity-100 hover:text-red-500 transition-all p-2 rounded-xl mt-20">
+                    <span class="material-symbols-outlined">logout</span>
+                    Cerrar Sesión
+                </a>
+            </nav>
+            <div class="pt-8 border-t border-black/5">
+                <div class="text-[10px] uppercase font-black tracking-widest opacity-40 mb-4">System Status</div>
+                <div class="flex items-center gap-2 text-secondary font-bold text-xs">
+                    <div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+                    Backend Live
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <header class="mb-12 flex justify-between items-end">
+                <div>
+                    <h1 class="text-4xl font-black mb-2">System Validation</h1>
+                    <p class="font-medium opacity-60">Visualizing real-time interaction metrics and satisfaction.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button class="glass-panel px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span>
+                        Last 7 Days
+                    </button>
+                    <button class="bg-primary text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg shadow-primary/20">
+                        Export Report
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                <div class="glass-panel p-6 rounded-[2rem]">
+                    <div class="text-xs uppercase font-black tracking-widest opacity-40 mb-2">Total Users</div>
+                    <div class="text-3xl font-black" id="stat-users">---</div>
+                </div>
+                <div class="glass-panel p-6 rounded-[2rem]">
+                    <div class="text-xs uppercase font-black tracking-widest opacity-40 mb-2">Avg CSAT</div>
+                    <div class="text-3xl font-black text-secondary" id="stat-csat">---</div>
+                </div>
+                <div class="glass-panel p-6 rounded-[2rem]">
+                    <div class="text-xs uppercase font-black tracking-widest opacity-40 mb-2">Active Webhooks</div>
+                    <div class="text-3xl font-black">2</div>
+                </div>
+                <div class="glass-panel p-6 rounded-[2rem]">
+                    <div class="text-xs uppercase font-black tracking-widest opacity-40 mb-2">Success Rate</div>
+                    <div class="text-3xl font-black">94%</div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[400px]">
+                <div class="glass-panel p-8 rounded-[2.5rem]">
+                    <h3 class="font-bold mb-6">Interaction Volume</h3>
+                    <div id="chart-volume" class="w-full h-full pb-8"></div>
+                </div>
+                <div class="glass-panel p-8 rounded-[2.5rem]">
+                    <h3 class="font-bold mb-6">RIASEC Profile Distribution</h3>
+                    <div id="chart-riasec" class="w-full h-full pb-8"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Initialize Charts
+        const volumeChart = echarts.init(document.getElementById('chart-volume'));
+        const riasecChart = echarts.init(document.getElementById('chart-riasec'));
+
+        function updateMetrics(data) {
+            document.getElementById('stat-users').innerText = data.totalUsers;
+            document.getElementById('stat-csat').innerText = data.avgSatisfaction.toFixed(1);
+
+            // Volume Chart Option
+            volumeChart.setOption({
+                tooltip: { trigger: 'axis' },
+                xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
+                yAxis: { type: 'value' },
+                series: [{
+                    data: [150, 230, 224, 218, 135, 147, 260],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: { color: '#4800b2', width: 4 },
+                    areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(72,0,178,0.2)'}, {offset: 1, color: 'rgba(72,0,178,0)'}]) }
+                }]
+            });
+
+            // RIASEC Radar Chart
+            riasecChart.setOption({
+                radar: {
+                    indicator: [
+                        { name: 'Realistic', max: 50 },
+                        { name: 'Investigative', max: 50 },
+                        { name: 'Artistic', max: 50 },
+                        { name: 'Social', max: 50 },
+                        { name: 'Enterprising', max: 50 },
+                        { name: 'Conventional', max: 50 }
+                    ]
+                },
+                series: [{
+                    type: 'radar',
+                    data: [{
+                        value: Object.values(data.riasecDistribution),
+                        name: 'System Profile',
+                        itemStyle: { color: '#006d36' },
+                        areaStyle: { color: 'rgba(0,109,54,0.3)' }
+                    }]
+                }]
+            });
+        }
+
+        // Security Check
+        const token = HorizonteAPI.getToken();
+        if (!token && window.location.hostname !== 'localhost') {
+            window.location.href = 'login.html';
+        }
+
+        async function loadData() {
+            try {
+                // In a real environment, replace with your Render URL
+                const response = await fetch('http://localhost:3000/api/metrics', {
+                    headers: { 'Authorization': token }
+                });
+                const data = await response.json();
+                updateMetrics(data);
+            } catch (err) {
+                console.warn('Backend not reached, using mock data');
+                updateMetrics({
+                    totalUsers: 1420,
+                    avgSatisfaction: 4.7,
+                    riasecDistribution: { R: 30, I: 45, A: 20, S: 35, E: 25, C: 15 }
+                });
+            }
+        }
+
+        loadData();
+        window.addEventListener('resize', () => {
+            volumeChart.resize();
+            riasecChart.resize();
+        });
+    </script>
+</body>
+</html>

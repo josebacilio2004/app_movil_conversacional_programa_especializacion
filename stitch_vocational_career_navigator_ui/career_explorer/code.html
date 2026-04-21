@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#001f25",
+                    "on-background": "#191c1e",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-fixed-variant": "#004e5b",
+                    "secondary-fixed-dim": "#66dd8b",
+                    "on-primary-fixed-variant": "#5300cd",
+                    "tertiary-fixed-dim": "#58d6f1",
+                    "outline-variant": "#cbc3d9",
+                    "on-secondary-fixed-variant": "#005227",
+                    "on-tertiary-container": "#59d8f2",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#83fba5",
+                    "secondary-fixed": "#83fba5",
+                    "on-secondary-container": "#00743a",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-fixed": "#22005d",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#494456",
+                    "on-error": "#ffffff",
+                    "secondary": "#006d36",
+                    "surface-container": "#eceef0",
+                    "surface-container-low": "#f2f4f6",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-primary": "#cfbdff",
+                    "on-surface": "#191c1e",
+                    "primary-fixed-dim": "#cfbdff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#6d23f9",
+                    "primary-fixed": "#e8ddff",
+                    "surface-variant": "#e0e3e5",
+                    "outline": "#7a7488",
+                    "tertiary-fixed": "#a7edff",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "primary": "#4800b2",
+                    "tertiary-container": "#005c6b",
+                    "on-primary-container": "#d0beff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#00434e",
+                    "background": "#f7f9fb",
+                    "primary-container": "#6200ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-background min-h-screen pb-32">
+<!-- Background Blobs -->
+<div class="fixed inset-0 z-[-1] overflow-hidden">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tertiary-fixed/20 rounded-full blur-[160px]"></div>
+<div class="absolute -bottom-48 -right-48 w-[500px] h-[500px] bg-secondary-fixed/10 rounded-full blur-[140px]"></div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(73,68,86,0.08)]">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a smiling young mentor in a bright studio with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNtVCw4FUypuAR-Utg1kpENfOSD2simr9Fd1nXTNQs1_1YGWelujE-YniL0cjdg74QCwDCEK93t7z-DqiEV8N542MekU6x7xFux-f0BibnAB_gAO80vz6a9OCOZqtrLIf3QIQ0TATlqoLqUNiU9ZQzFm7ARk3fHEDQeaCZS2gSFV7voGdDCvWs7PNv7aB-s3pUS2YS1nEh36B5LZyq6BnNG7WkG5FjwFr966ug1GFoosfRFUUzXYSsXLMxeMmyNRcHZ6smWQ1j43U"/>
+</div>
+</div>
+<div class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-violet-700 to-violet-500 font-manrope">
+                Ethereal Mentor
+            </div>
+<button class="text-violet-700 dark:text-violet-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-6 max-w-7xl mx-auto">
+<!-- Search & Discovery Header -->
+<section class="mb-12">
+<div class="max-w-2xl mx-auto text-center mb-10">
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-background mb-4">Explore Your Path</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">Discover curated vocational journeys aligned with your unique essence and talent signatures.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative max-w-xl mx-auto group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+<input class="w-full h-16 pl-14 pr-6 bg-surface-container-highest rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-surface placeholder:text-outline" placeholder="Search careers, skills, or passions..." type="text"/>
+</div>
+</section>
+<!-- Bento Grid of Recommendations -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Path Card 1: Ethical AI Architect -->
+<div class="glass-card p-8 rounded-[2rem] border border-white/20 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col hover:scale-[1.02] transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-primary-fixed rounded-2xl text-primary">
+<span class="material-symbols-outlined" data-icon="neurology">neurology</span>
+</div>
+<div class="bg-secondary-fixed text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                        98% Match
+                    </div>
+</div>
+<h3 class="text-2xl font-bold text-on-background mb-3 tracking-tight">Ethical AI Architect</h3>
+<p class="text-on-surface-variant text-base leading-relaxed mb-8 flex-grow">
+                    Design algorithmic frameworks that prioritize human equity and transparency. Perfect for your analytical mind and philosophical core.
+                </p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">High Demand</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </button>
+</div>
+</div>
+<!-- Path Card 2: Sustainable Urban Planner (Large) -->
+<div class="glass-card p-8 rounded-[2rem] border border-white/20 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col md:col-span-2 hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="Modern sustainable city architecture with vertical gardens and clean lines in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLegzbHMOlsobbyV8XAG9ryseLrAuzSbUZUO8158GxjQOKqXa6LtAwA0vsbfYEuBByiXPuc9R7WeFqUVqMkX2rDjGNeyy2-HJ7zaKD-iuW6m11yQ-SHTEIzho_4c4uB1HHGmyU4brB_yLLD6teRIdO8Owg01G9Hzu7PdSpuQ9p5MIdVlLin1jmb8fwaBD0cE374AVCLPokQTiy9UqHArBas8WB1VNYwt3f9qum0J7w8PDNg6bVYPb3LEpnzHjdKx1ez1-UK7qsrec"/>
+</div>
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-tertiary-fixed rounded-2xl text-tertiary">
+<span class="material-symbols-outlined" data-icon="location_away">location_away</span>
+</div>
+<div class="bg-secondary-fixed text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                        94% Match
+                    </div>
+</div>
+<div class="max-w-md">
+<h3 class="text-3xl font-extrabold text-on-background mb-4 tracking-tight">Sustainable Urban Planner</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                        Reimagine how cities breathe. Integrate vertical forests and smart transit systems into the urban fabric of tomorrow. Your spatial reasoning and environmental advocacy shine here.
+                    </p>
+</div>
+<div class="flex items-center gap-6 mt-auto">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </button>
+<button class="text-on-surface font-bold text-sm hover:text-primary transition-colors">
+                        Save to Favorites
+                    </button>
+</div>
+</div>
+<!-- Path Card 3: Neuro-UX Designer -->
+<div class="glass-card p-8 rounded-[2rem] border border-white/20 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col hover:scale-[1.02] transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-secondary-container rounded-2xl text-secondary">
+<span class="material-symbols-outlined" data-icon="psychology_alt">psychology_alt</span>
+</div>
+<div class="bg-secondary-fixed text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                        91% Match
+                    </div>
+</div>
+<h3 class="text-2xl font-bold text-on-background mb-3 tracking-tight">Neuro-UX Designer</h3>
+<p class="text-on-surface-variant text-base leading-relaxed mb-8 flex-grow">
+                    Craft digital interfaces that harmonize with cognitive load and emotional states. A blend of tech, art, and psychology.
+                </p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Growing Field</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </button>
+</div>
+</div>
+<!-- Path Card 4: Digital Heritage Conservator -->
+<div class="glass-card p-8 rounded-[2rem] border border-white/20 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col hover:scale-[1.02] transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-surface-container-highest rounded-2xl text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div class="bg-secondary-fixed text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                        88% Match
+                    </div>
+</div>
+<h3 class="text-2xl font-bold text-on-background mb-3 tracking-tight">Digital Heritage Conservator</h3>
+<p class="text-on-surface-variant text-base leading-relaxed mb-8 flex-grow">
+                    Use high-fidelity scanning and VR to preserve ancient ruins for future generations. For the history buff with a flair for 3D modeling.
+                </p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Niche Expert</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </button>
+</div>
+</div>
+<!-- Path Card 5: Bio-Feedback Wellness Coach -->
+<div class="glass-card p-8 rounded-[2rem] border border-white/20 shadow-[0px_20px_40px_rgba(73,68,86,0.08)] flex flex-col hover:scale-[1.02] transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-on-tertiary-container rounded-2xl text-on-tertiary">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+</div>
+<div class="bg-secondary-fixed text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                        85% Match
+                    </div>
+</div>
+<h3 class="text-2xl font-bold text-on-background mb-3 tracking-tight">Wellness Tech Coach</h3>
+<p class="text-on-surface-variant text-base leading-relaxed mb-8 flex-grow">
+                    Translate physiological data into actionable lifestyle rituals. Ideal for those who love helping others through the lens of data.
+                </p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">High Growth</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity">
+                        View Details
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl rounded-t-[2rem] shadow-[0px_-10px_40px_rgba(73,68,86,0.12)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="sparkles">colors_spark</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest">Guide</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest">Talent</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-violet-600 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full px-5 py-2 scale-110 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="explore">explore</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest">Explore</span>
+</a>
+</nav>
+</body></html>
