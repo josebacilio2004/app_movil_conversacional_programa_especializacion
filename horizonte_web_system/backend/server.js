@@ -115,18 +115,20 @@ app.post('/api/interactions', async (req, res) => {
 
   try {
     // Usamos ON CONFLICT con firestore_id para hacer un UPSERT (Insertar o Actualizar)
+    const { confidenceScore } = req.body;
     const query = `
-      INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent, firestore_id)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO chatbot_interactions (user_id, session_id, message_content, response_content, intent, firestore_id, confidence_score)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       ON CONFLICT (firestore_id) 
       DO UPDATE SET 
         intent = EXCLUDED.intent,
         message_content = COALESCE(chatbot_interactions.message_content, EXCLUDED.message_content),
         response_content = COALESCE(chatbot_interactions.response_content, EXCLUDED.response_content),
+        confidence_score = COALESCE(EXCLUDED.confidence_score, chatbot_interactions.confidence_score),
         timestamp = CURRENT_TIMESTAMP
       RETURNING id;
     `;
-    const result = await db.query(query, [userId, sessionId, message, response, intent || 'general', firestoreId]);
+    const result = await db.query(query, [userId, sessionId, message, response, intent || 'general', firestoreId, confidenceScore || null]);
     const interactionId = result.rows[0].id;
 
     // Si recibimos un rating Likert (1-5), lo guardamos también con UPSERT
