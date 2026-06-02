@@ -1,4 +1,3 @@
-# Uncomment this line to define a global platform for your project
 platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
@@ -26,13 +25,13 @@ require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelpe
 flutter_ios_podfile_setup
 
 target 'Runner' do
+  use_frameworks! :linkage => :static
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
 post_install do |installer|
-  # flutter_post_install may crash on CocoaPods 1.16.2 — catch and continue
   begin
     flutter_post_install(installer)
   rescue => e
@@ -42,6 +41,20 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+
+      # ============================================================
+      # KEY FIX: Add Flutter.framework to search paths so that
+      # #import <Flutter/Flutter.h> works with use_frameworks!
+      # ============================================================
+      fsp = config.build_settings['FRAMEWORK_SEARCH_PATHS'] || ['$(inherited)']
+      if fsp.is_a?(String)
+        fsp = fsp.split
+      end
+      flutter_fw_path = '"${PODS_ROOT}/../Flutter"'
+      unless fsp.include?(flutter_fw_path)
+        fsp << flutter_fw_path
+        config.build_settings['FRAMEWORK_SEARCH_PATHS'] = fsp
+      end
 
       # Suppress Xcode 16 C++ template errors in gRPC pods
       if ['BoringSSL-GRPC', 'gRPC-Core', 'gRPC-C++', 'gRPC-C++/Implementation'].include?(target.name)
