@@ -65,4 +65,26 @@ post_install do |installer|
     puts e.backtrace.join("\n")
     puts "=============================="
   end
+
+  begin
+    # Fix for Xcode 16 "A template argument list is expected after a name prefixed by the template keyword" in gRPC-Core
+    grpc_file_path = "Pods/gRPC-Core/src/core/lib/promise/detail/basic_seq.h"
+    if File.exist?(grpc_file_path)
+      file_content = File.read(grpc_file_path)
+      problematic_line = 'return Traits::template CallSeqFactory(f_, *cur_, std::move(arg));'
+      correct_line = 'return Traits::template CallSeqFactory<>(f_, *cur_, std::move(arg));'
+      if file_content.include?(problematic_line)
+        puts "=== Patching gRPC-Core basic_seq.h for Xcode 16 compatibility ==="
+        file_content.gsub!(problematic_line, correct_line)
+        File.open(grpc_file_path, "w") { |file| file.write(file_content) }
+      end
+    else
+      puts "=== Warning: gRPC-Core basic_seq.h file not found at #{grpc_file_path} ==="
+    end
+  rescue => e
+    puts "=== ERROR PATCHING GRPC-CORE basic_seq.h ==="
+    puts e.message
+    puts e.backtrace.join("\n")
+    puts "============================================="
+  end
 end
