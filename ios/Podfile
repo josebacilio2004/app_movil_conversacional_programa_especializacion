@@ -1,21 +1,41 @@
 # The target runtime and platform for the application
 platform :ios, '13.0'
 
-# CocoaPods analytics sends usage stats so we know on which single-window configurations to focus development.
-# To disable, uncomment the following line
-# keep_silent!
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  if File.exist?(generated_xcode_build_settings_path)
+    File.foreach(generated_xcode_build_settings_path) do |line|
+      matches = line.match(/FLUTTER_ROOT\=(.*)/)
+      return matches[1].strip if matches
+    end
+  end
+  raise "Could not find FLUTTER_ROOT in #{generated_xcode_build_settings_path}"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
 
 target 'Runner' do
   use_frameworks!
-  use_objc_linker_headers_from_pods!
+  use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
 post_install do |installer|
+  flutter_post_install(installer)
+  
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
-    
     # Fix for Xcode 16 "unsupported option '-G' for target 'arm64-apple-ios10.0'" error in BoringSSL-GRPC
     if target.name == 'BoringSSL-GRPC'
       target.source_build_phase.files.each do |file|
