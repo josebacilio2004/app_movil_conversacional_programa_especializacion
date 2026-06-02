@@ -33,22 +33,36 @@ target 'Runner' do
 end
 
 post_install do |installer|
-  flutter_post_install(installer)
+  begin
+    flutter_post_install(installer)
+  rescue => e
+    puts "=== ERROR IN FLUTTER POST INSTALL ==="
+    puts e.message
+    puts e.backtrace.join("\n")
+    puts "====================================="
+  end
   
-  installer.pods_project.targets.each do |target|
-    # Fix for Xcode 16 "unsupported option '-G' for target 'arm64-apple-ios10.0'" error in BoringSSL-GRPC
-    if target.name == 'BoringSSL-GRPC'
-      target.build_phases.each do |phase|
-        if phase.respond_to?(:files)
-          phase.files.each do |file|
-            if file.settings && file.settings['COMPILER_FLAGS']
-              flags = file.settings['COMPILER_FLAGS'].split
-              flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' || flag == '-G' }
-              file.settings['COMPILER_FLAGS'] = flags.join(' ')
+  begin
+    installer.pods_project.targets.each do |target|
+      # Fix for Xcode 16 "unsupported option '-G' for target 'arm64-apple-ios10.0'" error in BoringSSL-GRPC
+      if target.name == 'BoringSSL-GRPC'
+        target.build_phases.each do |phase|
+          if phase.respond_to?(:files)
+            phase.files.each do |file|
+              if file.settings && file.settings['COMPILER_FLAGS']
+                flags = file.settings['COMPILER_FLAGS'].split
+                flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' || flag == '-G' }
+                file.settings['COMPILER_FLAGS'] = flags.join(' ')
+              end
             end
           end
         end
       end
     end
+  rescue => e
+    puts "=== ERROR IN BORINGSSL FIX ==="
+    puts e.message
+    puts e.backtrace.join("\n")
+    puts "=============================="
   end
 end
