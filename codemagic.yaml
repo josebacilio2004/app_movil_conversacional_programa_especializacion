@@ -27,14 +27,13 @@ workflows:
           flutter build apk --release
       - name: Build iOS (Unsigned IPA)
         script: |
-          # 1. Instalar y actualizar CocoaPods limpiamente para evitar caché corrupta de dependencias como nanopb
+          # 1. Limpiar Pods anteriores y actualizar el repositorio CocoaPods
           cd ios
           rm -rf Pods Podfile.lock
           pod repo update
-          pod install --repo-update
           cd ..
           
-          # 2. Compilar binario de iOS sin firma
+          # 2. Compilar binario de iOS sin firma (Flutter generará Generated.xcconfig y ejecutará pod install automáticamente)
           flutter build ios --release --no-codesign
 
           
