@@ -33,30 +33,31 @@ target 'Runner' do
 end
 
 post_install do |installer|
-  flutter_post_install(installer)
+  # flutter_post_install may crash on CocoaPods 1.16.2 — catch and continue
+  begin
+    flutter_post_install(installer)
+  rescue => e
+    puts "[WARN] flutter_post_install failed: #{e.message}"
+  end
 
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      # ============================================================
-      # Fix 1: BoringSSL-GRPC  — Xcode 16 rejects the '-G' flag
-      # Fix 2: gRPC-Core       — Xcode 16 rejects missing template <>
-      # Instead of patching source files (fragile), we tell the
-      # compiler to downgrade these two errors to warnings.
-      # ============================================================
-      if ['BoringSSL-GRPC', 'gRPC-Core', 'gRPC-C++'].include?(target.name)
-        existing = config.build_settings['OTHER_CFLAGS'] || '$(inherited)'
-        unless existing.include?('-Wno-error=missing-template-arg-list-after-template-kw')
-          config.build_settings['OTHER_CFLAGS'] = "#{existing} -Wno-error=missing-template-arg-list-after-template-kw"
-        end
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
 
-        existing_cpp = config.build_settings['OTHER_CPLUSPLUSFLAGS'] || '$(inherited)'
-        unless existing_cpp.include?('-Wno-error=missing-template-arg-list-after-template-kw')
-          config.build_settings['OTHER_CPLUSPLUSFLAGS'] = "#{existing_cpp} -Wno-error=missing-template-arg-list-after-template-kw"
-        end
+      # Suppress Xcode 16 C++ template errors in gRPC pods
+      if ['BoringSSL-GRPC', 'gRPC-Core', 'gRPC-C++', 'gRPC-C++/Implementation'].include?(target.name)
+        cflags = config.build_settings['OTHER_CFLAGS'] || '$(inherited)'
+        cppflags = config.build_settings['OTHER_CPLUSPLUSFLAGS'] || '$(inherited)'
+        suppress = '-Wno-error=missing-template-arg-list-after-template-kw'
+
+        config.build_settings['OTHER_CFLAGS'] = "#{cflags} #{suppress}" unless cflags.include?(suppress)
+        config.build_settings['OTHER_CPLUSPLUSFLAGS'] = "#{cppflags} #{suppress}" unless cppflags.include?(suppress)
       end
+    end
 
-      # Remove the unsupported '-G' flag from per-file COMPILER_FLAGS in BoringSSL-GRPC
-      if target.name == 'BoringSSL-GRPC'
+    # Remove the unsupported '-G' per-file flag from BoringSSL-GRPC
+    if target.name == 'BoringSSL-GRPC' && target.respond_to?(:source_build_phase)
+      begin
         target.source_build_phase.files.each do |file|
           if file.settings && file.settings['COMPILER_FLAGS']
             flags = file.settings['COMPILER_FLAGS'].split
@@ -64,6 +65,8 @@ post_install do |installer|
             file.settings['COMPILER_FLAGS'] = flags.join(' ')
           end
         end
+      rescue => e
+        puts "[WARN] BoringSSL flag cleanup failed: #{e.message}"
       end
     end
   end
