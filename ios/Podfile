@@ -38,11 +38,15 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     # Fix for Xcode 16 "unsupported option '-G' for target 'arm64-apple-ios10.0'" error in BoringSSL-GRPC
     if target.name == 'BoringSSL-GRPC'
-      target.source_build_phase.files.each do |file|
-        if file.settings && file.settings['COMPILER_FLAGS']
-          flags = file.settings['COMPILER_FLAGS'].split
-          flags.reject! { |flag| flag == '-G' }
-          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+      target.build_phases.each do |phase|
+        if phase.respond_to?(:files)
+          phase.files.each do |file|
+            if file.settings && file.settings['COMPILER_FLAGS']
+              flags = file.settings['COMPILER_FLAGS'].split
+              flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' || flag == '-G' }
+              file.settings['COMPILER_FLAGS'] = flags.join(' ')
+            end
+          end
         end
       end
     end
