@@ -1,4 +1,3 @@
-# Codemagic CI/CD Configuration for Cori Horizonte
 workflows:
   android-ios-workflow:
     name: Android & iOS Workflow
@@ -7,7 +6,7 @@ workflows:
     environment:
       flutter: stable
       vars:
-        PACKAGE_NAME: "com.example.app_especializacion"
+        PACKAGE_NAME: "com.example.appEspecializacion"
     triggering:
       events:
         - push
@@ -17,43 +16,21 @@ workflows:
         - pattern: 'develop'
           include: true
     scripts:
-      - name: Configure Flutter and Get packages
+      - name: Get Flutter packages
         script: |
-          flutter config --no-enable-swift-package-manager
-          flutter clean
           flutter pub get
       - name: Build Android APK
         script: |
           flutter build apk --release
       - name: Build iOS (Unsigned IPA)
         script: |
-          set -e  # Exit immediately if any command fails
-
-          # 1. Clean previous pods
-          cd ios
-          rm -rf Pods Podfile.lock
-          cd ..
-
-          # 2. Build iOS (Flutter will run pod install internally)
           flutter build ios --release --no-codesign
 
-          # 3. Only create IPA if Runner.app was successfully built
-          echo "=== Checking build output ==="
-          ls -la build/ios/iphoneos/
-
-          echo "=== Creating IPA ==="
           mkdir -p build/ios/ipa/Payload
-          cp -RL build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
+          cp -r build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
 
-          echo "=== Verifying Payload ==="
-          ls -la build/ios/ipa/Payload/Runner.app/
-
-          echo "=== Compressing to IPA ==="
           cd build/ios/ipa
-          zip -r AppEspecializacion.ipa Payload
-
-          echo "=== IPA Generated ==="
-          ls -lh AppEspecializacion.ipa
+          zip -qr AppEspecializacion.ipa Payload
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
       - build/ios/ipa/AppEspecializacion.ipa
