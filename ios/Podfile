@@ -1,0 +1,30 @@
+# The target runtime and platform for the application
+platform :ios, '13.0'
+
+# CocoaPods analytics sends usage stats so we know on which single-window configurations to focus development.
+# To disable, uncomment the following line
+# keep_silent!
+
+target 'Runner' do
+  use_frameworks!
+  use_objc_linker_headers_from_pods!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    
+    # Fix for Xcode 16 "unsupported option '-G' for target 'arm64-apple-ios10.0'" error in BoringSSL-GRPC
+    if target.name == 'BoringSSL-GRPC'
+      target.source_build_phase.files.each do |file|
+        if file.settings && file.settings['COMPILER_FLAGS']
+          flags = file.settings['COMPILER_FLAGS'].split
+          flags.reject! { |flag| flag == '-G' }
+          file.settings['COMPILER_FLAGS'] = flags.join(' ')
+        end
+      end
+    end
+  end
+end
