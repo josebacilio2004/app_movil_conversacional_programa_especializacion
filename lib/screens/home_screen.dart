@@ -5,7 +5,6 @@ import 'package:fl_chart/fl_chart.dart';
 import '../services/auth_service.dart';
 import '../models/user_model.dart';
 import '../screens/profile/profile_screen.dart';
-import '../tools/seed_data.dart';
 import 'mentors_screen.dart';
 import 'certifications_screen.dart';
 
@@ -304,70 +303,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 32),
-                      // System Tools Card
-                      _buildGlassContainer(
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: Colors.blueGrey.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: const Icon(Icons.cloud_upload_rounded, color: Colors.blueGrey),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Poblar Dataset',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Cargar información profesional',
-                                    style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () => DataSeeder.seedSpecializations(context),
-                              child: const Text('Ejecutar'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 120), // Padding lower nav
                     ],
                   ),
                 ),
               ),
             ],
           ),
-
-          // Custom Bottom Navigation Bar
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: _buildBottomNav(context),
-          ),
-
-          // Floating Action Button Style Bot
-          Positioned(
-            bottom: 100,
-            right: 24,
-            child: FloatingActionButton.large(
-              onPressed: () => Navigator.pushNamed(context, '/chat'),
-              backgroundColor: theme.colorScheme.primary,
-              child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 40),
-            ),
-          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.large(
+        onPressed: () => Navigator.pushNamed(context, '/chat'),
+        backgroundColor: theme.colorScheme.primary,
+        child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 40),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: _buildBottomNav(context),
       ),
     );
   }
