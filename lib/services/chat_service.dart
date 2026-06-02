@@ -82,7 +82,7 @@ class ChatService {
 
   /// [RF-02] Procesamiento NLP: Envía la consulta del usuario al webhook de n8n
   /// y maneja la respuesta contextualizada con el perfil RIASEC.
-  Future<String> sendMessage(String message, String userId, Map<String, int> riasecProfile, String? userName) async {
+  Future<String> sendMessage(String message, String userId, Map<String, int> riasecProfile, String? userName, String? carreraPregrado) async {
     // Determinar categoría por palabras clave simples (para métricas)
     String category = 'general_query';
     if (message.toLowerCase().contains('ingeniería') || message.toLowerCase().contains('carrera')) {
@@ -109,6 +109,7 @@ class ChatService {
           "userName": userName ?? "Estudiante",
           "message": message,
           "riasec": riasecProfile,
+          "carreraPregrado": carreraPregrado ?? "Sin configurar",
         }),
       ).timeout(const Duration(seconds: 15));
 

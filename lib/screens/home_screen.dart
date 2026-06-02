@@ -6,6 +6,8 @@ import '../services/auth_service.dart';
 import '../models/user_model.dart';
 import '../screens/profile/profile_screen.dart';
 import '../tools/seed_data.dart';
+import 'mentors_screen.dart';
+import 'certifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -287,12 +289,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           _buildQuickActionButton(
                             icon: Icons.diversity_3_rounded,
                             label: "BUSCAR MENTORES",
-                            onTap: () {},
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const MentorsScreen()),
+                            ),
                           ),
                           _buildQuickActionButton(
                             icon: Icons.emoji_events_rounded,
                             label: "CERTIFICACIONES",
-                            onTap: () {},
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const CertificationsScreen()),
+                            ),
                           ),
                         ],
                       ),
@@ -476,27 +484,34 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItem(Icons.auto_awesome_mosaic_rounded, "Guía", isActive: true),
-          _navItem(Icons.analytics_rounded, "Talento"),
-          _navItem(Icons.chat_bubble_rounded, "Coach"),
-          _navItem(Icons.explore_rounded, "Explorar"),
+          _navItem(Icons.auto_awesome_mosaic_rounded, "Guía", isActive: true, onTap: () {}),
+          _navItem(Icons.analytics_rounded, "Talento", onTap: () => Navigator.pushNamed(context, '/riasec')),
+          _navItem(Icons.chat_bubble_rounded, "Coach", onTap: () => Navigator.pushNamed(context, '/chat')),
+          _navItem(Icons.explore_rounded, "Explorar", onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MentorsScreen()),
+          )),
         ],
       ),
     );
   }
 
-  Widget _navItem(IconData icon, String label, {bool isActive = false}) {
+  Widget _navItem(IconData icon, String label, {bool isActive = false, VoidCallback? onTap}) {
     final color = isActive ? Theme.of(context).colorScheme.primary : Colors.grey.shade400;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
-        ),
-      ],
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: color),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
     );
   }
 

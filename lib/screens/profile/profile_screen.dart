@@ -18,12 +18,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final DatabaseService _db = DatabaseService();
   bool _isEditing = false;
   late AppUser _currentUser;
+  String? _selectedCarrera;
+
+  final List<String> _carrerasPregrado = [
+    'Administración',
+    'Administración y Finanzas',
+    'Administración y Gestión del Talento Humano',
+    'Administración y Marketing',
+    'Administración y Negocios Digitales',
+    'Administración y Negocios Internacionales',
+    'Contabilidad y Finanzas',
+    'Economía',
+    'Arquitectura',
+    'Arquitectura y Diseño de Interiores',
+    'Ingeniería Ambiental',
+    'Ingeniería Civil',
+    'Ingeniería de Minas',
+    'Ingeniería de Sistemas e Informática',
+    'Ingeniería Eléctrica',
+    'Ingeniería Empresarial',
+    'Ingeniería Industrial',
+    'Ingeniería Mecánica',
+    'Ingeniería Mecatrónica',
+    'Ciencias de la Comunicación',
+    'Derecho',
+    'Enfermería',
+    'Farmacia y Bioquímica',
+    'Medicina Humana',
+    'Odontología',
+    'Tecnología Médica – Especialidad en Terapia Física y Rehabilitación',
+    'Tecnología Médica – Laboratorio Clínico y Anatomía Patológica',
+    'Tecnología Médica - Radiología',
+    'Nutrición y Dietética',
+    'Psicología',
+  ];
 
   @override
   void initState() {
     super.initState();
     _currentUser = widget.user;
     _nameController = TextEditingController(text: _currentUser.displayName);
+    _selectedCarrera = _carrerasPregrado.contains(_currentUser.carreraPregrado)
+        ? _currentUser.carreraPregrado
+        : null;
   }
 
   Future<void> _saveName() async {
@@ -31,6 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       uid: _currentUser.uid,
       email: _currentUser.email,
       displayName: _nameController.text,
+      carreraPregrado: _selectedCarrera ?? '',
       interests: _currentUser.interests,
       riasecProfile: _currentUser.riasecProfile,
       savedSpecializations: _currentUser.savedSpecializations,
@@ -178,10 +216,70 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Divider(height: 1, color: Color(0xFFE2E8F0)),
               ),
               _buildNameField(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Divider(height: 1, color: Color(0xFFE2E8F0)),
+              ),
+              _buildCarreraField(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildCarreraField() {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF6D23F9).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Icon(Icons.school_outlined, color: Color(0xFF6D23F9), size: 18),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('CARRERA DE PREGRADO', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
+              const SizedBox(height: 4),
+              _isEditing
+                ? DropdownButtonFormField<String>(
+                    value: _selectedCarrera,
+                    isExpanded: true,
+                    hint: const Text('Selecciona tu carrera', style: TextStyle(fontSize: 14)),
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: _carrerasPregrado.map((String carrera) {
+                      return DropdownMenuItem<String>(
+                        value: carrera,
+                        child: Text(carrera, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedCarrera = newValue;
+                      });
+                    },
+                  )
+                : Text(
+                    _currentUser.carreraPregrado.isEmpty ? 'Sin configurar' : _currentUser.carreraPregrado,
+                    style: TextStyle(
+                      fontSize: 15, 
+                      fontWeight: FontWeight.w700,
+                      color: _currentUser.carreraPregrado.isEmpty ? Colors.grey : const Color(0xFF1E293B),
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

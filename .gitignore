@@ -52,3 +52,7 @@ app.*.map.json
 # Secrets
 firebase-admin-key.json
 appmovilespecializacion-firebase-adminsdk-fbsvc-*.json
+
+# Temporary scratch folder
+scratch/
+

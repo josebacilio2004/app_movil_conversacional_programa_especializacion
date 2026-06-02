@@ -370,7 +370,8 @@ class _ChatScreenState extends State<ChatScreen> {
       userText, 
       userId, 
       user?.riasecProfile ?? {},
-      user?.displayName
+      user?.displayName,
+      user?.carreraPregrado
     );
 
     // El formato esperado es "id|texto"

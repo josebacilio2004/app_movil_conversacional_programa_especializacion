@@ -1,0 +1,66 @@
+# Codemagic CI/CD Configuration for app_especializacion
+workflows:
+  android-ios-workflow:
+    name: Android & iOS Workflow
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      flutter: stable
+      vars:
+        PACKAGE_NAME: "com.example.app_especializacion"
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+        - pattern: 'develop'
+          include: true
+    scripts:
+      - name: Configure Flutter and Get packages
+        script: |
+          flutter config --no-enable-swift-package-manager
+          flutter pub get
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
+      - name: Build iOS (Unsigned IPA)
+        script: |
+          # 1. Compilar binario de iOS sin firma
+          flutter build ios --release --no-codesign
+          
+          # 2. Diagnóstico: Listar contenido de build/ios/iphoneos para verificar el compilado
+          echo "=== Contenido de build/ios/iphoneos ==="
+          ls -la build/ios/iphoneos || true
+          
+          # 3. Crear estructura Payload
+          mkdir -p build/ios/ipa/Payload
+          
+          # 4. Copiar Runner.app resolviendo enlaces simbólicos (-L)
+          echo "=== Copiando Runner.app ==="
+          cp -RL build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
+          
+          # 5. Diagnóstico: Verificar si se copió correctamente
+          echo "=== Contenido de Payload ==="
+          ls -la build/ios/ipa/Payload || true
+          echo "=== Contenido de Payload/Runner.app ==="
+          ls -la build/ios/ipa/Payload/Runner.app || true
+          
+          # 6. Entrar a la carpeta y comprimir de forma detallada (sin -q para ver qué se agrega)
+          echo "=== Comprimiendo a IPA ==="
+          cd build/ios/ipa
+          zip -r AppEspecializacion.ipa Payload
+          
+          # 7. Diagnóstico: Verificar tamaño y detalles del archivo IPA generado
+          echo "=== IPA Generado ==="
+          ls -lh AppEspecializacion.ipa || true
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+      - build/ios/ipa/AppEspecializacion.ipa
+    publishing:
+      email:
+        recipients:
+          - 74934503@continental.edu.pe
+        notify:
+          success: true
+          failure: true

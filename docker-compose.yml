@@ -10,6 +10,8 @@ services:
       - N8N_PROTOCOL=http
       - NODE_ENV=production
       - WEBHOOK_URL=http://localhost:5678/
+      - N8N_DEFAULT_CORS=true
+      - N8N_CORS_ALLOW_ORIGIN=*
     volumes:
       - n8n_data:/home/node/.n8n
 
