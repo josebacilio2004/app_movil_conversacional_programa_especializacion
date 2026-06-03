@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:cloud_functions/cloud_functions.dart';
 
 class ChatMessage {
   final String id; // ID de Firestore para métricas
@@ -22,7 +21,6 @@ class ChatMessage {
 /// [RF-01] Comunicación IA-Usuario: Gestiona el envío y recepción de mensajes
 /// entre la interfaz móvil y el motor de procesamiento n8n.
 class ChatService {
-  final FirebaseFunctions functions = FirebaseFunctions.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   
   // Identificador único de la sesión para métricas de abandono y flujo

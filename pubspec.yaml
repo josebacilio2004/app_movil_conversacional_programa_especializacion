@@ -9,12 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.27.0
-  firebase_auth: ^4.17.0
+  firebase_core: ^3.1.1
+  firebase_auth: ^5.1.1
   provider: ^6.1.1
-  cloud_firestore: ^4.15.0
+  cloud_firestore: ^5.0.2
   http: ^1.2.0
-  cloud_functions: any
   fl_chart: ^1.2.0
   flutter_spinkit: ^5.2.2
   lottie: ^3.3.2
