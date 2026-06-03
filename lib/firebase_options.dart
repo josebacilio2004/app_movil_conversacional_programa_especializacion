@@ -10,8 +10,14 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
+        if (android.apiKey.contains('...') || android.appId.contains('...')) {
+          return web;
+        }
         return android;
       case TargetPlatform.iOS:
+        if (ios.apiKey.contains('...') || ios.appId.contains('...')) {
+          return web;
+        }
         return ios;
       default:
         throw UnsupportedError(
