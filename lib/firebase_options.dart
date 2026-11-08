@@ -1,5 +1,4 @@
-// Archivo generado como plantilla para permitir que la Web inicie.
-// En una app real, este archivo se genera con "flutterfire configure".
+// Archivo generado para la integración con Firebase.
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
@@ -10,14 +9,8 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        if (android.apiKey.contains('...') || android.appId.contains('...')) {
-          return web;
-        }
         return android;
       case TargetPlatform.iOS:
-        if (ios.apiKey.contains('...') || ios.appId.contains('...')) {
-          return web;
-        }
         return ios;
       default:
         throw UnsupportedError(
@@ -26,7 +19,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // REEMPLAZAR con tus claves de Firebase Console si el Mock no es suficiente
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBILcoJ2qvZsLKnVQkh84WPXxd-L0RwXlE',
     appId: '1:444686619856:web:6373cc6d744d117a30fad5',
@@ -38,19 +30,19 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA...',
-    appId: '1:...',
-    messagingSenderId: '...',
-    projectId: '...',
-    storageBucket: '...',
+    apiKey: 'AIzaSyBILcoJ2qvZsLKnVQkh84WPXxd-L0RwXlE',
+    appId: '1:444686619856:web:6373cc6d744d117a30fad5',
+    messagingSenderId: '444686619856',
+    projectId: 'appmovilespecializacion',
+    storageBucket: 'appmovilespecializacion.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA...',
-    appId: '1:...',
-    messagingSenderId: '...',
-    projectId: '...',
-    storageBucket: '...',
+    apiKey: 'AIzaSyBILcoJ2qvZsLKnVQkh84WPXxd-L0RwXlE',
+    appId: '1:444686619856:web:6373cc6d744d117a30fad5',
+    messagingSenderId: '444686619856',
+    projectId: 'appmovilespecializacion',
+    storageBucket: 'appmovilespecializacion.firebasestorage.app',
     iosBundleId: 'com.example.appEspecializacion',
   );
 }

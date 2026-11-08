@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -157,9 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(height: 12),
                               if (error.isNotEmpty)
                                 Center(
-                                  child: Text(
-                                    error,
-                                    style: const TextStyle(color: Colors.red, fontSize: 13, fontWeight: FontWeight.w600),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 4),
+                                    child: Text(
+                                      error,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.red, fontSize: 13, fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
                                 
@@ -178,13 +183,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                       }
                                       if (result == null) {
                                         setState(() {
-                                          error = 'Error de autenticación';
+                                          error = 'No se pudo iniciar sesión. Verifica tus credenciales.';
                                           loading = false;
                                         });
                                       }
+                                    } on FirebaseAuthException catch (e) {
+                                      setState(() {
+                                        if (e.code == 'user-not-found') {
+                                          error = 'No existe una cuenta registrada con este correo.';
+                                        } else if (e.code == 'wrong-password') {
+                                          error = 'Contraseña incorrecta.';
+                                        } else if (e.code == 'email-already-in-use') {
+                                          error = 'Este correo ya está registrado. Intenta iniciar sesión.';
+                                        } else if (e.code == 'invalid-email') {
+                                          error = 'El formato del correo es inválido.';
+                                        } else if (e.code == 'weak-password') {
+                                          error = 'La contraseña debe tener al menos 6 caracteres.';
+                                        } else if (e.code == 'network-request-failed') {
+                                          error = 'Sin conexión: verifica tu conexión a Internet.';
+                                        } else {
+                                          error = e.message ?? 'Error de autenticación (${e.code})';
+                                        }
+                                        loading = false;
+                                      });
                                     } catch (e) {
                                       setState(() {
-                                        error = 'Ocurrió un error inesperado';
+                                        error = 'Error de conexión: ${e.toString()}';
                                         loading = false;
                                       });
                                     }
@@ -236,4 +260,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
