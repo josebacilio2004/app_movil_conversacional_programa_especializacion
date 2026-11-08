@@ -2,10 +2,9 @@ workflows:
   android-apk-workflow:
     name: Build Android APK Release
     max_build_duration: 30
-    instance_type: linux_x2
+    instance_type: mac_mini_m1
     environment:
       flutter: stable
-      java: 17
       vars:
         PACKAGE_NAME: "com.example.app_especializacion"
     triggering:
@@ -21,7 +20,7 @@ workflows:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$FLUTTER_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Clean & Get Flutter dependencies
+      - name: Get Flutter dependencies
         script: |
           flutter clean
           flutter pub get
@@ -43,7 +42,7 @@ workflows:
           failure: true
 
   ios-ipa-workflow:
-    name: Build iOS IPA (Manual or Dedicated)
+    name: Build iOS IPA (Manual Trigger)
     max_build_duration: 60
     instance_type: mac_mini_m1
     environment:
@@ -53,7 +52,7 @@ workflows:
       vars:
         PACKAGE_NAME: "com.example.app_especializacion"
     triggering:
-      events: [] # Manual trigger only, para que no interfiera ni gaste minutos del APK
+      events: [] # Solo manual si deseas compilar iOS
     scripts:
       - name: Get Flutter packages
         script: |
