@@ -1,43 +1,39 @@
 workflows:
-  android-ios-workflow:
-    name: Build Android APK & iOS IPA
-    max_build_duration: 60
-    instance_type: mac_mini_m1
+  android-apk-workflow:
+    name: Build Android APK Release
+    max_build_duration: 30
+    instance_type: linux_x2
     environment:
       flutter: stable
+      java: 17
       vars:
-        PACKAGE_NAME: "com.example.appEspecializacion"
+        PACKAGE_NAME: "com.example.app_especializacion"
     triggering:
       events:
         - push
+        - tag
       branch_patterns:
         - pattern: 'main'
           include: true
         - pattern: 'develop'
           include: true
     scripts:
-      - name: Get Flutter packages
+      - name: Set up local.properties
         script: |
-          flutter pub get
-      - name: Build Android APK
+          echo "flutter.sdk=$FLUTTER_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Clean & Get Flutter dependencies
         script: |
-          flutter build apk --release
-      - name: Build iOS (Unsigned IPA)
-        script: |
-          flutter config --no-enable-swift-package-manager
-          rm -rf ios/Pods ios/Podfile.lock
           flutter clean
           flutter pub get
-          flutter build ios --release --no-codesign
-
-          mkdir -p build/ios/ipa/Payload
-          cp -r build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
-
-          cd build/ios/ipa
-          zip -qr AppEspecializacion.ipa Payload
+      - name: Build Android APK Release
+        script: |
+          flutter build apk --release
+      - name: Verify APK generated
+        script: |
+          ls -la build/app/outputs/flutter-apk/
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
-      - build/ios/ipa/AppEspecializacion.ipa
+      - build/**/outputs/**/*.apk
     publishing:
       email:
         recipients:
@@ -46,28 +42,36 @@ workflows:
           success: true
           failure: true
 
-  android-only-workflow:
-    name: Build Android APK (Fast Linux)
-    max_build_duration: 30
-    instance_type: linux_x2
+  ios-ipa-workflow:
+    name: Build iOS IPA (Manual or Dedicated)
+    max_build_duration: 60
+    instance_type: mac_mini_m1
     environment:
       flutter: stable
-      java: 17
+      xcode: latest
+      cocoapods: default
+      vars:
+        PACKAGE_NAME: "com.example.app_especializacion"
     triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: 'main'
-          include: true
+      events: [] # Manual trigger only, para que no interfiera ni gaste minutos del APK
     scripts:
       - name: Get Flutter packages
         script: |
+          flutter clean
           flutter pub get
-      - name: Build Android APK Release
+      - name: Build iOS (Unsigned IPA)
         script: |
-          flutter build apk --release
+          flutter config --no-enable-swift-package-manager
+          rm -rf ios/Pods ios/Podfile.lock
+          cd ios && pod install --repo-update && cd ..
+          flutter build ios --release --no-codesign
+
+          mkdir -p build/ios/ipa/Payload
+          cp -r build/ios/iphoneos/Runner.app build/ios/ipa/Payload/
+          cd build/ios/ipa
+          zip -qr AppEspecializacion.ipa Payload
     artifacts:
-      - build/app/outputs/flutter-apk/*.apk
+      - build/ios/ipa/*.ipa
     publishing:
       email:
         recipients:
