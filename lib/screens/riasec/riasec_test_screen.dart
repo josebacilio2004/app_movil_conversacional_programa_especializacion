@@ -178,9 +178,16 @@ class _RiasecTestScreenState extends State<RiasecTestScreen> {
     final user = Provider.of<User?>(context, listen: false);
     final profile = _riasecService.calculateProfile(_answers);
     final top = _riasecService.getTopCategory(profile);
+    final triadic = _riasecService.getTriadicCode(profile);
+    final normalized = _riasecService.calculateNormalizedVector(profile);
 
     if (user != null) {
-      await _db.saveRiasecResult(user.uid, profile);
+      await _db.saveRiasecResult(
+        user.uid, 
+        profile,
+        triadicCode: triadic,
+        normalizedVector: normalized,
+      );
     }
 
     if (!mounted) return;
@@ -202,27 +209,36 @@ class _RiasecTestScreenState extends State<RiasecTestScreen> {
             const Icon(Icons.stars_rounded, color: Colors.amber, size: 64),
             const SizedBox(height: 16),
             const Text(
-              '¡Test Completado!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              '¡Test Vocacional Completado!',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              'Tu perfil dominante es: $top',
-              style: const TextStyle(fontSize: 18, color: Color(0xFF7630f3), fontWeight: FontWeight.bold),
+              'Perfil Dominante: $top  •  Código Triádico: $triadic',
+              style: const TextStyle(fontSize: 16, color: Color(0xFF7630f3), fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             const Text(
-              'Hemos analizado tus respuestas y tu perfil vocacional ya está disponible para el Asistente Continental.',
+              'Tu perfil vocacional RIASEC ha sido guardado. Cori lo utilizará para personalizar y fundamentar cada recomendación académica.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 14),
+              style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Cerrar bottom sheet
-                Navigator.pop(context); // Volver a Home
-              },
-              child: const Text('Comenzar Recomendaciones'),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF7630f3),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+                onPressed: () {
+                  Navigator.pop(context); // Cerrar bottom sheet
+                  Navigator.pop(context); // Volver a Home
+                },
+                child: const Text('Comenzar Recomendaciones con Cori', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              ),
             ),
           ],
         ),

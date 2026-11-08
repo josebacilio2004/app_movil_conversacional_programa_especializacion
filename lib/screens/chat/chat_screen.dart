@@ -73,6 +73,11 @@ class _ChatScreenState extends State<ChatScreen> {
             isUser: data['isUser'] ?? false,
             timestamp: (data['timestamp'] as Timestamp?)?.toDate() ?? DateTime.now(),
             rating: data['rating'] is int ? data['rating'] as int : null,
+            latencyMs: data['latencyMs'] is int ? data['latencyMs'] as int : null,
+            normalizedLatency: (data['normalizedLatency'] as num?)?.toDouble(),
+            intent: data['intent'] ?? data['category'],
+            confidenceScore: (data['confidenceScore'] as num?)?.toDouble(),
+            rationale: data['rationale'],
           ));
         }
         if (mounted) {
@@ -273,11 +278,45 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                       if (!msg.isUser && msg.id != 'welcome') ...[
-                        const Divider(height: 20, color: Colors.blueGrey),
+                        if (msg.latencyMs != null || msg.intent != null) ...[
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (msg.latencyMs != null)
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF6D23F9).withOpacity(0.08),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Text(
+                                    "⚡ ${(msg.latencyMs! / 1000).toStringAsFixed(2)}s",
+                                    style: const TextStyle(fontSize: 10, color: Color(0xFF6D23F9), fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              if (msg.intent != null) ...[
+                                const SizedBox(width: 6),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blueGrey.withOpacity(0.08),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Text(
+                                    "🎯 ${msg.intent}",
+                                    style: const TextStyle(fontSize: 10, color: Colors.blueGrey, fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ],
+                        const Divider(height: 16, color: Color(0xFFE2E8F0)),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Califica esta respuesta:', style: TextStyle(fontSize: 11, color: Colors.blueGrey)),
+                            const Text('Califica la respuesta (Escala Likert):', style: TextStyle(fontSize: 11, color: Colors.blueGrey)),
                             const SizedBox(height: 4),
                             _buildStarRating(msg),
                           ],
@@ -371,7 +410,11 @@ class _ChatScreenState extends State<ChatScreen> {
       userId, 
       user?.riasecProfile ?? {},
       user?.displayName,
-      user?.carreraPregrado
+      user?.carreraPregrado,
+      areaLaboralActual: user?.areaLaboralActual,
+      presupuestoMaxMensual: user?.presupuestoMaxMensual,
+      modalidadPreferida: user?.modalidadPreferida,
+      riasecCode: user?.riasecCode,
     );
 
     // El formato esperado es "id|texto"

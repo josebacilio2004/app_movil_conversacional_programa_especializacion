@@ -1,6 +1,6 @@
 workflows:
   android-ios-workflow:
-    name: Android & iOS Workflow
+    name: Build Android APK & iOS IPA
     max_build_duration: 60
     instance_type: mac_mini_m1
     environment:
@@ -38,6 +38,36 @@ workflows:
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
       - build/ios/ipa/AppEspecializacion.ipa
+    publishing:
+      email:
+        recipients:
+          - 74934503@continental.edu.pe
+        notify:
+          success: true
+          failure: true
+
+  android-only-workflow:
+    name: Build Android APK (Fast Linux)
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+      java: 17
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+      - name: Build Android APK Release
+        script: |
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
     publishing:
       email:
         recipients:

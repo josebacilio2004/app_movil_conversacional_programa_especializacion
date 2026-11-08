@@ -1,17 +1,24 @@
 const db = require('./db');
 
 async function migrate() {
-  console.log('🚀 Iniciando migración automática en NeonDB...');
+  console.log('🚀 Iniciando migración automática en NeonDB / PostgreSQL...');
   
   const migrationQueries = [
-    // 1. Añadir firestore_id y confidence_score a la tabla de interacciones
+    // 1. Columnas de auditoría e identificación
     'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS firestore_id VARCHAR(255) UNIQUE;',
     'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS confidence_score DECIMAL(5, 2);',
     
-    // 2. Asegurar que user_feedback pueda registrar el firestore_id
+    // 2. Columnas de Telemetría Científica e ISO 25010 para la Tesis (8 dimensiones)
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS latency_ms INTEGER;',
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS normalized_latency DECIMAL(4, 2);',
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS riasec_code VARCHAR(10);',
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS carrera_pregrado VARCHAR(255);',
+    'ALTER TABLE chatbot_interactions ADD COLUMN IF NOT EXISTS constraints_satisfied BOOLEAN DEFAULT TRUE;',
+    
+    // 3. User feedback con firestore_id
     'ALTER TABLE user_feedback ADD COLUMN IF NOT EXISTS firestore_id VARCHAR(255);',
     
-    // 2.1 Añadir restricción UNIQUE de forma segura (PostgreSQL no tiene IF NOT EXISTS para constraints directamente en ALTER TABLE de esta forma)
+    // 4. Restricción UNIQUE para feedback
     `DO $$ 
      BEGIN 
        IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'unique_feedback_firestore') THEN
@@ -19,22 +26,21 @@ async function migrate() {
        END IF; 
      END $$;`,
     
-    // 3. Crear índice para búsquedas por firestore_id
-    'CREATE INDEX IF NOT EXISTS idx_interaction_firestore ON chatbot_interactions(firestore_id);'
+    // 5. Índices de aceleración
+    'CREATE INDEX IF NOT EXISTS idx_interaction_firestore ON chatbot_interactions(firestore_id);',
+    'CREATE INDEX IF NOT EXISTS idx_interaction_riasec ON chatbot_interactions(riasec_code);'
   ];
 
   try {
     for (const query of migrationQueries) {
       await db.query(query);
     }
-    console.log('✅ Migración completada con éxito.');
+    console.log('✅ Migración de telemetría y calidad de software completada.');
   } catch (err) {
     console.error('❌ Error durante la migración:', err);
-    // No salimos con error para no detener el despliegue de Render si ya existe la columna
   }
 }
 
-// Ejecutar si se llama directamente
 if (require.main === module) {
   migrate().then(() => process.exit(0));
 }

@@ -31,10 +31,18 @@ class DatabaseService {
     });
   }
 
-  // Guardar Resultado RIASEC
-  Future<void> saveRiasecResult(String uid, Map<String, int> profile) async {
+  // Guardar Resultado RIASEC (incluyendo código triádico y vector normalizado para SmartPLS)
+  Future<void> saveRiasecResult(
+    String uid, 
+    Map<String, int> profile, {
+    String? triadicCode, 
+    Map<String, double>? normalizedVector,
+  }) async {
     return await usersCollection.doc(uid).set({
       'perfilVocacional': profile,
+      if (triadicCode != null) 'riasecCode': triadicCode,
+      if (normalizedVector != null) 'riasecNormalizedVector': normalizedVector,
+      'updatedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
 

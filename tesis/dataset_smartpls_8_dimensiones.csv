@@ -1,0 +1,293 @@
+ID_Egresado,Estrato,Carrera_Pregrado,Area_Laboral_Actual,Codigo_RIASEC,D1_Funcionalidad_Tecnica,D2_Personalizacion_RIASEC,D3_Diseno_UX_UI,D4_Explicabilidad_Transparencia,PRE_D5_Satisfaccion,PRE_D6_Utilidad,PRE_D7_Claridad,PRE_D8_Fundamentacion,POST_D5_Satisfaccion,POST_D6_Utilidad,POST_D7_Claridad,POST_D8_Fundamentacion,VI_AppChatbot_Score,VD_PreTest_Score,VD_PostTest_Score,Delta_Mejora
+EGR-2026-001,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRS,4.29,4.62,4.73,4.54,1.68,2.2,1.82,1.6,5.0,5.0,3.65,4.8,4.54,1.83,4.61,2.79
+EGR-2026-002,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRS,3.89,4.63,4.99,4.64,1.62,2.67,1.85,1.26,4.22,4.63,4.31,4.62,4.54,1.85,4.44,2.6
+EGR-2026-003,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRC,4.28,4.4,4.71,4.85,2.33,2.0,1.25,2.08,4.8,5.0,4.59,5.0,4.56,1.92,4.85,2.93
+EGR-2026-004,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRE,4.09,4.65,4.69,4.94,1.49,1.91,1.87,1.99,4.4,4.63,4.11,4.26,4.59,1.81,4.35,2.54
+EGR-2026-005,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRS,4.45,4.62,4.87,4.87,0.51,2.59,1.74,1.42,4.58,4.12,4.42,4.73,4.7,1.57,4.46,2.9
+EGR-2026-006,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,ICR,4.12,4.83,4.71,4.85,1.56,1.9,1.5,0.89,4.64,4.75,4.5,4.55,4.63,1.47,4.61,3.14
+EGR-2026-007,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IER,4.14,4.68,4.98,4.72,0.89,2.08,1.73,2.66,4.49,4.76,4.49,4.27,4.63,1.84,4.5,2.66
+EGR-2026-008,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRS,4.32,4.68,5.0,4.61,1.68,2.65,2.55,1.94,4.55,4.58,4.73,4.25,4.65,2.21,4.53,2.32
+EGR-2026-009,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRC,4.0,4.84,4.67,4.88,1.61,1.79,1.71,1.72,4.57,4.82,4.45,4.67,4.6,1.7,4.63,2.92
+EGR-2026-010,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,ICR,4.43,4.73,4.68,4.63,2.98,2.38,1.1,1.85,4.24,4.9,4.91,4.37,4.62,2.08,4.61,2.53
+EGR-2026-011,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,ICR,4.08,4.87,4.81,4.76,1.87,2.62,2.35,0.95,4.82,4.79,4.5,4.15,4.63,1.95,4.56,2.62
+EGR-2026-012,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,ICR,4.02,4.76,4.77,5.0,1.43,1.74,1.64,0.76,4.12,4.23,4.1,5.0,4.64,1.39,4.36,2.97
+EGR-2026-013,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,ICR,4.44,4.94,4.51,4.83,2.23,3.4,1.99,2.06,4.86,4.86,4.39,4.85,4.68,2.42,4.74,2.32
+EGR-2026-014,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRE,4.47,4.46,4.73,4.54,1.65,2.57,1.68,1.78,4.42,4.8,5.0,4.4,4.55,1.92,4.65,2.74
+EGR-2026-015,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IRS,4.22,4.8,4.63,4.57,1.75,2.19,1.64,1.92,4.45,4.62,4.59,5.0,4.56,1.88,4.66,2.79
+EGR-2026-016,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IER,4.18,4.5,4.92,4.35,1.72,2.18,1.7,1.89,5.0,4.8,4.7,4.66,4.49,1.87,4.79,2.92
+EGR-2026-017,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRC,4.42,4.52,4.7,4.79,2.19,2.03,1.46,1.64,4.83,4.55,4.28,4.51,4.61,1.83,4.54,2.71
+EGR-2026-018,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRE,4.36,4.47,5.0,4.69,2.22,1.18,1.79,2.03,4.79,4.37,4.2,4.86,4.63,1.81,4.56,2.75
+EGR-2026-019,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRC,4.49,4.71,4.83,4.79,1.5,3.36,1.2,1.0,4.92,4.9,4.72,4.81,4.7,1.76,4.84,3.07
+EGR-2026-020,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IER,4.62,4.67,4.76,4.45,1.08,2.15,2.23,1.66,4.45,4.81,4.57,4.87,4.62,1.78,4.68,2.9
+EGR-2026-021,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRS,3.93,4.6,4.58,4.43,2.82,2.38,2.02,1.79,4.82,5.0,4.31,4.19,4.38,2.26,4.58,2.32
+EGR-2026-022,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRC,4.33,4.78,4.86,4.88,1.71,3.22,2.3,2.37,4.51,4.95,3.99,4.86,4.71,2.4,4.58,2.18
+EGR-2026-023,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRS,4.03,4.36,4.66,4.62,1.59,1.86,2.54,0.77,4.6,4.97,4.39,4.27,4.42,1.69,4.56,2.87
+EGR-2026-024,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRC,4.27,4.78,4.49,4.71,1.7,2.47,1.17,1.49,4.59,4.82,4.75,4.28,4.56,1.71,4.61,2.9
+EGR-2026-025,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRE,3.78,4.68,4.71,4.77,2.58,2.42,1.82,1.91,4.57,4.75,4.79,5.0,4.48,2.18,4.78,2.6
+EGR-2026-026,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRE,4.29,4.68,4.98,4.85,2.2,2.45,0.94,2.09,4.67,4.3,4.67,4.0,4.7,1.92,4.41,2.49
+EGR-2026-027,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,ICR,4.27,4.69,4.82,4.76,2.29,1.78,1.06,0.96,4.57,4.54,3.75,4.77,4.64,1.52,4.41,2.88
+EGR-2026-028,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRE,4.59,4.57,4.75,4.87,1.66,1.75,1.56,0.51,4.07,5.0,5.0,4.55,4.7,1.37,4.66,3.28
+EGR-2026-029,Estrato 1 (Sistemas/Software),Ingeniería de Software,Operaciones y Logística,ICR,4.44,4.99,4.72,4.55,1.53,1.25,1.38,1.06,5.0,4.93,4.5,5.0,4.68,1.31,4.86,3.55
+EGR-2026-030,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRS,4.61,5.0,4.48,4.84,1.94,1.12,1.95,1.46,4.48,4.04,4.78,4.66,4.73,1.62,4.49,2.87
+EGR-2026-031,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRC,4.23,4.76,4.52,4.71,1.53,1.02,0.89,1.57,4.63,4.43,4.72,4.12,4.56,1.25,4.47,3.22
+EGR-2026-032,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRS,4.22,4.47,4.93,4.63,2.24,2.96,0.5,1.19,4.73,4.62,4.63,4.44,4.56,1.72,4.61,2.88
+EGR-2026-033,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRE,4.37,4.8,4.93,4.72,2.31,1.33,1.56,1.82,5.0,4.91,5.0,4.5,4.7,1.76,4.85,3.1
+EGR-2026-034,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,ICR,4.33,4.41,4.77,4.81,1.46,2.27,1.78,1.81,4.27,4.57,4.68,4.99,4.58,1.83,4.63,2.8
+EGR-2026-035,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,ICR,4.55,4.54,4.8,4.69,0.72,2.51,2.83,1.13,5.0,4.73,3.6,4.5,4.65,1.79,4.46,2.66
+EGR-2026-036,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRE,4.65,4.44,4.58,4.84,1.46,0.71,1.79,2.74,4.49,4.69,5.0,4.8,4.63,1.67,4.74,3.07
+EGR-2026-037,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IER,4.17,4.6,4.81,4.8,3.2,2.41,1.41,1.49,4.89,4.52,4.8,3.92,4.6,2.13,4.53,2.4
+EGR-2026-038,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRE,4.36,4.39,4.58,4.51,2.39,2.01,2.24,0.72,4.22,4.82,4.22,4.57,4.46,1.84,4.46,2.62
+EGR-2026-039,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRC,4.24,4.62,4.77,4.67,2.71,0.5,0.66,0.99,4.17,4.74,4.6,4.54,4.57,1.22,4.51,3.29
+EGR-2026-040,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,ICR,4.23,4.59,4.83,4.69,1.56,1.66,1.75,1.49,4.71,4.39,4.38,4.55,4.58,1.62,4.51,2.89
+EGR-2026-041,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,ICR,3.94,4.6,4.91,4.96,2.07,2.55,2.2,1.32,4.44,4.65,4.33,4.92,4.6,2.04,4.58,2.55
+EGR-2026-042,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRC,4.33,4.55,4.79,4.5,2.89,2.15,1.3,2.28,4.75,4.34,4.13,4.55,4.54,2.16,4.44,2.29
+EGR-2026-043,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IER,4.16,4.94,4.72,5.0,1.4,2.41,1.62,1.91,4.67,4.02,4.38,4.68,4.7,1.83,4.44,2.6
+EGR-2026-044,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,ICR,4.4,4.91,4.78,4.49,1.27,2.19,1.82,1.65,4.4,5.0,4.06,4.22,4.64,1.73,4.42,2.69
+EGR-2026-045,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRC,4.48,4.69,4.91,4.55,1.55,1.95,1.66,1.83,4.61,4.31,4.63,4.8,4.66,1.75,4.59,2.84
+EGR-2026-046,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRC,4.63,4.98,4.79,4.64,0.88,1.93,1.88,1.29,4.49,4.64,4.97,4.51,4.76,1.49,4.65,3.16
+EGR-2026-047,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRS,4.09,5.0,4.85,4.81,0.56,2.88,2.42,0.69,4.61,5.0,4.93,4.87,4.69,1.64,4.85,3.21
+EGR-2026-048,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IER,4.43,4.69,4.88,4.62,1.07,2.44,1.3,1.46,4.64,4.1,3.85,4.53,4.66,1.57,4.28,2.71
+EGR-2026-049,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRS,3.86,4.57,4.72,4.73,2.59,3.07,0.92,1.58,4.38,4.51,4.69,4.43,4.47,2.04,4.5,2.46
+EGR-2026-050,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IER,4.22,4.91,4.5,4.67,3.18,1.7,0.58,1.15,4.49,4.19,4.48,4.56,4.57,1.65,4.43,2.78
+EGR-2026-051,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IER,4.16,4.35,4.8,4.67,1.94,2.81,2.9,1.31,4.39,4.97,4.74,5.0,4.49,2.24,4.78,2.53
+EGR-2026-052,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRC,4.47,4.5,4.66,4.65,2.06,2.0,1.68,1.8,4.38,4.86,5.0,4.72,4.57,1.89,4.74,2.85
+EGR-2026-053,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IRE,4.34,4.54,4.92,4.7,2.09,3.05,1.65,1.68,4.74,4.73,4.34,4.68,4.62,2.12,4.62,2.51
+EGR-2026-054,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRC,4.22,4.64,4.7,4.82,1.64,3.23,0.98,0.56,4.69,4.54,4.14,4.83,4.6,1.6,4.55,2.95
+EGR-2026-055,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRS,4.4,4.75,4.55,4.92,2.14,1.93,1.95,2.32,5.0,4.22,4.35,4.48,4.65,2.09,4.51,2.43
+EGR-2026-056,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IER,4.16,4.69,5.0,4.52,1.63,1.82,1.04,2.07,4.08,5.0,5.0,4.5,4.59,1.64,4.64,3.0
+EGR-2026-057,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,ICR,4.41,4.61,4.77,4.64,1.61,1.41,1.73,1.2,4.4,4.98,4.72,4.33,4.61,1.49,4.61,3.12
+EGR-2026-058,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRE,4.64,4.58,4.91,4.89,2.53,1.78,2.36,1.64,5.0,4.49,5.0,4.68,4.76,2.08,4.79,2.72
+EGR-2026-059,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRE,4.71,4.8,4.64,4.82,1.64,2.05,1.04,2.09,4.39,5.0,4.44,4.39,4.74,1.71,4.56,2.85
+EGR-2026-060,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IER,4.44,4.9,4.43,4.7,1.89,3.17,0.88,1.29,4.81,4.73,4.69,4.24,4.62,1.81,4.62,2.81
+EGR-2026-061,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IER,4.31,4.66,4.58,4.47,1.89,1.66,1.6,1.17,5.0,5.0,4.26,4.7,4.5,1.58,4.74,3.16
+EGR-2026-062,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,ICR,4.3,4.62,4.79,4.53,2.5,1.8,0.92,1.36,5.0,4.92,4.38,4.52,4.56,1.65,4.7,3.06
+EGR-2026-063,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,ICR,4.06,4.88,4.96,5.0,1.77,1.83,1.77,1.34,4.35,4.53,5.0,4.85,4.72,1.68,4.68,3.0
+EGR-2026-064,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IER,4.4,4.77,4.46,4.66,1.43,2.49,1.84,1.26,4.89,4.63,4.69,4.34,4.57,1.75,4.64,2.88
+EGR-2026-065,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRE,4.57,4.83,4.71,4.78,1.36,2.5,1.16,2.28,4.3,4.76,4.85,4.54,4.72,1.82,4.61,2.79
+EGR-2026-066,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IER,4.17,4.92,4.79,4.73,1.14,1.56,1.03,2.07,4.98,5.0,3.79,4.94,4.65,1.45,4.68,3.23
+EGR-2026-067,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRC,4.02,4.98,4.69,4.76,0.58,3.4,1.01,0.81,4.88,5.0,4.98,4.79,4.61,1.45,4.91,3.46
+EGR-2026-068,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRE,4.46,4.66,4.64,4.5,1.41,1.44,1.79,2.18,4.84,4.24,4.15,4.9,4.57,1.7,4.53,2.83
+EGR-2026-069,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRE,4.17,4.75,4.65,4.71,1.87,2.58,1.94,0.53,4.63,5.0,4.96,4.75,4.57,1.73,4.84,3.11
+EGR-2026-070,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRE,4.37,4.85,4.59,4.84,2.52,2.44,1.42,1.74,4.18,4.61,4.68,4.51,4.66,2.03,4.49,2.47
+EGR-2026-071,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IER,4.09,4.46,4.59,4.66,1.71,1.69,2.54,1.97,3.95,4.13,4.86,4.46,4.45,1.97,4.35,2.38
+EGR-2026-072,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRE,4.17,4.4,4.67,4.62,1.61,2.52,2.22,1.6,4.7,5.0,4.09,4.25,4.46,1.99,4.51,2.52
+EGR-2026-073,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRE,3.9,4.66,4.85,4.92,1.77,1.39,2.32,1.41,4.54,4.79,4.18,4.54,4.58,1.72,4.51,2.79
+EGR-2026-074,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IER,4.44,4.81,4.66,4.69,2.23,2.45,1.16,1.15,4.32,4.61,4.53,4.83,4.65,1.75,4.57,2.82
+EGR-2026-075,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,ICR,4.32,4.85,4.47,4.43,3.16,2.51,1.89,2.45,4.33,4.8,4.7,4.46,4.52,2.5,4.57,2.07
+EGR-2026-076,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IER,4.25,4.65,4.98,4.81,2.71,2.43,1.71,0.96,4.21,4.59,4.29,4.56,4.67,1.95,4.41,2.46
+EGR-2026-077,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRS,4.28,4.63,4.9,4.75,1.98,1.96,1.04,0.85,4.12,4.76,4.47,4.18,4.64,1.46,4.38,2.93
+EGR-2026-078,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IER,4.17,4.51,4.81,4.6,1.11,2.65,1.95,2.58,4.22,4.62,4.46,4.92,4.52,2.07,4.56,2.48
+EGR-2026-079,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,ICR,4.3,4.44,4.7,4.92,1.4,2.45,0.93,2.01,4.68,4.98,4.46,4.49,4.59,1.7,4.65,2.95
+EGR-2026-080,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRS,4.45,4.53,4.67,4.86,1.2,1.13,2.44,1.46,4.34,4.97,4.29,5.0,4.63,1.55,4.65,3.1
+EGR-2026-081,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRC,4.32,4.8,4.37,4.5,1.88,2.69,1.68,1.67,4.8,5.0,4.46,4.65,4.5,1.98,4.73,2.75
+EGR-2026-082,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IER,4.39,4.34,4.92,4.59,2.11,1.68,1.31,1.95,4.74,5.0,4.06,4.47,4.56,1.76,4.57,2.81
+EGR-2026-083,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRS,4.26,4.72,4.76,4.54,1.93,1.49,1.72,1.92,4.21,4.78,4.21,4.68,4.57,1.77,4.47,2.7
+EGR-2026-084,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,ICR,4.43,4.58,4.86,4.71,1.86,2.27,1.58,2.27,4.71,4.89,4.73,4.97,4.65,1.99,4.82,2.83
+EGR-2026-085,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,ICR,4.28,4.84,4.73,4.86,3.2,2.75,0.75,1.59,5.0,4.85,4.62,4.89,4.68,2.07,4.84,2.77
+EGR-2026-086,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IER,4.16,4.84,4.74,4.7,1.24,2.75,2.08,1.81,5.0,4.94,4.74,3.96,4.61,1.97,4.66,2.69
+EGR-2026-087,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRE,4.4,4.91,4.91,4.26,1.79,1.54,2.31,1.83,4.4,4.58,4.36,4.5,4.62,1.87,4.46,2.59
+EGR-2026-088,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRS,4.49,4.59,5.0,4.99,2.51,2.46,2.09,1.3,4.29,4.68,4.44,4.48,4.77,2.09,4.47,2.38
+EGR-2026-089,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRE,4.31,4.35,4.82,4.45,2.38,2.63,1.26,1.31,4.53,5.0,4.69,4.34,4.48,1.89,4.64,2.75
+EGR-2026-090,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRS,4.14,4.91,5.0,4.45,1.18,0.5,2.05,1.5,4.84,5.0,4.53,4.66,4.62,1.31,4.76,3.45
+EGR-2026-091,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRC,4.19,4.74,4.73,4.7,1.91,2.25,2.28,1.44,4.32,4.54,4.87,5.0,4.59,1.97,4.68,2.71
+EGR-2026-092,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRS,3.91,4.7,4.9,4.6,2.44,1.55,1.14,1.81,4.12,5.0,4.53,4.72,4.53,1.73,4.59,2.86
+EGR-2026-093,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IER,4.17,4.87,4.86,4.9,1.21,2.43,1.58,2.07,4.68,4.43,4.43,4.58,4.7,1.82,4.53,2.71
+EGR-2026-094,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,ICR,4.34,4.63,4.79,4.87,2.41,1.88,2.49,1.67,4.66,4.45,4.33,4.41,4.66,2.12,4.46,2.35
+EGR-2026-095,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRC,4.6,4.53,4.53,4.76,1.51,0.82,1.29,1.46,4.12,4.61,4.94,4.41,4.61,1.27,4.52,3.25
+EGR-2026-096,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IER,4.23,4.78,4.9,4.59,2.38,1.94,1.71,0.97,4.41,4.71,4.97,4.38,4.62,1.75,4.62,2.87
+EGR-2026-097,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,ICR,4.44,4.8,4.78,4.64,1.85,2.69,2.29,2.72,4.74,4.77,4.57,4.51,4.66,2.39,4.65,2.26
+EGR-2026-098,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRS,4.34,4.64,4.58,4.7,1.99,2.73,1.47,1.41,4.63,4.55,4.8,4.57,4.57,1.9,4.64,2.74
+EGR-2026-099,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRE,4.41,4.91,4.87,4.69,1.44,2.4,2.13,1.38,4.36,4.34,5.0,4.47,4.72,1.84,4.54,2.7
+EGR-2026-100,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRS,4.51,4.57,4.85,4.61,1.01,0.73,1.77,2.05,4.63,4.66,4.43,4.34,4.64,1.39,4.51,3.12
+EGR-2026-101,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRE,4.34,4.69,4.93,4.75,1.66,2.58,1.88,2.38,4.48,4.58,4.49,4.53,4.68,2.13,4.52,2.39
+EGR-2026-102,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,ICR,4.0,4.94,4.76,4.87,1.44,2.24,2.19,1.78,4.61,4.96,3.55,4.82,4.64,1.91,4.49,2.57
+EGR-2026-103,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRS,4.59,4.75,5.0,4.93,1.99,1.14,1.58,1.17,5.0,4.63,4.54,4.79,4.82,1.47,4.74,3.27
+EGR-2026-104,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRC,3.99,4.61,4.76,4.21,3.2,1.8,0.5,0.9,5.0,4.48,4.91,4.66,4.39,1.6,4.76,3.16
+EGR-2026-105,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,ICR,4.15,4.85,4.47,4.78,2.07,1.65,1.54,1.19,4.89,4.69,5.0,4.6,4.56,1.61,4.8,3.18
+EGR-2026-106,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,ICR,4.41,4.8,4.87,4.68,2.4,2.42,2.11,1.01,4.74,4.98,4.57,4.37,4.69,1.98,4.66,2.68
+EGR-2026-107,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRS,4.35,4.98,4.9,4.83,2.16,2.48,1.73,1.21,4.01,4.5,5.0,4.47,4.77,1.9,4.5,2.6
+EGR-2026-108,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IER,4.32,4.83,4.73,4.82,1.99,1.62,1.83,2.02,4.37,4.31,5.0,4.21,4.68,1.87,4.47,2.61
+EGR-2026-109,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,ICR,4.26,4.44,4.57,4.67,2.08,0.83,2.34,1.33,4.27,4.74,4.54,4.98,4.48,1.64,4.63,2.99
+EGR-2026-110,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRS,4.2,4.49,4.75,4.79,1.07,1.56,1.68,1.02,4.56,4.67,4.01,4.18,4.56,1.33,4.36,3.02
+EGR-2026-111,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRS,3.87,4.47,4.76,4.86,1.83,2.84,1.17,1.16,4.15,4.44,4.52,4.77,4.49,1.75,4.47,2.72
+EGR-2026-112,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRC,4.3,4.66,4.66,4.73,2.9,1.93,1.74,1.51,4.72,4.76,4.59,4.31,4.59,2.02,4.6,2.58
+EGR-2026-113,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,ICR,4.47,4.65,4.81,4.72,2.16,2.08,2.26,1.53,3.98,5.0,4.18,4.42,4.66,2.01,4.39,2.39
+EGR-2026-114,Estrato 1 (Sistemas/Software),Ingeniería de Software,Operaciones y Logística,ICR,4.38,4.77,4.34,5.0,1.89,2.93,1.19,1.19,4.2,4.44,4.75,4.36,4.62,1.8,4.44,2.64
+EGR-2026-115,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IER,4.61,4.5,4.95,4.51,1.66,2.61,1.96,1.87,4.68,4.51,4.74,4.97,4.64,2.02,4.72,2.7
+EGR-2026-116,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRC,4.27,4.76,4.9,4.93,2.9,2.5,1.9,1.91,4.51,4.23,4.66,4.39,4.72,2.3,4.45,2.15
+EGR-2026-117,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRS,4.34,4.71,4.76,4.51,1.99,2.11,0.87,2.09,4.28,4.77,4.5,4.92,4.58,1.77,4.62,2.85
+EGR-2026-118,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRE,4.53,4.86,4.51,4.44,1.4,2.2,1.81,1.74,4.19,4.59,4.16,4.9,4.58,1.79,4.46,2.67
+EGR-2026-119,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRC,4.29,4.9,4.84,4.41,2.05,1.47,1.8,2.03,3.95,4.35,4.56,4.76,4.61,1.84,4.4,2.57
+EGR-2026-120,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IRE,3.95,4.97,4.97,4.74,1.61,1.91,2.01,2.09,4.51,4.55,4.5,4.8,4.66,1.91,4.59,2.68
+EGR-2026-121,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,ICR,4.22,4.65,4.44,4.78,2.17,2.48,2.27,1.81,4.77,4.63,4.63,4.44,4.52,2.18,4.62,2.44
+EGR-2026-122,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRS,4.41,4.66,4.58,4.52,1.11,1.42,1.59,0.5,4.8,4.01,4.47,4.62,4.54,1.16,4.47,3.32
+EGR-2026-123,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRC,4.22,4.76,4.61,4.64,1.11,1.29,1.57,0.97,4.16,4.32,4.2,4.84,4.56,1.23,4.38,3.15
+EGR-2026-124,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRS,4.65,4.8,4.98,4.64,1.69,1.86,1.85,1.8,4.6,4.86,4.25,4.61,4.77,1.8,4.58,2.78
+EGR-2026-125,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IRE,4.39,4.54,4.64,4.6,2.17,2.95,1.86,1.38,4.13,5.0,4.09,4.87,4.54,2.09,4.52,2.43
+EGR-2026-126,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IRS,4.0,4.78,4.59,4.79,1.95,1.12,1.44,1.65,4.82,4.51,5.0,4.05,4.54,1.54,4.6,3.05
+EGR-2026-127,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,ICR,4.47,4.78,4.4,4.66,1.93,3.4,1.97,1.5,4.07,4.71,4.79,4.6,4.58,2.2,4.54,2.34
+EGR-2026-128,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRE,4.39,4.67,4.94,4.77,1.82,1.17,1.98,1.74,4.91,4.78,4.31,5.0,4.69,1.68,4.75,3.07
+EGR-2026-129,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRE,4.22,4.73,4.71,4.64,3.1,1.95,1.52,1.26,4.79,4.63,4.27,5.0,4.58,1.96,4.67,2.71
+EGR-2026-130,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IRS,4.01,4.6,4.96,4.85,2.19,1.58,1.52,0.89,4.71,5.0,3.86,4.39,4.61,1.55,4.49,2.94
+EGR-2026-131,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,ICR,4.37,4.8,4.58,4.56,1.65,1.48,1.52,1.75,4.55,4.88,4.94,4.51,4.58,1.6,4.72,3.12
+EGR-2026-132,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IER,4.56,4.56,4.83,4.4,2.33,0.56,1.33,1.09,4.22,4.47,4.93,4.87,4.59,1.33,4.62,3.29
+EGR-2026-133,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,IER,4.46,4.66,4.66,4.48,2.09,3.04,1.52,1.08,5.0,4.54,3.89,4.66,4.57,1.93,4.52,2.59
+EGR-2026-134,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRE,4.17,4.68,4.73,5.0,2.28,1.99,1.97,1.95,4.45,5.0,4.58,4.77,4.64,2.05,4.7,2.65
+EGR-2026-135,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IER,4.27,4.61,4.93,4.52,1.85,0.92,0.5,1.61,4.42,4.76,4.67,4.99,4.58,1.22,4.71,3.49
+EGR-2026-136,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IER,4.27,4.83,4.97,4.71,2.08,2.93,1.2,1.42,4.19,4.4,4.63,4.86,4.7,1.91,4.52,2.61
+EGR-2026-137,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,ICR,4.22,4.36,4.91,4.7,1.57,2.01,1.35,1.97,5.0,4.5,4.35,4.57,4.55,1.72,4.61,2.88
+EGR-2026-138,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRS,4.67,4.54,4.95,4.59,1.67,1.1,1.04,1.58,5.0,4.51,4.28,5.0,4.69,1.35,4.7,3.35
+EGR-2026-139,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Gestión de Proyectos,IRC,4.23,4.86,4.94,4.67,1.3,2.31,2.58,1.27,4.27,4.65,5.0,4.85,4.68,1.86,4.69,2.83
+EGR-2026-140,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,ICR,4.25,4.92,4.55,4.85,2.25,2.3,1.9,0.95,4.89,5.0,4.42,4.61,4.64,1.85,4.73,2.88
+EGR-2026-141,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRC,4.38,4.78,4.83,4.67,2.07,1.88,1.63,1.92,4.41,4.23,5.0,5.0,4.66,1.88,4.66,2.78
+EGR-2026-142,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRC,4.27,4.87,4.76,4.77,1.18,1.88,2.5,2.29,4.08,4.36,4.41,4.89,4.67,1.96,4.44,2.48
+EGR-2026-143,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,ICR,4.14,4.94,4.83,4.59,2.03,2.56,0.84,1.68,4.81,4.6,4.89,4.81,4.62,1.78,4.78,3.0
+EGR-2026-144,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Construcción y Obras,IRE,4.49,4.8,4.59,4.83,2.77,2.1,1.05,1.74,4.02,5.0,4.33,4.61,4.68,1.92,4.49,2.57
+EGR-2026-145,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRC,4.39,4.53,4.95,4.85,1.89,2.57,0.89,1.71,4.46,4.72,4.54,4.66,4.68,1.76,4.6,2.83
+EGR-2026-146,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,IER,4.33,4.42,4.88,4.43,2.11,2.23,1.45,0.62,4.48,4.67,4.37,4.07,4.51,1.6,4.4,2.8
+EGR-2026-147,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,IER,3.92,4.79,4.82,4.76,0.82,2.43,2.49,1.29,4.91,5.0,4.41,4.52,4.57,1.76,4.71,2.95
+EGR-2026-148,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,ICR,4.71,4.18,4.99,4.68,0.5,2.1,1.86,1.97,4.23,4.7,4.18,4.7,4.64,1.61,4.45,2.84
+EGR-2026-149,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRE,4.05,4.65,4.34,4.59,3.07,2.68,1.15,1.93,4.95,4.72,4.63,4.72,4.41,2.2,4.76,2.55
+EGR-2026-150,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRS,4.07,4.86,4.61,4.67,1.46,1.7,1.69,1.29,4.73,4.47,4.55,4.97,4.55,1.53,4.68,3.15
+EGR-2026-151,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IER,4.4,4.45,4.63,4.61,1.62,0.78,2.15,2.12,4.76,4.36,4.43,4.62,4.52,1.67,4.54,2.88
+EGR-2026-152,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IRE,4.34,4.98,4.93,4.65,2.82,1.44,1.13,0.83,4.39,4.49,4.06,5.0,4.72,1.55,4.48,2.93
+EGR-2026-153,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,IRS,4.74,4.48,4.64,4.49,1.53,1.69,2.13,1.48,4.11,4.69,4.58,4.48,4.59,1.71,4.46,2.76
+EGR-2026-154,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,ICR,4.38,4.58,4.99,4.71,2.66,2.17,0.82,1.42,4.88,4.82,4.45,5.0,4.66,1.77,4.79,3.02
+EGR-2026-155,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Ciberseguridad,IRS,4.39,4.57,4.74,4.65,1.27,2.8,2.04,1.42,4.4,4.86,4.25,4.66,4.59,1.88,4.54,2.66
+EGR-2026-156,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,ICR,4.55,4.62,4.51,4.71,1.85,2.08,1.58,1.31,4.63,4.82,4.23,4.5,4.6,1.7,4.54,2.84
+EGR-2026-157,Estrato 1 (Sistemas/Software),Ingeniería de Software,Ciberseguridad,ICR,4.74,4.82,4.81,4.84,1.5,3.02,1.95,0.92,4.67,4.09,4.72,4.89,4.8,1.85,4.59,2.75
+EGR-2026-158,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,ICR,4.41,4.76,4.79,4.87,1.75,2.87,1.04,2.56,4.49,4.32,5.0,4.48,4.71,2.05,4.57,2.52
+EGR-2026-159,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,ICR,3.91,4.54,4.84,5.0,1.69,2.01,1.66,1.35,4.61,4.47,4.1,4.81,4.57,1.68,4.5,2.82
+EGR-2026-160,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Docencia y Capacitación,ICR,4.39,4.71,4.72,4.63,2.84,2.94,1.52,1.16,3.91,4.33,4.76,4.71,4.61,2.12,4.43,2.31
+EGR-2026-161,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Consultoría Independiente,ICR,4.19,4.46,4.48,4.45,1.61,2.73,1.19,1.21,4.43,4.52,4.98,4.28,4.4,1.69,4.55,2.87
+EGR-2026-162,Estrato 1 (Sistemas/Software),Ingeniería de Software,Construcción y Obras,IRS,4.65,4.49,4.69,4.7,2.12,2.08,2.47,1.21,4.27,4.29,4.31,4.29,4.63,1.97,4.29,2.32
+EGR-2026-163,Estrato 1 (Sistemas/Software),Ingeniería de Software,Gestión de Proyectos,ICR,4.43,4.47,4.76,4.5,1.92,3.12,2.32,1.52,4.85,4.58,3.9,4.34,4.54,2.22,4.42,2.2
+EGR-2026-164,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,ICR,4.44,4.86,4.97,4.73,2.0,2.2,1.37,1.37,4.48,4.74,4.49,4.97,4.75,1.73,4.67,2.94
+EGR-2026-165,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRE,4.77,4.46,4.69,4.7,0.93,2.6,1.77,0.8,5.0,4.85,4.73,5.0,4.66,1.52,4.89,3.37
+EGR-2026-166,Estrato 1 (Sistemas/Software),Ingeniería de Software,TI y Sistemas,IRE,4.6,4.48,4.65,4.79,1.59,1.66,1.67,1.95,5.0,4.62,4.48,4.26,4.63,1.72,4.59,2.87
+EGR-2026-167,Estrato 1 (Sistemas/Software),Ingeniería de Software,Consultoría Independiente,IRC,4.42,4.42,4.98,4.83,1.59,2.1,1.73,1.32,4.93,4.62,3.96,4.53,4.66,1.69,4.51,2.82
+EGR-2026-168,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRS,4.34,4.93,5.0,4.53,2.06,2.23,1.6,1.83,4.91,4.45,4.21,4.58,4.7,1.93,4.54,2.61
+EGR-2026-169,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,ICR,4.27,4.7,4.77,4.96,2.43,1.83,1.26,1.98,4.83,5.0,4.29,4.55,4.68,1.87,4.67,2.8
+EGR-2026-170,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,TI y Sistemas,IRS,4.36,4.73,4.68,4.65,1.47,1.34,2.12,1.5,4.13,4.92,4.31,4.36,4.61,1.61,4.43,2.82
+EGR-2026-171,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IRE,4.23,4.2,4.76,4.71,1.67,1.8,1.28,0.7,4.62,5.0,4.48,4.06,4.47,1.37,4.54,3.17
+EGR-2026-172,Estrato 1 (Sistemas/Software),Ingeniería de Software,Docencia y Capacitación,IRS,4.1,4.54,4.76,4.97,3.0,2.59,1.59,1.94,4.7,4.82,4.56,4.35,4.59,2.28,4.61,2.33
+EGR-2026-173,Estrato 1 (Sistemas/Software),Ingeniería de Sistemas e Informática,Operaciones y Logística,IER,4.23,4.86,4.51,4.76,1.71,2.01,1.76,1.41,4.06,4.61,4.0,4.82,4.59,1.73,4.37,2.65
+EGR-2026-174,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Construcción y Obras,RIE,4.29,4.69,4.59,4.8,2.02,2.6,1.55,1.43,5.0,4.88,4.33,4.97,4.59,1.9,4.8,2.89
+EGR-2026-175,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,ERC,4.27,4.67,4.77,4.61,1.11,2.75,1.34,1.21,5.0,4.78,4.61,4.65,4.58,1.6,4.76,3.16
+EGR-2026-176,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,RSE,4.17,4.76,4.55,4.61,1.36,1.03,2.28,2.13,4.58,4.57,4.45,4.6,4.52,1.7,4.55,2.85
+EGR-2026-177,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Construcción y Obras,ERC,4.09,4.6,4.59,4.36,1.32,1.51,1.56,1.28,4.26,4.17,4.69,4.93,4.41,1.42,4.51,3.09
+EGR-2026-178,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Consultoría Independiente,EIR,4.29,4.23,4.77,4.72,2.14,1.95,2.33,1.65,4.95,5.0,4.19,4.48,4.5,2.02,4.66,2.64
+EGR-2026-179,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,EIR,4.47,4.48,4.67,4.49,0.98,1.73,1.6,1.98,4.9,4.76,4.42,4.8,4.53,1.57,4.72,3.15
+EGR-2026-180,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Consultoría Independiente,RIE,4.61,4.74,4.67,4.7,1.88,2.26,1.25,1.11,4.58,4.75,4.73,4.9,4.68,1.63,4.74,3.11
+EGR-2026-181,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Operaciones y Logística,ERC,4.29,4.54,4.8,4.66,2.21,1.94,2.12,0.59,4.6,4.59,4.73,4.84,4.57,1.72,4.69,2.97
+EGR-2026-182,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Gestión de Proyectos,REC,4.16,4.73,4.28,4.36,1.27,2.17,2.36,1.69,4.44,4.89,4.42,4.49,4.38,1.87,4.56,2.69
+EGR-2026-183,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Consultoría Independiente,RIE,4.28,4.85,4.94,4.38,1.54,1.88,1.85,1.19,4.72,4.86,4.63,4.36,4.61,1.62,4.64,3.03
+EGR-2026-184,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Construcción y Obras,RIE,4.27,4.71,4.71,4.92,2.53,2.23,1.56,0.73,4.21,5.0,3.94,4.46,4.65,1.76,4.4,2.64
+EGR-2026-185,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Docencia y Capacitación,EIR,4.52,4.89,4.86,4.71,1.7,2.64,2.15,2.31,5.0,5.0,3.98,5.0,4.74,2.2,4.74,2.55
+EGR-2026-186,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Construcción y Obras,REC,4.4,4.67,4.6,4.66,2.15,1.68,1.88,0.99,4.31,4.69,4.61,4.61,4.58,1.68,4.56,2.88
+EGR-2026-187,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Gestión de Proyectos,RIE,4.51,4.94,4.97,4.83,2.16,2.87,2.06,0.6,4.75,4.85,4.63,4.66,4.81,1.92,4.72,2.8
+EGR-2026-188,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Consultoría Independiente,ERC,4.61,4.69,5.0,4.72,2.31,1.42,2.31,2.33,5.0,4.41,3.89,4.91,4.76,2.09,4.55,2.46
+EGR-2026-189,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,TI y Sistemas,REC,3.82,4.71,4.58,4.72,1.32,2.21,1.76,1.97,4.49,5.0,4.39,4.3,4.46,1.81,4.54,2.73
+EGR-2026-190,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Gestión de Proyectos,ERC,4.34,4.82,4.71,4.38,2.61,2.79,1.3,1.37,4.34,4.85,5.0,4.91,4.56,2.02,4.78,2.76
+EGR-2026-191,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,ERC,4.46,4.89,4.68,4.82,1.54,1.67,2.32,2.76,4.32,4.46,4.9,4.47,4.71,2.07,4.54,2.47
+EGR-2026-192,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,RSE,4.2,4.62,4.81,4.41,2.88,2.75,1.15,1.61,4.95,4.97,4.74,4.65,4.51,2.1,4.83,2.73
+EGR-2026-193,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,EIR,4.42,4.61,4.83,4.77,0.95,2.67,1.63,2.15,4.63,4.56,4.69,4.69,4.66,1.85,4.64,2.79
+EGR-2026-194,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Docencia y Capacitación,RSE,4.46,4.22,4.95,4.62,1.64,1.64,1.2,1.58,4.5,4.96,4.75,4.42,4.56,1.51,4.66,3.14
+EGR-2026-195,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Gestión de Proyectos,REC,4.79,4.81,4.94,4.62,2.42,2.18,0.91,1.19,4.61,4.74,5.0,4.28,4.79,1.68,4.66,2.98
+EGR-2026-196,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Docencia y Capacitación,RIE,4.11,4.72,4.77,4.51,1.31,2.81,2.47,0.84,4.58,5.0,4.72,4.55,4.53,1.86,4.71,2.86
+EGR-2026-197,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,REC,4.15,4.75,4.68,4.82,1.24,1.78,1.4,1.52,4.77,4.88,3.96,5.0,4.6,1.48,4.65,3.17
+EGR-2026-198,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Gestión de Proyectos,RIE,4.41,4.6,4.86,4.5,1.94,1.9,1.95,1.8,4.88,4.62,3.82,4.92,4.59,1.9,4.56,2.66
+EGR-2026-199,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,RSE,4.27,4.55,4.94,4.52,1.82,2.09,1.72,1.36,4.69,4.76,4.35,4.46,4.57,1.75,4.56,2.82
+EGR-2026-200,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,REC,4.13,4.6,4.69,4.68,1.98,1.46,1.34,0.97,4.94,4.17,4.98,5.0,4.53,1.44,4.77,3.33
+EGR-2026-201,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,REC,4.27,4.72,4.56,4.64,2.17,1.29,1.54,1.21,4.53,5.0,5.0,5.0,4.55,1.55,4.88,3.33
+EGR-2026-202,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Docencia y Capacitación,RSE,4.33,4.65,4.46,4.79,1.65,3.06,2.3,1.68,4.74,4.84,4.64,4.59,4.56,2.17,4.7,2.53
+EGR-2026-203,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Consultoría Independiente,RSE,4.0,4.66,4.64,4.85,0.94,1.47,2.45,2.39,4.6,4.41,5.0,5.0,4.54,1.81,4.75,2.94
+EGR-2026-204,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Docencia y Capacitación,RSE,4.28,4.85,4.88,4.87,2.33,2.98,1.14,1.53,4.46,4.32,4.7,5.0,4.72,2.0,4.62,2.62
+EGR-2026-205,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Ciberseguridad,RIE,4.4,4.58,4.65,4.58,1.46,2.93,1.52,1.3,4.2,5.0,4.21,4.7,4.55,1.8,4.53,2.73
+EGR-2026-206,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Ciberseguridad,REC,4.55,4.52,4.59,4.6,1.67,2.86,2.71,0.93,4.41,4.8,4.44,4.82,4.56,2.04,4.62,2.57
+EGR-2026-207,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Consultoría Independiente,RIE,4.64,4.56,4.74,4.46,2.31,0.94,2.19,2.12,4.69,4.8,4.29,4.9,4.6,1.89,4.67,2.78
+EGR-2026-208,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Docencia y Capacitación,RSE,4.32,4.44,4.97,4.68,1.52,2.75,1.03,1.36,4.64,4.79,4.52,4.82,4.6,1.66,4.69,3.03
+EGR-2026-209,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Docencia y Capacitación,EIR,4.26,4.57,4.93,4.79,1.74,1.83,2.22,0.91,4.89,4.77,4.74,4.83,4.64,1.68,4.81,3.13
+EGR-2026-210,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Docencia y Capacitación,ERC,4.29,4.99,4.75,4.84,2.38,2.15,1.86,1.73,4.77,4.69,4.44,4.65,4.72,2.03,4.64,2.61
+EGR-2026-211,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Docencia y Capacitación,RIE,4.15,4.75,4.92,4.86,1.87,2.3,2.21,1.94,4.26,4.99,4.56,4.72,4.67,2.08,4.63,2.55
+EGR-2026-212,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Operaciones y Logística,REC,4.29,4.67,4.99,4.57,1.82,0.94,1.32,0.5,4.77,4.82,4.43,4.46,4.63,1.14,4.62,3.48
+EGR-2026-213,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Ciberseguridad,RIE,3.98,4.55,4.74,4.98,1.98,2.31,1.79,0.8,4.51,4.66,4.4,4.69,4.56,1.72,4.57,2.84
+EGR-2026-214,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Consultoría Independiente,REC,4.19,4.08,4.82,4.31,2.19,2.63,1.49,1.24,5.0,4.98,4.88,4.56,4.35,1.89,4.85,2.97
+EGR-2026-215,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Operaciones y Logística,ERC,4.05,4.81,4.79,4.79,1.97,1.47,1.08,0.88,5.0,4.99,4.54,4.56,4.61,1.35,4.77,3.42
+EGR-2026-216,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,TI y Sistemas,EIR,4.48,4.82,4.77,4.74,2.09,1.12,1.84,1.3,4.18,4.62,4.4,5.0,4.7,1.59,4.55,2.96
+EGR-2026-217,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,REC,4.08,4.44,4.42,4.46,1.87,1.9,1.18,1.02,4.78,4.61,4.69,4.43,4.35,1.49,4.63,3.13
+EGR-2026-218,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,REC,4.52,4.48,4.53,4.66,2.0,3.4,1.53,2.26,5.0,4.97,4.5,4.29,4.55,2.3,4.69,2.39
+EGR-2026-219,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Gestión de Proyectos,REC,4.25,4.79,4.65,4.95,1.97,3.23,1.72,2.13,4.49,5.0,5.0,4.66,4.66,2.26,4.79,2.53
+EGR-2026-220,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Ciberseguridad,EIR,4.15,4.83,4.87,4.9,2.25,2.23,2.27,1.74,4.79,5.0,4.43,4.25,4.69,2.12,4.62,2.5
+EGR-2026-221,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Operaciones y Logística,RIE,4.72,4.65,4.72,4.8,1.77,2.58,1.15,2.07,4.68,4.6,4.37,4.28,4.72,1.89,4.48,2.59
+EGR-2026-222,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,REC,4.32,4.36,4.72,4.59,2.86,2.48,1.53,0.85,4.49,4.7,4.71,4.88,4.5,1.93,4.7,2.77
+EGR-2026-223,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Construcción y Obras,EIR,3.93,4.69,4.95,4.5,2.12,2.21,0.78,1.15,4.61,4.91,3.81,4.65,4.52,1.56,4.5,2.93
+EGR-2026-224,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,TI y Sistemas,RSE,3.96,4.7,4.88,4.66,1.64,2.13,1.52,2.28,5.0,4.25,5.0,4.5,4.55,1.89,4.69,2.79
+EGR-2026-225,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Consultoría Independiente,REC,4.14,4.7,4.52,4.77,2.47,2.06,2.63,1.65,4.52,4.31,4.49,4.6,4.53,2.2,4.48,2.28
+EGR-2026-226,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Ciberseguridad,RIE,4.51,4.49,4.92,4.9,1.98,2.33,2.32,0.95,4.52,4.54,4.71,5.0,4.7,1.9,4.69,2.79
+EGR-2026-227,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,RSE,4.31,4.53,4.61,4.86,1.76,2.25,1.48,1.22,5.0,4.79,4.76,4.95,4.58,1.68,4.88,3.19
+EGR-2026-228,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Operaciones y Logística,EIR,4.02,4.58,4.76,4.84,1.57,2.08,1.97,1.16,4.81,4.84,4.23,4.77,4.55,1.7,4.66,2.97
+EGR-2026-229,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Ciberseguridad,REC,4.19,4.97,4.77,4.52,1.17,2.15,1.44,1.78,4.59,4.53,4.31,5.0,4.61,1.64,4.61,2.97
+EGR-2026-230,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Gestión de Proyectos,EIR,4.36,4.75,4.94,4.62,2.28,1.96,1.71,1.43,4.6,5.0,5.0,4.81,4.67,1.85,4.85,3.01
+EGR-2026-231,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Ciberseguridad,RSE,4.33,4.48,4.62,4.61,1.69,2.52,1.44,1.51,5.0,4.36,3.93,4.94,4.51,1.79,4.56,2.77
+EGR-2026-232,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Construcción y Obras,ERC,4.29,4.82,4.63,4.79,2.84,2.03,1.22,1.03,4.91,4.75,4.9,5.0,4.63,1.78,4.89,3.11
+EGR-2026-233,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Construcción y Obras,RSE,4.09,4.64,4.84,4.84,2.54,1.91,1.56,1.51,4.88,4.94,4.63,4.33,4.6,1.88,4.7,2.82
+EGR-2026-234,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,RIE,4.22,4.42,4.82,4.72,2.26,1.68,0.93,1.48,4.49,4.79,4.45,4.1,4.54,1.59,4.46,2.87
+EGR-2026-235,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Operaciones y Logística,REC,4.32,4.68,4.71,4.44,2.69,3.0,1.58,0.95,5.0,4.75,4.52,4.43,4.54,2.06,4.68,2.62
+EGR-2026-236,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,REC,4.57,4.85,4.73,4.44,2.62,1.8,2.23,1.47,4.41,4.45,4.37,5.0,4.65,2.03,4.56,2.53
+EGR-2026-237,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Ciberseguridad,EIR,4.3,4.59,4.56,4.34,2.02,1.72,2.54,2.0,5.0,4.57,4.63,3.91,4.45,2.07,4.53,2.46
+EGR-2026-238,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Docencia y Capacitación,REC,4.53,4.66,4.97,4.39,2.93,2.28,2.05,1.51,4.56,4.24,4.86,5.0,4.64,2.19,4.66,2.47
+EGR-2026-239,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Ciberseguridad,REC,4.2,4.47,4.75,4.9,0.93,2.17,2.27,1.51,4.33,4.59,4.44,4.48,4.58,1.72,4.46,2.74
+EGR-2026-240,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Construcción y Obras,RSE,4.18,4.29,4.74,4.44,2.06,3.22,2.34,1.84,4.85,4.72,3.95,4.59,4.41,2.37,4.53,2.16
+EGR-2026-241,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Construcción y Obras,REC,4.4,4.54,4.36,4.6,0.5,2.44,1.82,1.06,4.31,4.49,4.62,4.51,4.47,1.46,4.48,3.03
+EGR-2026-242,Estrato 2 (Otras Ingenierías),Ingeniería Civil,TI y Sistemas,RSE,3.95,4.38,4.72,4.53,1.98,2.44,2.63,1.33,4.73,4.25,3.74,4.95,4.4,2.09,4.42,2.32
+EGR-2026-243,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Consultoría Independiente,ERC,4.19,4.54,4.65,4.78,1.92,1.99,2.42,1.58,5.0,4.48,4.79,4.48,4.54,1.98,4.69,2.71
+EGR-2026-244,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Operaciones y Logística,RSE,4.17,4.84,4.8,4.84,1.78,1.15,1.81,1.81,4.32,4.68,4.77,4.23,4.66,1.64,4.5,2.86
+EGR-2026-245,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Operaciones y Logística,RSE,4.68,4.84,4.89,4.61,1.63,1.89,1.52,1.44,4.54,4.83,4.61,4.75,4.76,1.62,4.68,3.06
+EGR-2026-246,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Gestión de Proyectos,ERC,4.53,4.89,4.73,4.36,1.95,1.95,2.5,1.15,4.52,5.0,4.72,4.65,4.63,1.89,4.72,2.84
+EGR-2026-247,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Operaciones y Logística,RSE,4.19,4.44,4.64,4.92,1.95,1.95,1.59,2.01,4.05,4.62,4.27,5.0,4.55,1.88,4.48,2.61
+EGR-2026-248,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Construcción y Obras,REC,4.34,4.72,4.71,4.38,2.53,2.56,2.17,1.28,4.48,4.26,4.91,5.0,4.54,2.13,4.66,2.53
+EGR-2026-249,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,REC,4.7,4.86,4.68,4.54,2.04,2.67,1.86,2.58,4.0,4.74,4.59,4.3,4.7,2.29,4.41,2.12
+EGR-2026-250,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Ciberseguridad,RIE,4.29,4.36,4.66,4.66,2.09,2.58,1.43,1.52,5.0,4.76,4.86,4.51,4.49,1.91,4.78,2.88
+EGR-2026-251,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Consultoría Independiente,RIE,4.04,4.38,4.78,4.62,1.28,2.62,1.63,1.93,4.75,4.6,4.1,5.0,4.46,1.87,4.61,2.74
+EGR-2026-252,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,RSE,4.16,4.37,4.83,4.87,2.13,1.78,2.12,0.94,4.34,4.49,4.96,4.98,4.56,1.74,4.69,2.95
+EGR-2026-253,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Operaciones y Logística,RIE,4.25,4.79,4.51,4.9,1.2,2.35,2.3,1.7,4.59,5.0,4.34,4.24,4.61,1.89,4.54,2.65
+EGR-2026-254,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,REC,4.33,4.28,5.0,4.72,1.53,1.88,1.54,1.6,4.95,4.83,4.54,4.99,4.58,1.64,4.83,3.19
+EGR-2026-255,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Ciberseguridad,EIR,4.53,4.39,4.77,4.84,2.28,0.89,1.8,1.41,4.22,4.85,4.41,4.55,4.63,1.59,4.51,2.91
+EGR-2026-256,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Consultoría Independiente,EIR,4.23,4.69,4.9,4.96,2.81,2.41,1.17,1.83,4.35,4.66,4.71,4.46,4.7,2.06,4.54,2.49
+EGR-2026-257,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,RSE,4.19,4.31,4.53,4.89,1.93,3.34,1.65,1.65,4.61,4.67,4.8,4.51,4.48,2.14,4.65,2.51
+EGR-2026-258,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Construcción y Obras,ERC,4.28,4.78,4.81,4.57,2.42,3.11,1.3,2.03,3.94,4.43,4.24,4.29,4.61,2.21,4.22,2.01
+EGR-2026-259,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Gestión de Proyectos,RSE,4.33,4.6,4.79,4.77,1.44,1.75,1.41,1.43,5.0,4.66,4.18,4.86,4.62,1.51,4.68,3.17
+EGR-2026-260,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Gestión de Proyectos,ERC,4.25,4.38,4.69,4.58,0.93,1.57,2.67,1.39,4.48,4.66,4.46,4.87,4.47,1.64,4.62,2.97
+EGR-2026-261,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Operaciones y Logística,RSE,4.39,4.64,4.45,4.82,1.89,2.07,1.91,1.45,5.0,5.0,4.89,4.41,4.58,1.83,4.82,3.0
+EGR-2026-262,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Gestión de Proyectos,EIR,4.22,4.65,4.63,4.63,2.39,1.76,2.13,1.0,5.0,4.76,4.37,4.61,4.53,1.82,4.68,2.87
+EGR-2026-263,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Operaciones y Logística,EIR,4.09,4.52,4.75,4.8,2.64,2.63,1.36,1.89,4.58,4.22,4.64,4.51,4.54,2.13,4.49,2.36
+EGR-2026-264,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Ciberseguridad,REC,4.25,4.46,4.78,4.84,2.18,2.89,1.59,1.97,5.0,5.0,4.2,4.62,4.58,2.16,4.7,2.55
+EGR-2026-265,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Consultoría Independiente,ERC,3.99,4.44,4.94,4.98,2.13,2.18,1.21,2.44,4.18,4.79,4.87,4.95,4.59,1.99,4.7,2.7
+EGR-2026-266,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Construcción y Obras,RSE,4.3,4.85,4.64,4.88,1.1,1.78,1.89,1.93,4.41,3.94,4.76,4.33,4.67,1.67,4.36,2.69
+EGR-2026-267,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,REC,4.13,4.71,5.0,4.65,1.56,1.62,1.63,2.12,4.87,4.75,4.85,4.78,4.62,1.73,4.81,3.08
+EGR-2026-268,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Construcción y Obras,REC,4.1,4.6,4.97,4.54,2.68,1.24,1.42,2.31,4.78,4.75,4.59,4.42,4.55,1.91,4.64,2.72
+EGR-2026-269,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Operaciones y Logística,EIR,4.33,4.77,4.72,4.57,1.37,2.74,1.56,2.03,4.73,4.51,4.67,4.94,4.6,1.93,4.71,2.79
+EGR-2026-270,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,TI y Sistemas,REC,4.37,4.79,4.94,4.72,2.18,2.31,1.74,1.53,5.0,5.0,4.83,4.73,4.7,1.94,4.89,2.95
+EGR-2026-271,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,EIR,4.27,4.24,4.8,4.83,1.3,2.07,1.18,1.76,4.72,5.0,4.3,4.71,4.54,1.58,4.68,3.11
+EGR-2026-272,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,REC,4.21,4.79,4.98,4.74,1.88,2.15,1.24,1.49,4.64,4.72,4.37,4.79,4.68,1.69,4.63,2.94
+EGR-2026-273,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,REC,4.5,4.49,4.83,4.69,2.7,2.12,1.71,1.88,4.65,4.94,4.96,4.6,4.63,2.1,4.79,2.69
+EGR-2026-274,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,RIE,4.22,5.0,4.81,4.94,2.16,2.13,1.53,1.66,4.44,4.9,4.08,4.62,4.74,1.87,4.51,2.64
+EGR-2026-275,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,RIE,3.9,4.68,4.6,4.79,2.31,1.54,1.67,1.4,4.41,5.0,4.09,4.79,4.49,1.73,4.57,2.84
+EGR-2026-276,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Ciberseguridad,EIR,4.53,4.66,4.55,4.46,1.08,2.17,2.49,1.8,4.6,4.75,3.51,4.57,4.55,1.88,4.36,2.47
+EGR-2026-277,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Consultoría Independiente,RIE,4.48,4.37,4.67,4.73,1.51,2.15,2.04,1.49,5.0,4.91,3.82,4.54,4.56,1.8,4.57,2.77
+EGR-2026-278,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Operaciones y Logística,EIR,4.3,4.41,4.88,5.0,2.43,2.67,1.77,1.49,4.48,4.53,4.34,4.29,4.65,2.09,4.41,2.32
+EGR-2026-279,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,Consultoría Independiente,ERC,4.07,4.96,4.64,4.41,0.94,2.57,1.73,2.36,4.31,4.76,4.09,4.52,4.52,1.9,4.42,2.52
+EGR-2026-280,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Ciberseguridad,RSE,4.46,4.68,4.8,4.72,2.34,2.3,1.17,1.91,4.68,4.27,4.48,4.71,4.66,1.93,4.54,2.61
+EGR-2026-281,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Docencia y Capacitación,RIE,4.27,4.49,4.64,4.56,2.01,2.61,1.49,1.04,4.76,5.0,4.89,4.81,4.49,1.79,4.86,3.08
+EGR-2026-282,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,RIE,4.57,4.43,4.77,4.75,1.53,1.9,1.48,1.5,4.71,4.92,5.0,3.9,4.63,1.6,4.63,3.03
+EGR-2026-283,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Ciberseguridad,REC,4.49,4.62,4.87,4.61,2.91,2.72,1.33,0.95,4.51,4.88,4.66,5.0,4.65,1.98,4.76,2.78
+EGR-2026-284,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Operaciones y Logística,REC,3.85,4.53,4.92,4.64,1.44,2.97,1.72,1.47,4.71,4.42,4.46,4.7,4.49,1.9,4.57,2.67
+EGR-2026-285,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Docencia y Capacitación,ERC,4.03,4.58,4.82,4.94,1.83,2.14,1.8,2.63,3.96,4.95,4.54,4.87,4.59,2.1,4.58,2.48
+EGR-2026-286,Estrato 2 (Otras Ingenierías),Ingeniería Mecánica,TI y Sistemas,RIE,4.0,4.5,4.7,4.77,1.55,2.28,2.26,2.19,4.79,4.89,4.5,5.0,4.49,2.07,4.8,2.72
+EGR-2026-287,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Construcción y Obras,RIE,4.49,4.73,4.76,4.7,2.0,2.64,1.02,1.88,4.8,5.0,4.33,4.7,4.67,1.88,4.71,2.82
+EGR-2026-288,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,Construcción y Obras,ERC,4.35,4.8,4.7,4.45,2.45,3.33,1.26,1.98,4.36,4.8,5.0,4.54,4.57,2.26,4.68,2.42
+EGR-2026-289,Estrato 2 (Otras Ingenierías),Ingeniería Civil,Gestión de Proyectos,RIE,4.04,4.31,4.88,4.72,1.77,2.54,1.76,0.66,4.93,4.65,4.14,4.57,4.49,1.68,4.57,2.89
+EGR-2026-290,Estrato 2 (Otras Ingenierías),Ingeniería Industrial,TI y Sistemas,ERC,4.52,4.69,4.68,4.63,1.55,2.98,1.68,2.23,4.81,4.54,4.56,4.2,4.63,2.11,4.53,2.42
+EGR-2026-291,Estrato 2 (Otras Ingenierías),Ingeniería Eléctrica,Consultoría Independiente,ERC,4.82,4.42,4.78,4.76,1.55,2.08,2.3,1.63,4.83,4.68,4.74,4.34,4.7,1.89,4.65,2.76
+EGR-2026-292,Estrato 2 (Otras Ingenierías),Ingeniería Ambiental,Consultoría Independiente,RSE,4.46,4.73,4.93,4.45,1.8,1.21,1.81,2.18,5.0,4.97,4.83,5.0,4.64,1.75,4.95,3.2

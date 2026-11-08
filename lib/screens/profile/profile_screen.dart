@@ -15,10 +15,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late TextEditingController _nameController;
+  late TextEditingController _areaLaboralController;
+  late TextEditingController _presupuestoController;
   final DatabaseService _db = DatabaseService();
   bool _isEditing = false;
   late AppUser _currentUser;
   String? _selectedCarrera;
+  String? _selectedModalidad;
+
+  final List<String> _modalidades = ['A distancia', 'Semipresencial', 'Flexible'];
 
   final List<String> _carrerasPregrado = [
     'Administración',
@@ -58,20 +63,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     _currentUser = widget.user;
     _nameController = TextEditingController(text: _currentUser.displayName);
+    _areaLaboralController = TextEditingController(text: _currentUser.areaLaboralActual);
+    _presupuestoController = TextEditingController(text: _currentUser.presupuestoMaxMensual.toString());
     _selectedCarrera = _carrerasPregrado.contains(_currentUser.carreraPregrado)
         ? _currentUser.carreraPregrado
         : null;
+    _selectedModalidad = _modalidades.contains(_currentUser.modalidadPreferida)
+        ? _currentUser.modalidadPreferida
+        : 'A distancia';
   }
 
   Future<void> _saveName() async {
-    final updatedUser = AppUser(
-      uid: _currentUser.uid,
-      email: _currentUser.email,
+    final updatedUser = _currentUser.copyWith(
       displayName: _nameController.text,
       carreraPregrado: _selectedCarrera ?? '',
-      interests: _currentUser.interests,
-      riasecProfile: _currentUser.riasecProfile,
-      savedSpecializations: _currentUser.savedSpecializations,
+      areaLaboralActual: _areaLaboralController.text,
+      presupuestoMaxMensual: int.tryParse(_presupuestoController.text) ?? 1500,
+      modalidadPreferida: _selectedModalidad ?? 'A distancia',
     );
 
     await _db.updateUserData(updatedUser);
@@ -83,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Perfil actualizado con éxito'),
+          content: Text('Perfil y motivaciones actualizados con éxito'),
           behavior: SnackBarBehavior.floating,
           backgroundColor: Color(0xFF6D23F9),
         ),
@@ -221,6 +229,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Divider(height: 1, color: Color(0xFFE2E8F0)),
               ),
               _buildCarreraField(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Divider(height: 1, color: Color(0xFFE2E8F0)),
+              ),
+              _buildLaborField(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Divider(height: 1, color: Color(0xFFE2E8F0)),
+              ),
+              _buildPresupuestoField(),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Divider(height: 1, color: Color(0xFFE2E8F0)),
+              ),
+              _buildModalidadField(),
             ],
           ),
         ),
@@ -244,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('CARRERA DE PREGRADO', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
+              const Text('CARRERA DE PREGRADO (CONTINUIDAD)', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
               const SizedBox(height: 4),
               _isEditing
                 ? DropdownButtonFormField<String>(
@@ -274,6 +297,149 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontSize: 15, 
                       fontWeight: FontWeight.w700,
                       color: _currentUser.carreraPregrado.isEmpty ? Colors.grey : const Color(0xFF1E293B),
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLaborField() {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF6D23F9).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Icon(Icons.work_outline_rounded, color: Color(0xFF6D23F9), size: 18),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('ÁREA LABORAL ACTUAL (ESPECIALIZACIÓN)', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
+              const SizedBox(height: 4),
+              _isEditing
+                ? TextField(
+                    controller: _areaLaboralController,
+                    decoration: const InputDecoration(
+                      hintText: 'Ej. TI, Administración, Docencia...',
+                      isDense: true,
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  )
+                : Text(
+                    _currentUser.areaLaboralActual.isEmpty ? 'Sin configurar' : _currentUser.areaLaboralActual,
+                    style: TextStyle(
+                      fontSize: 15, 
+                      fontWeight: FontWeight.w700,
+                      color: _currentUser.areaLaboralActual.isEmpty ? Colors.grey : const Color(0xFF1E293B),
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPresupuestoField() {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF6D23F9).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Icon(Icons.attach_money_rounded, color: Color(0xFF6D23F9), size: 18),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('PRESUPUESTO MÁXIMO MENSUAL (VIABILIDAD)', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
+              const SizedBox(height: 4),
+              _isEditing
+                ? TextField(
+                    controller: _presupuestoController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      prefixText: 'S/. ',
+                      isDense: true,
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  )
+                : Text(
+                    'S/. ${_currentUser.presupuestoMaxMensual} / mes',
+                    style: const TextStyle(
+                      fontSize: 15, 
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF1E293B),
+                    ),
+                  ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildModalidadField() {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF6D23F9).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Icon(Icons.laptop_chromebook_rounded, color: Color(0xFF6D23F9), size: 18),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('MODALIDAD PREFERIDA', style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800, color: Color(0xFF64748B))),
+              const SizedBox(height: 4),
+              _isEditing
+                ? DropdownButtonFormField<String>(
+                    value: _selectedModalidad,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: _modalidades.map((String mod) {
+                      return DropdownMenuItem<String>(
+                        value: mod,
+                        child: Text(mod, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                      );
+                    }).toList(),
+                    onChanged: (String? val) {
+                      setState(() {
+                        _selectedModalidad = val;
+                      });
+                    },
+                  )
+                : Text(
+                    _currentUser.modalidadPreferida,
+                    style: const TextStyle(
+                      fontSize: 15, 
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF1E293B),
                     ),
                   ),
             ],
@@ -392,6 +558,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           child: Column(
             children: [
+              if (_currentUser.riasecCode.isNotEmpty) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6D23F9).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.psychology_rounded, color: Color(0xFF6D23F9), size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Código Triádico Holland: ${_currentUser.riasecCode}',
+                        style: const TextStyle(
+                          fontSize: 13, 
+                          fontWeight: FontWeight.w800, 
+                          color: Color(0xFF6D23F9),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
               SizedBox(
                 height: 300,
                 child: RadarChart(
