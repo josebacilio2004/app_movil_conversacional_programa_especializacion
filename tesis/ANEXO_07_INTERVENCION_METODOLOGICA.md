@@ -37,7 +37,7 @@
 
 5. **FASE III: CONSTRUCCIÓN, ORQUESTACIÓN DE IA Y DESPLIEGUE EN LA NUBE**
    - 5.1. Desarrollo del Frontend Móvil Multiplataforma en Flutter
-   - 5.2. Orquestación del Agente Conversacional en n8n mediante LangChain y Google Gemini 1.5 Flash
+   - 5.2. Orquestación del Agente Conversacional en n8n mediante LangChain y Anthropic Claude 3.5
    - 5.3. Servicios Backend Serverless en Firebase Cloud Functions y API REST en Node.js/Express
    - 5.4. Sincronización telemétrica en tiempo real hacia el Data Warehouse de Métricas
 
@@ -59,7 +59,7 @@ Tal como lo estipulan los lineamientos de la Universidad Continental y el patró
 ### 1.2. Delimitación del producto tecnológico desarrollado
 El sistema desarrollado, denominado **Horizonte UC / Asistente Cori**, se compone de tres módulos coordinados:
 1. **Cliente Móvil Nativo:** Desarrollado sobre el framework Flutter 3.x (Dart), optimizado para Android e iOS, con componentes de interfaz adaptativa y diseño basado en glassmorphism y micro-interacciones.
-2. **Motor Conversacional de IA (Middleware):** Desplegado en un contenedor Docker con la plataforma de orquestación n8n, integrando agentes cognitivos LangChain, modelos LLM avanzados (Google Gemini 1.5 Flash) y memoria conversacional de ventana contextual por usuario (`sessionKey = userId`).
+2. **Motor Conversacional de IA (Middleware):** Desplegado en un contenedor Docker con la plataforma de orquestación n8n, integrando agentes cognitivos LangChain, modelos LLM avanzados (Anthropic Claude 3.5 Sonnet / Haiku) y memoria conversacional de ventana contextual por usuario (`sessionKey = userId`).
 3. **Capa de Persistencia y Analítica:** Infraestructura híbrida compuesta por Google Cloud Firestore (para sincronización no relacional offline/online en tiempo real) y PostgreSQL en NeonDB / Render (para analítica relacional de series de tiempo y exportación para SmartPLS).
 
 ### 1.3. Adopción de la metodología AI-SDLC / ADLC frente a marcos tradicionales
@@ -197,7 +197,7 @@ graph TD
     subgraph EngineLayer["CAPA DE ORQUESTACIÓN IA (DOCKER / N8N)"]
         Webhook["Webhook REST API<br/>(/webhook/chatbot-continental)"]
         LangChain["LangChain AI Agent<br/>(Memory Window: sessionKey = userId)"]
-        LLM["Google Gemini 1.5 Flash<br/>(System Prompt RAG Especializado)"]
+        LLM["Anthropic Claude 3.5 Sonnet / Haiku<br/>(System Prompt RAG Especializado)"]
         FirestoreTool["Google Firestore Tool<br/>(Query Colección 'specializations')"]
     end
 
@@ -293,7 +293,7 @@ El workflow `Chatbot RIASEC Final CORREGIDO.json` implementa un agente de lengua
 - **Nodo AI Agent (LangChain):** Opera como controlador conversacional guiado por un System Prompt enriquecido con directrices vocacionales y las 3 motivaciones del estudiante.
 - **Nodo Simple Memory (Buffer Window):** Parametrizado dinámicamente con `sessionKey = {{$json.body.userId}}` para mantener memoria transaccional individualizada por cada estudiante, evitando mezclar contextos entre usuarios concurrentes.
 - **Nodo Firestore Tool:** Integra la base de datos de posgrados en tiempo real mediante autenticación por Service Account (`appmovilespecializacion`), permitiendo al agente consultar planes de estudio, mallas y aranceles oficiales antes de emitir respuesta.
-- **Nodo LLM Gemini 1.5 Flash:** Modelo fundacional seleccionado por su balance óptimo entre latencia de inferencia ($< 1.5$ s) y alta comprensión del contexto universitario peruano.
+- **Nodo LLM Anthropic Claude 3.5:** Modelo fundacional seleccionado por su capacidad de razonamiento de posgrado, latencia de inferencia optimizada y alta precisión factual alineada al contexto académico de la Universidad Continental.
 
 ---
 
