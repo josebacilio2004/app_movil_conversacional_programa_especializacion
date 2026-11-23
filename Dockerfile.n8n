@@ -1,1 +1,9 @@
 FROM n8nio/n8n:latest
+
+USER root
+RUN mkdir -p /home/node/.n8n && \
+    echo '{"encryptionKey":"4f9b2c8a7d1e6f5b3a9c8d7e6f5a4b3c"}' > /home/node/.n8n/config && \
+    chown -R node:node /home/node/.n8n && \
+    chmod 600 /home/node/.n8n/config
+
+USER node
