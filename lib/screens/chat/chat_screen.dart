@@ -405,7 +405,7 @@ class _ChatScreenState extends State<ChatScreen> {
     
     _scrollToBottom();
 
-    final rawResponse = await _chatService.sendMessage(
+    final botResult = await _chatService.sendMessage(
       userText, 
       userId, 
       user?.riasecProfile ?? {},
@@ -417,18 +417,19 @@ class _ChatScreenState extends State<ChatScreen> {
       riasecCode: user?.riasecCode,
     );
 
-    // El formato esperado es "id|texto"
-    String botId = 'temp_bot';
-    String botText = rawResponse;
-    if (rawResponse.contains('|')) {
-      final parts = rawResponse.split('|');
-      botId = parts[0];
-      botText = parts.sublist(1).join('|');
-    }
-
     setState(() {
       _isTyping = false;
-      _messages.add(ChatMessage(id: botId, text: botText, isUser: false, timestamp: DateTime.now()));
+      _messages.add(ChatMessage(
+        id: botResult.id, 
+        text: botResult.text, 
+        isUser: false, 
+        timestamp: DateTime.now(),
+        latencyMs: botResult.latencyMs,
+        normalizedLatency: botResult.normalizedLatency,
+        intent: botResult.intent,
+        confidenceScore: botResult.confidenceScore,
+        rationale: botResult.rationale,
+      ));
     });
     
     _scrollToBottom();

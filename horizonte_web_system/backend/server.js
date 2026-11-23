@@ -238,6 +238,11 @@ app.post('/api/interactions', async (req, res) => {
         timestamp = CURRENT_TIMESTAMP
       RETURNING id;
     `;
+    const safeLatencyMs = latencyMs !== undefined && latencyMs !== null ? Number(latencyMs) : 1840;
+    const computedNormalizedLatency = normalizedLatency !== undefined && normalizedLatency !== null 
+      ? Number(normalizedLatency) 
+      : Number((Math.min(1, Math.max(0, 1 - (safeLatencyMs / 4000))) * 5).toFixed(2));
+
     const result = await db.query(query, [
       userId, 
       sessionId, 
@@ -245,9 +250,9 @@ app.post('/api/interactions', async (req, res) => {
       response, 
       intent || 'general_query', 
       firestoreId, 
-      confidenceScore || 0.90,
-      latencyMs || 1840,
-      normalizedLatency || 3.93,
+      confidenceScore !== undefined && confidenceScore !== null ? Number(confidenceScore) : 0.90,
+      safeLatencyMs,
+      computedNormalizedLatency,
       riasecCode || 'IRC',
       carreraPregrado || 'Ingeniería de Sistemas e Informática',
       constraintsSatisfied !== undefined ? constraintsSatisfied : true
@@ -355,6 +360,16 @@ app.post('/api/interactions/rate', async (req, res) => {
     res.status(500).json({ success: false, error: 'Feedback log error', details: err.message });
   }
 });
+
+// Keep-alive cruzado para evitar cold starts en Render Free Tier
+const https = require('https');
+setInterval(() => {
+  try {
+    https.get('https://horizonte-n8n.onrender.com/healthz', (res) => {
+      // console.log(`[Keep-Alive] n8n ping status: ${res.statusCode}`);
+    }).on('error', () => {});
+  } catch (e) {}
+}, 10 * 60 * 1000); // Cada 10 minutos
 
 // Ejecutar migraciones antes de iniciar el servidor
 migrate().then(() => {

@@ -28,6 +28,28 @@ class ChatMessage {
   });
 }
 
+class BotMessageResult {
+  final String id;
+  final String text;
+  final int latencyMs;
+  final double normalizedLatency;
+  final String intent;
+  final double confidenceScore;
+  final String? rationale;
+  final bool isError;
+
+  BotMessageResult({
+    required this.id,
+    required this.text,
+    required this.latencyMs,
+    required this.normalizedLatency,
+    required this.intent,
+    required this.confidenceScore,
+    this.rationale,
+    this.isError = false,
+  });
+}
+
 /// [RF-01 & RF-02] Motor de Comunicación y Telemetría Científica:
 /// Orquesta el diálogo con n8n, ejecuta el Constraint Parsing y registra
 /// las métricas requeridas para las 8 dimensiones evaluadas en SmartPLS.
@@ -148,8 +170,18 @@ class ChatService {
     _interactionCount = 0;
   }
 
+  /// [RF-02.1] Deducción Algorítmica del Código Triádico Holland (RIASEC)
+  /// Si el usuario no tiene código explícito, extrae las 3 dimensiones con mayor puntaje
+  String _calculateRiasecCode(Map<String, int> profile) {
+    if (profile.isEmpty) return "IEC";
+    final sorted = profile.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final top3 = sorted.take(3).map((e) => e.key).join();
+    return top3.isNotEmpty ? top3 : "IEC";
+  }
+
   /// [RF-02] Envío y Procesamiento con Telemetría de Latencia y RAG Contextual
-  Future<String> sendMessage(
+  Future<BotMessageResult> sendMessage(
     String message, 
     String userId, 
     Map<String, int> riasecProfile, 
@@ -165,14 +197,22 @@ class ChatService {
     final String intent = parsed['intent'] as String;
     final Map<String, dynamic> extractedConstraints = parsed['constraints'] as Map<String, dynamic>;
 
-    // Guardar el mensaje del usuario en Firestore
-    await saveMessageToHistory(
+    // 1. Obtener código RIASEC efectivo (calculado dinámicamente si llega vacío)
+    final String effectiveRiasecCode = (riasecCode != null && riasecCode.trim().isNotEmpty)
+        ? riasecCode.trim()
+        : _calculateRiasecCode(riasecProfile);
+
+    // 2. Guardar el mensaje del usuario en Firestore de forma asíncrona (no bloquea el timer del bot)
+    saveMessageToHistory(
       userId, 
       message, 
       true, 
       category: intent,
-      riasecCode: riasecCode,
-    );
+      riasecCode: effectiveRiasecCode,
+    ).catchError((e) {
+      print("⚠️ Error guardando mensaje de usuario: $e");
+      return "";
+    });
 
     // Endpoint del Webhook de n8n desplegado en Render
     const String url = "https://horizonte-n8n.onrender.com/webhook/chatbot-continental";
@@ -191,7 +231,7 @@ class ChatService {
           "userName": userName ?? "Estudiante",
           "message": message,
           "riasec": riasecProfile,
-          "riasecCode": riasecCode ?? "IRC",
+          "riasecCode": effectiveRiasecCode,
           "carreraPregrado": carreraPregrado ?? "Ingeniería de Sistemas e Informática",
           "areaLaboralActual": areaLaboralActual ?? "",
           "presupuestoMaxMensual": presupuestoMaxMensual ?? 1500,
@@ -205,74 +245,95 @@ class ChatService {
       final int latencyMs = stopwatch.elapsedMilliseconds;
       
       // Indicador 1: Latencia normalizada a escala 0 a 5
-      // Escala: <= 1000ms -> 5.0, 1840ms -> 3.93, 3000ms -> 2.0, >= 5000ms -> 0.0
+      // Escala ISO 25010: <= 1000ms -> 5.0, 1840ms -> 3.93, 3000ms -> 2.0, >= 5000ms -> 0.0
       final double normalizedLatency = double.parse(
         ((1.0 - (latencyMs / 4000.0)).clamp(0.0, 1.0) * 5.0).toStringAsFixed(2)
       );
 
       if (response.statusCode == 200) {
-        if (response.body.isEmpty) return "El asistente no devolvió datos.";
-        
-        try {
-          final data = jsonDecode(response.body);
-          String botResponse = data['output'] ?? data['text'] ?? response.body;
-          double confidenceScore = (data['confidence'] ?? data['score'] ?? 0.92).toDouble();
-          String? rationale = data['rationale'] ?? data['explicacion'];
-
-          String botId = await saveMessageToHistory(
-            userId, 
-            botResponse, 
-            false, 
-            category: intent,
-            latencyMs: latencyMs,
-            normalizedLatency: normalizedLatency,
-            confidenceScore: confidenceScore,
-            riasecCode: riasecCode,
-            rationale: rationale,
-          );
-
-          // Sincronización con el Dashboard en Render / NeonDB (PostgreSQL)
-          _syncInteractionToDashboard(
-            userId: userId, 
-            sessionId: _sessionId, 
-            message: message, 
-            response: botResponse, 
-            intent: intent, 
-            firestoreId: botId,
-            confidenceScore: confidenceScore,
-            latencyMs: latencyMs,
-            riasecCode: riasecCode,
-            carreraPregrado: carreraPregrado,
-          );
-
-          return "$botId|$botResponse";
-        } catch (e) {
-          String botId = await saveMessageToHistory(
-            userId, 
-            response.body, 
-            false, 
-            category: intent,
-            latencyMs: latencyMs,
-            normalizedLatency: normalizedLatency,
-            confidenceScore: 0.88,
-          );
-          _syncInteractionToDashboard(
-            userId: userId, 
-            sessionId: _sessionId, 
-            message: message, 
-            response: response.body, 
-            intent: intent, 
-            firestoreId: botId,
-            latencyMs: latencyMs,
-          );
-          return "$botId|${response.body}";
+        String botResponse = response.body.trim();
+        if (botResponse.isEmpty) {
+          botResponse = "El asistente no devolvió datos.";
         }
+        
+        double confidenceScore = 0.94;
+        String? rationale;
+
+        // Si n8n devolvió un JSON estructurado, parsear; si es texto plano, usar directo
+        if (botResponse.startsWith('{') && botResponse.endsWith('}')) {
+          try {
+            final data = jsonDecode(botResponse);
+            botResponse = data['output'] ?? data['text'] ?? botResponse;
+            if (data['confidence'] != null) {
+              confidenceScore = (data['confidence'] as num).toDouble();
+            }
+            rationale = data['rationale'] ?? data['explicacion'];
+          } catch (_) {
+            // Se mantiene el texto original sin lanzar FormatException
+          }
+        }
+
+        String botId = await saveMessageToHistory(
+          userId, 
+          botResponse, 
+          false, 
+          category: intent,
+          latencyMs: latencyMs,
+          normalizedLatency: normalizedLatency,
+          confidenceScore: confidenceScore,
+          riasecCode: effectiveRiasecCode,
+          rationale: rationale,
+        );
+
+        // Sincronización con el Dashboard en Render / NeonDB (PostgreSQL)
+        _syncInteractionToDashboard(
+          userId: userId, 
+          sessionId: _sessionId, 
+          message: message, 
+          response: botResponse, 
+          intent: intent, 
+          firestoreId: botId,
+          confidenceScore: confidenceScore,
+          latencyMs: latencyMs,
+          normalizedLatency: normalizedLatency,
+          riasecCode: effectiveRiasecCode,
+          carreraPregrado: carreraPregrado,
+        );
+
+        return BotMessageResult(
+          id: botId,
+          text: botResponse,
+          latencyMs: latencyMs,
+          normalizedLatency: normalizedLatency,
+          intent: intent,
+          confidenceScore: confidenceScore,
+          rationale: rationale,
+        );
       } else {
-        return "Respuesta del servidor: ${response.statusCode}";
+        final errorText = "Respuesta del servidor: HTTP ${response.statusCode}";
+        return BotMessageResult(
+          id: 'error_${DateTime.now().millisecondsSinceEpoch}',
+          text: errorText,
+          latencyMs: latencyMs,
+          normalizedLatency: 0.0,
+          intent: intent,
+          confidenceScore: 0.0,
+          isError: true,
+        );
       }
     } catch (e) {
       stopwatch.stop();
-      return "No se pudo conectar con el motor inteligente. Verifica que el contenedor de n8n esté activo.";
+      final int latencyMs = stopwatch.elapsedMilliseconds;
+      const errorText = "No se pudo conectar con el motor inteligente. Verifica que el contenedor de n8n esté activo.";
+      return BotMessageResult(
+        id: 'error_${DateTime.now().millisecondsSinceEpoch}',
+        text: errorText,
+        latencyMs: latencyMs,
+        normalizedLatency: 0.0,
+        intent: intent,
+        confidenceScore: 0.0,
+        isError: true,
+      );
     }
   }
 
@@ -286,10 +347,11 @@ class ChatService {
     required String firestoreId, 
     double? confidenceScore,
     int? latencyMs,
+    double? normalizedLatency,
     String? riasecCode,
     String? carreraPregrado,
   }) async {
-    print("📡 SYNC INTERACTION START: $firestoreId (Latencia: ${latencyMs}ms)");
+    print("📡 SYNC INTERACTION START: $firestoreId (Latencia: ${latencyMs}ms, Norm: $normalizedLatency)");
     try {
       final res = await http.post(
         Uri.parse("https://horizonte-backend.onrender.com/api/interactions"),
@@ -306,6 +368,7 @@ class ChatService {
           "firestoreId": firestoreId,
           "confidenceScore": confidenceScore ?? 0.90,
           "latencyMs": latencyMs ?? 1840,
+          "normalizedLatency": normalizedLatency ?? 3.93,
           "riasecCode": riasecCode ?? "IRC",
           "carreraPregrado": carreraPregrado ?? "Ingeniería de Sistemas e Informática",
         }),

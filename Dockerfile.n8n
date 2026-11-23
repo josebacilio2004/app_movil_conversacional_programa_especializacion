@@ -12,6 +12,12 @@ ENV N8N_PROXY_HOPS=1 \
     WEBHOOK_URL=https://horizonte-n8n.onrender.com/ \
     N8N_WEBHOOK_URL=https://horizonte-n8n.onrender.com/ \
     DB_POSTGRESDB_POOL_SIZE=5 \
-    NODE_OPTIONS="--max-old-space-size=400"
+    NODE_OPTIONS="--max-old-space-size=400" \
+    EXECUTIONS_DATA_SAVE_ON_ERROR=all \
+    EXECUTIONS_DATA_SAVE_ON_SUCCESS=none \
+    EXECUTIONS_DATA_SAVE_ON_PROGRESS=false \
+    EXECUTIONS_DATA_PRUNE=true \
+    EXECUTIONS_DATA_MAX_AGE=24 \
+    N8N_CONCURRENCY_PRODUCTION_LIMIT=10
 
 USER node
