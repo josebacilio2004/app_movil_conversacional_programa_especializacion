@@ -174,8 +174,8 @@ class ChatService {
       riasecCode: riasecCode,
     );
 
-    // Endpoint del Webhook de n8n
-    const String url = "http://localhost:5678/webhook/chatbot-continental";
+    // Endpoint del Webhook de n8n desplegado en Render
+    const String url = "https://horizonte-n8n.onrender.com/webhook/chatbot-continental";
     
     final stopwatch = Stopwatch()..start();
     
@@ -199,7 +199,7 @@ class ChatService {
           "parsedIntent": intent,
           "extractedConstraints": extractedConstraints,
         }),
-      ).timeout(const Duration(seconds: 15));
+      ).timeout(const Duration(seconds: 45));
 
       stopwatch.stop();
       final int latencyMs = stopwatch.elapsedMilliseconds;

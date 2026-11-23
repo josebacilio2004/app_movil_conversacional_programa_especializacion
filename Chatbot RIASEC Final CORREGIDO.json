@@ -39,21 +39,23 @@
     },
     {
       "parameters": {
-        "model": "gemini-1.5-flash",
-        "options": {}
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {
+          "temperature": 0.3
+        }
       },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
       "id": "cc853ff7-2428-4f29-adaf-8e3097dc0573",
-      "name": "Google Gemini Chat Model",
+      "name": "Anthropic Claude Chat Model",
       "position": [
         3168,
         256
       ],
       "credentials": {
-        "googlePalmApi": {
-          "id": "gemini_api_creds_id",
-          "name": "Google Gemini(PaLM) Api account"
+        "anthropicApi": {
+          "id": "anthropic_api_key_continental",
+          "name": "Anthropic Claude Account"
         }
       }
     },
@@ -155,7 +157,7 @@
         ]
       ]
     },
-    "Google Gemini Chat Model": {
+    "Anthropic Claude Chat Model": {
       "ai_languageModel": [
         [
           {
